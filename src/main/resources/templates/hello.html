@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Hello Spring Boot!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+
+<script 
+	src="http://cdn.jsdelivr.net/webjars/jquery/2.2.1/jquery.min.js"
+	th:src="@{/webjars/jquery/2.2.1/jquery.min.js}"></script>
+	
+<script 
+	src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/js/bootstrap.min.js"
+	th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+<div class="container" th:fragment="content">
+    <!-- /* Handle the flash message */-->
+    <th:block th:if="${message != null}">
+        <div th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})">&nbsp;</div>
+    </th:block>
+    <p>
+        Hello <span th:text="${#authentication.name}">User</span>!
+        Welcome to the Spring MVC Quickstart application!
+    </p>
+</div>
+</body>
+</html>
