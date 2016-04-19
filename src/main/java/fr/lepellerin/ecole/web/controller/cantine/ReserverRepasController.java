@@ -26,9 +26,9 @@ public class ReserverRepasController {
     activite.setIDactivite(1);
     PlanningDto planning = inscriptionService.findByActiviteAndFamille(activite,
         user.getUser().getFamille());
-
+    model.addAttribute("command", new ReserverRepasForm());
     model.addAttribute("planning", planning);
-    return "reserverRepas";
+    return "cantine/reserverRepas";
   }
 
 }

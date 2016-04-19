@@ -1,5 +1,6 @@
 package fr.lepellerin.ecole.config;
 
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,6 +48,7 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
   public SpringTemplateEngine templateEngine(TemplateResolver templateResolver) {
     SpringTemplateEngine templateEngine = new SpringTemplateEngine();
     templateEngine.setTemplateResolver(templateResolver);
+    templateEngine.addDialect(new LayoutDialect());
     return templateEngine;
   }
 
@@ -76,6 +78,7 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     registry.addResourceHandler("/webjars/**")
         .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/static/");
   }
 
 }
