@@ -18,10 +18,10 @@
 							<label th:for="${#ids.next('tousLesJours')}"><input type="checkbox" th:field="*{tousLesJours}"/>Tous les jours</label>				
 						</div>
 						<div class="checkbox">
-							<label th:for="${#ids.next('lundi')}" class="checkbox-inline"><input type="checkbox" th:field="*{lundi}"/>Lundi</label>				
-							<label th:for="${#ids.next('mardi')}" class="checkbox-inline"><input type="checkbox" th:field="*{mardi}"/>Mardi</label>				
-							<label th:for="${#ids.next('jeudi')}" class="checkbox-inline"><input type="checkbox" th:field="*{jeudi}"/>Jeudi</label>				
-							<label th:for="${#ids.next('vendredi')}" class="checkbox-inline"><input type="checkbox" th:field="*{vendredi}"/>Vendredi</label>				
+							<label th:for="${#ids.next('lundi')}" class="checkbox-inline"><input type="checkbox" th:field="*{lundi}" th:disabled="*{not presLundi}"/>Lundi</label>				
+							<label th:for="${#ids.next('mardi')}" class="checkbox-inline"><input type="checkbox" th:field="*{mardi}" th:disabled="*{not presMardi}"/>Mardi</label>				
+							<label th:for="${#ids.next('jeudi')}" class="checkbox-inline"><input type="checkbox" th:field="*{jeudi}" th:disabled="*{not presJeudi}"/>Jeudi</label>				
+							<label th:for="${#ids.next('vendredi')}" class="checkbox-inline"><input type="checkbox" th:field="*{vendredi}" th:disabled="*{not presVendredi}"/>Vendredi</label>				
 						</div>
 						<button type="submit" class="btn btn-default" value="valider">Valider</button>
 						<button type="submit" class="btn btn-default" value="detail">Valider et voir les détails</button>
