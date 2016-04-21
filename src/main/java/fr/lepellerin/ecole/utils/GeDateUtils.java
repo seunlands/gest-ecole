@@ -6,6 +6,8 @@ import java.util.GregorianCalendar;
 
 public class GeDateUtils {
 
+  public static final String DATE_FORMAT_ANNEE_MOIS_FULL = "MMM yyyy";
+
   /**
    * retourne la date avec heure, minute, seconde, ms à 0.
    * 

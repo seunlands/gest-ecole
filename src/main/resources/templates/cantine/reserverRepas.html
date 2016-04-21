@@ -9,26 +9,35 @@
 				<h1>Réserver des repas</h1>
 			</div>
 			
-			
-			<form role="form" action="#" th:action="@{/cantine/submit}" th:object="${command}" method="post">
+			<div th:if="${command != null}">
+				<form role="form" action="#" th:action="@{/cantine/submit}" th:object="${command}" method="post">
+					<div class="panel panel-default">
+						<div class="panel-heading">Réserver les jours de cantine pour le mois <span th:remove="tag" th:inline="text">[[${command.anneeMois}]]</span></div>
+						<div class="panel-body">
+							<div class="checkbox">
+								<label th:for="${#ids.next('tousLesJours')}"><input type="checkbox" th:field="*{tousLesJours}"/>Tous les jours</label>				
+							</div>
+							<div class="checkbox">
+								<label th:for="${#ids.next('lundi')}" class="checkbox-inline"><input type="checkbox" th:field="*{lundi}" th:disabled="*{not presLundi}"/>Lundi</label>				
+								<label th:for="${#ids.next('mardi')}" class="checkbox-inline"><input type="checkbox" th:field="*{mardi}" th:disabled="*{not presMardi}"/>Mardi</label>				
+								<label th:for="${#ids.next('jeudi')}" class="checkbox-inline"><input type="checkbox" th:field="*{jeudi}" th:disabled="*{not presJeudi}"/>Jeudi</label>				
+								<label th:for="${#ids.next('vendredi')}" class="checkbox-inline"><input type="checkbox" th:field="*{vendredi}" th:disabled="*{not presVendredi}"/>Vendredi</label>				
+							</div>
+							<button type="submit" class="btn btn-default" value="valider">Valider</button>
+							<button type="submit" class="btn btn-default" value="detail">Valider et voir les détails</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div th:if="${command == null}">
 				<div class="panel panel-default">
-					<div class="panel-heading">Réserver les jours de cantine pour le mois AVRIL 2016</div>
+					<div class="panel-heading">Réseravtion des repas non ouvertes</div>
 					<div class="panel-body">
-						<div class="checkbox">
-							<label th:for="${#ids.next('tousLesJours')}"><input type="checkbox" th:field="*{tousLesJours}"/>Tous les jours</label>				
-						</div>
-						<div class="checkbox">
-							<label th:for="${#ids.next('lundi')}" class="checkbox-inline"><input type="checkbox" th:field="*{lundi}" th:disabled="*{not presLundi}"/>Lundi</label>				
-							<label th:for="${#ids.next('mardi')}" class="checkbox-inline"><input type="checkbox" th:field="*{mardi}" th:disabled="*{not presMardi}"/>Mardi</label>				
-							<label th:for="${#ids.next('jeudi')}" class="checkbox-inline"><input type="checkbox" th:field="*{jeudi}" th:disabled="*{not presJeudi}"/>Jeudi</label>				
-							<label th:for="${#ids.next('vendredi')}" class="checkbox-inline"><input type="checkbox" th:field="*{vendredi}" th:disabled="*{not presVendredi}"/>Vendredi</label>				
-						</div>
-						<button type="submit" class="btn btn-default" value="valider">Valider</button>
-						<button type="submit" class="btn btn-default" value="detail">Valider et voir les détails</button>
+						La réservation de repas pour le mois suivant n'est pas encore ouverte. Pour gérer les réservations du mois actuel, il faut aller dans Cantine > Voir le détail des réservations. 
 					</div>
 				</div>
-			</form>
 			
+			</div>			
 		</div>
 	</body>
 </html>

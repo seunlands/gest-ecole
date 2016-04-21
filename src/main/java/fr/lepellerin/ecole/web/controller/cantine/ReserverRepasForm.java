@@ -2,6 +2,8 @@ package fr.lepellerin.ecole.web.controller.cantine;
 
 public class ReserverRepasForm {
 
+  private String anneeMois;
+
   private boolean lundi;
   private boolean mardi;
   private boolean jeudi;
@@ -83,6 +85,14 @@ public class ReserverRepasForm {
 
   public void setTousLesJours(boolean tousLesJours) {
     this.tousLesJours = tousLesJours;
+  }
+
+  public String getAnneeMois() {
+    return anneeMois;
+  }
+
+  public void setAnneeMois(String anneeMois) {
+    this.anneeMois = anneeMois;
   }
 
 }
