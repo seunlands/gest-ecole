@@ -1,7 +1,10 @@
 package fr.lepellerin.ecole.service.internal;
 
 import fr.lepellerin.ecole.bean.Activite;
+import fr.lepellerin.ecole.bean.Consommation;
+import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.bean.Ouverture;
+import fr.lepellerin.ecole.repo.ConsommationRepository;
 import fr.lepellerin.ecole.repo.OuvertureRepository;
 import fr.lepellerin.ecole.service.CantineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -21,6 +25,9 @@ public class CantineServiceImpl implements CantineService {
 
   @Autowired
   private OuvertureRepository ouvertureRepository;
+
+  @Autowired
+  private ConsommationRepository consommationRepository;
 
   @Override
   public Set<Integer> getDateOuvert() {
@@ -50,6 +57,16 @@ public class CantineServiceImpl implements CantineService {
       return YearMonth.now().plusMonths(1);
     }
     return null;
+  }
+
+  @Override
+  public boolean isReservationDoneForFamillyAndMonth(final YearMonth anneeMois,
+      final Famille famille, final Activite activite) {
+    anneeMois.atDay(1);
+    List<Consommation> consos = consommationRepository.findByActiviteAndFamilyBetweenDates(activite,
+        famille, Date.from(anneeMois.atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
+        Date.from(anneeMois.atEndOfMonth().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+    return !consos.isEmpty();
   }
 
 }
