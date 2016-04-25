@@ -3,13 +3,16 @@ package fr.lepellerin.ecole.service.internal;
 import fr.lepellerin.ecole.bean.Activite;
 import fr.lepellerin.ecole.bean.Consommation;
 import fr.lepellerin.ecole.bean.Famille;
+import fr.lepellerin.ecole.bean.Inscription;
 import fr.lepellerin.ecole.bean.Ouverture;
 import fr.lepellerin.ecole.repo.ConsommationRepository;
+import fr.lepellerin.ecole.repo.InscriptionRepository;
 import fr.lepellerin.ecole.repo.OuvertureRepository;
 import fr.lepellerin.ecole.service.CantineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.ZoneId;
@@ -28,6 +31,9 @@ public class CantineServiceImpl implements CantineService {
 
   @Autowired
   private ConsommationRepository consommationRepository;
+
+  @Autowired
+  private InscriptionRepository inscriptionRepository;
 
   @Override
   public Set<Integer> getDateOuvert() {
@@ -67,6 +73,45 @@ public class CantineServiceImpl implements CantineService {
         Date.from(anneeMois.atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
         Date.from(anneeMois.atEndOfMonth().atStartOfDay(ZoneId.systemDefault()).toInstant()));
     return !consos.isEmpty();
+  }
+
+  public void saveReservation(final Famille famille, final YearMonth anneeMois,
+      final boolean reserveLundi) {
+    List<Inscription> icts = this.inscriptionRepository
+        .findByActiviteAndFamille(this.getCantineActivite(), famille);
+    List<Ouverture> ouvertures = this.ouvertureRepository.findByActiviteAndPeriode(
+        this.getCantineActivite(),
+        Date.from(anneeMois.atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
+        Date.from(anneeMois.atEndOfMonth().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+    ouvertures.forEach(o -> {
+      LocalDate date = o.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+      if (reserveLundi && date.getDayOfWeek() == DayOfWeek.MONDAY) {
+        icts.forEach(i -> {
+          Consommation conso = new Consommation();
+          conso.setDate(o.getDate());
+          conso.setActivite(getCantineActivite());
+          conso.setIndividu(i.getIndividu());
+          conso.setInscription(i);
+
+          // IDUnite => 1
+          // IDgroupe => 1
+          // heuredebut => 12:00
+          // heurefin => 13:30
+          // etat => reservation
+          // verrouillage => 0
+          // dateçsaisie => today
+          // IDUtilisateur => 1
+          // IDcategorie_tarif => 1
+          // IDcompte_payeur => 14
+          // IDprestation => 1452
+          // quantite => null
+          // etiquette => ''
+
+          consommationRepository.save(conso);
+        });
+      }
+    });
+
   }
 
   private Activite getCantineActivite() {

@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -28,13 +29,13 @@ public class ReserverRepasController {
    *          : le model Spring de la page
    * @return le nom de la vue
    */
-  @RequestMapping("/init")
+  @RequestMapping(value = "/init", method = RequestMethod.GET)
   public String init(Model model) {
     CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
         .getPrincipal();
     model.addAttribute("user", user);
     YearMonth anneeMois = cantineService.getMoisAnneeReservation();
-    if (anneeMois != null || !cantineService.isReservationDoneForFamillyAndMonth(anneeMois,
+    if (anneeMois != null && !cantineService.isReservationDoneForFamillyAndMonth(anneeMois,
         user.getUser().getFamille())) {
       Set<Integer> jours = cantineService.getDateOuvert();
       ReserverRepasForm form = new ReserverRepasForm();
@@ -56,4 +57,22 @@ public class ReserverRepasController {
     }
     return "cantine/reserverRepas";
   }
+
+  /**
+   * init la page réserver des repas.
+   * 
+   * @param model
+   *          : le model Spring de la page
+   * @return le nom de la vue
+   */
+  @RequestMapping("/submit")
+  public String submit(Model model) {
+    CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
+        .getPrincipal();
+    model.addAttribute("user", user);
+    YearMonth anneeMois = cantineService.getMoisAnneeReservation();
+
+    return "cantine/reserverRepas";
+  }
+
 }
