@@ -35,8 +35,7 @@ public class CantineServiceImpl implements CantineService {
     Date debut = cal.getTime();
     cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
     Date fin = cal.getTime();
-    Activite activite = new Activite();
-    activite.setIDactivite(1);
+    Activite activite = getCantineActivite();
     List<Ouverture> ouvertures = this.ouvertureRepository.findByActiviteAndPeriode(activite, debut,
         fin);
     Set<Integer> jours = new HashSet<>();
@@ -61,12 +60,19 @@ public class CantineServiceImpl implements CantineService {
 
   @Override
   public boolean isReservationDoneForFamillyAndMonth(final YearMonth anneeMois,
-      final Famille famille, final Activite activite) {
+      final Famille famille) {
     anneeMois.atDay(1);
-    List<Consommation> consos = consommationRepository.findByActiviteAndFamilyBetweenDates(activite,
-        famille, Date.from(anneeMois.atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
+    List<Consommation> consos = consommationRepository.findByActiviteAndFamilyBetweenDates(
+        getCantineActivite(), famille,
+        Date.from(anneeMois.atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
         Date.from(anneeMois.atEndOfMonth().atStartOfDay(ZoneId.systemDefault()).toInstant()));
     return !consos.isEmpty();
+  }
+
+  private Activite getCantineActivite() {
+    Activite activite = new Activite();
+    activite.setIDactivite(1);
+    return activite;
   }
 
 }

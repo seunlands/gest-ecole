@@ -21,13 +21,21 @@ public class ReserverRepasController {
   @Autowired
   private CantineService cantineService;
 
+  /**
+   * init la page réserver des repas.
+   * 
+   * @param model
+   *          : le model Spring de la page
+   * @return le nom de la vue
+   */
   @RequestMapping("/init")
   public String init(Model model) {
     CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
         .getPrincipal();
     model.addAttribute("user", user);
     YearMonth anneeMois = cantineService.getMoisAnneeReservation();
-    if (anneeMois != null) {
+    if (anneeMois != null || !cantineService.isReservationDoneForFamillyAndMonth(anneeMois,
+        user.getUser().getFamille())) {
       Set<Integer> jours = cantineService.getDateOuvert();
       ReserverRepasForm form = new ReserverRepasForm();
       form.setAnneeMois(
@@ -48,5 +56,4 @@ public class ReserverRepasController {
     }
     return "cantine/reserverRepas";
   }
-
 }

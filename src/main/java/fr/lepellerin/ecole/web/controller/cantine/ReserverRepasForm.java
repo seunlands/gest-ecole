@@ -8,7 +8,6 @@ public class ReserverRepasForm {
   private boolean mardi;
   private boolean jeudi;
   private boolean vendredi;
-  private boolean tousLesJours;
 
   private boolean presLundi;
   private boolean presMardi;
@@ -79,14 +78,6 @@ public class ReserverRepasForm {
     this.vendredi = vendredi;
   }
 
-  public boolean isTousLesJours() {
-    return tousLesJours;
-  }
-
-  public void setTousLesJours(boolean tousLesJours) {
-    this.tousLesJours = tousLesJours;
-  }
-
   public String getAnneeMois() {
     return anneeMois;
   }
@@ -94,5 +85,4 @@ public class ReserverRepasForm {
   public void setAnneeMois(String anneeMois) {
     this.anneeMois = anneeMois;
   }
-
 }

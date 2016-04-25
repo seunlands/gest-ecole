@@ -15,9 +15,6 @@
 						<div class="panel-heading">Réserver les jours de cantine pour le mois <span th:remove="tag" th:inline="text">[[${command.anneeMois}]]</span></div>
 						<div class="panel-body">
 							<div class="checkbox">
-								<label th:for="${#ids.next('tousLesJours')}"><input type="checkbox" th:field="*{tousLesJours}"/>Tous les jours</label>				
-							</div>
-							<div class="checkbox">
 								<label th:for="${#ids.next('lundi')}" class="checkbox-inline"><input type="checkbox" th:field="*{lundi}" th:disabled="*{not presLundi}"/>Lundi</label>				
 								<label th:for="${#ids.next('mardi')}" class="checkbox-inline"><input type="checkbox" th:field="*{mardi}" th:disabled="*{not presMardi}"/>Mardi</label>				
 								<label th:for="${#ids.next('jeudi')}" class="checkbox-inline"><input type="checkbox" th:field="*{jeudi}" th:disabled="*{not presJeudi}"/>Jeudi</label>				

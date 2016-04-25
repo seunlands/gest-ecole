@@ -1,6 +1,5 @@
 package fr.lepellerin.ecole.service;
 
-import fr.lepellerin.ecole.bean.Activite;
 import fr.lepellerin.ecole.bean.Famille;
 
 import java.time.YearMonth;
@@ -15,7 +14,6 @@ public interface CantineService {
    */
   YearMonth getMoisAnneeReservation();
 
-  boolean isReservationDoneForFamillyAndMonth(final YearMonth anneeMois, final Famille famille,
-      final Activite activite);
+  boolean isReservationDoneForFamillyAndMonth(YearMonth anneeMois, Famille famille);
 
 }

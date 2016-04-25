@@ -14,8 +14,8 @@ public interface ConsommationRepository extends JpaRepository<Consommation, Inte
 
   Consommation findByActiviteAndIndividuAndDate(Activite activite, Individu individu, Date date);
 
-  @Query("from Consommation c where o.activite = ?1 and o.famille = ?2 and date between ?3 and ?4"
-      + " order by date")
+  @Query("from Consommation c where c.activite = ?1 and c.inscription.famille = ?2 and "
+      + "c.date between ?3 and ?4" + " order by date")
   List<Consommation> findByActiviteAndFamilyBetweenDates(Activite activite, Famille famille,
       Date dateInf, Date dateSup);
 
