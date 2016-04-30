@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -21,7 +22,9 @@ public class Unite implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  private int IDunite;
+  @GeneratedValue
+  @Column(name = "IDunite")
+  private int id;
 
   private String abrege;
 
@@ -80,12 +83,12 @@ public class Unite implements Serializable {
   public Unite() {
   }
 
-  public int getIDunite() {
-    return this.IDunite;
+  public int getId() {
+    return this.id;
   }
 
-  public void setIDunite(int IDunite) {
-    this.IDunite = IDunite;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getAbrege() {

@@ -1,13 +1,17 @@
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the prestations database table.
@@ -20,14 +24,17 @@ public class Prestation implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  private int IDprestation;
+  @GeneratedValue
+  @Column(name = "IDprestation")
+  private int id;
 
   private String categorie;
 
   @Column(name = "code_compta")
   private String codeCompta;
 
-  private String date;
+  @Temporal(TemporalType.DATE)
+  private Date date;
 
   private Integer forfait;
 
@@ -87,12 +94,12 @@ public class Prestation implements Serializable {
   public Prestation() {
   }
 
-  public int getIDprestation() {
-    return this.IDprestation;
+  public int getId() {
+    return this.id;
   }
 
-  public void setIDprestation(int IDprestation) {
-    this.IDprestation = IDprestation;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getCategorie() {
@@ -111,11 +118,11 @@ public class Prestation implements Serializable {
     this.codeCompta = codeCompta;
   }
 
-  public String getDate() {
+  public Date getDate() {
     return this.date;
   }
 
-  public void setDate(String date) {
+  public void setDate(Date date) {
     this.date = date;
   }
 

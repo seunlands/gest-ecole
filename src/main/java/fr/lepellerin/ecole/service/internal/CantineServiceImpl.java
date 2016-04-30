@@ -1,10 +1,13 @@
 package fr.lepellerin.ecole.service.internal;
 
 import fr.lepellerin.ecole.bean.Activite;
+import fr.lepellerin.ecole.bean.ComptePayeur;
 import fr.lepellerin.ecole.bean.Consommation;
 import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.bean.Inscription;
 import fr.lepellerin.ecole.bean.Ouverture;
+import fr.lepellerin.ecole.bean.Prestation;
+import fr.lepellerin.ecole.repo.ComptePayeurRepository;
 import fr.lepellerin.ecole.repo.ConsommationRepository;
 import fr.lepellerin.ecole.repo.InscriptionRepository;
 import fr.lepellerin.ecole.repo.OuvertureRepository;
@@ -34,6 +37,9 @@ public class CantineServiceImpl implements CantineService {
 
   @Autowired
   private InscriptionRepository inscriptionRepository;
+
+  @Autowired
+  private ComptePayeurRepository comptePayeurRepository;
 
   @Override
   public Set<Integer> getDateOuvert() {
@@ -83,10 +89,17 @@ public class CantineServiceImpl implements CantineService {
         this.getCantineActivite(),
         Date.from(anneeMois.atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
         Date.from(anneeMois.atEndOfMonth().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+    ComptePayeur cp = this.comptePayeurRepository.findOneByFamille(famille);
     ouvertures.forEach(o -> {
       LocalDate date = o.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
       if (reserveLundi && date.getDayOfWeek() == DayOfWeek.MONDAY) {
         icts.forEach(i -> {
+          Prestation presta = new Prestation();
+          presta.setComptePayeur(cp);
+          presta.setDate(o.getDate());
+          presta.setCategorie("consommation");
+
           Consommation conso = new Consommation();
           conso.setDate(o.getDate());
           conso.setActivite(getCantineActivite());

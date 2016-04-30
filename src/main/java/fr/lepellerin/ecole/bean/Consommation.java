@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,7 +24,9 @@ public class Consommation implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  private int IDconso;
+  @GeneratedValue
+  @Column(name = "IDconso")
+  private int id;
 
   @Temporal(TemporalType.DATE)
   private Date date;
@@ -86,12 +89,12 @@ public class Consommation implements Serializable {
   public Consommation() {
   }
 
-  public int getIDconso() {
-    return this.IDconso;
+  public int getId() {
+    return this.id;
   }
 
-  public void setIDconso(int IDconso) {
-    this.IDconso = IDconso;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public Date getDate() {

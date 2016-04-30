@@ -2,7 +2,9 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +21,9 @@ public class ComptePayeur implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  private int IDcompte_payeur;
+  @GeneratedValue
+  @Column(name = "IDcompte_payeur")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDfamille")
@@ -32,12 +36,12 @@ public class ComptePayeur implements Serializable {
   public ComptePayeur() {
   }
 
-  public int getIDcompte_payeur() {
-    return this.IDcompte_payeur;
+  public int getId() {
+    return this.id;
   }
 
-  public void setIDcompte_payeur(int IDcompte_payeur) {
-    this.IDcompte_payeur = IDcompte_payeur;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public Famille getFamille() {
