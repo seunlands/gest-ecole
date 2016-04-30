@@ -2,23 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<body>
 		<div th:fragment="header">
-			<div class="jumbotron">
-				<h1>GEST-ECOLE</h1>
-			</div>
 			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="#">Gest-Ecole</a>
+						<a class="navbar-brand" th:href="@{/}">Gest-Ecole</a>
 					</div>
 					<ul class="nav navbar-nav">
 						<li class="dropdown active"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">Cantine <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Réserver des repas de cantine</a></li>
-								<li><a href="#">Voir les détails des réservations</a></li>
+								<li><a th:href="@{/cantine/init}">Réserver des repas de cantine</a></li>
+								<li><a th:href="@{/cantine/details/init}">Voir les détails des réservations</a></li>
 							</ul>
 						</li>
 					</ul>
+					<a th:href="@{/logout}" type="button" class="btn btn-default navbar-btn pull-right">
+						Déconnexion
+					</a>
 				</div>
 			</nav>
 		</div>

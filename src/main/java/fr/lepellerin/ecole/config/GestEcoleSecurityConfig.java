@@ -23,10 +23,23 @@ public class GestEcoleSecurityConfig extends WebSecurityConfigurerAdapter {
     auth.userDetailsService(userDetailsService);
   }
 
+  // @formatter:off
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-        .antMatchers("/cantine/**").access("hasRole('ROLE_FAMILLE')").and().formLogin();
+    http
+        .authorizeRequests()
+            .antMatchers("/assets/**").permitAll()
+            .antMatchers("/webjars/**").permitAll()
+            .antMatchers("/cantine/**").access("hasRole('ROLE_FAMILLE')")
+            .antMatchers("/**").authenticated()
+           .and()
+        .formLogin()
+            .loginPage("/login")
+            .permitAll()
+            .and()
+        .logout()
+            .permitAll();
 
   }
+  // @formatter:on
 }
