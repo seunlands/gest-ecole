@@ -35,8 +35,11 @@ public class ReserverRepasController {
         .getPrincipal();
     model.addAttribute("user", user);
     YearMonth anneeMois = cantineService.getMoisAnneeReservation();
-    if (anneeMois != null && !cantineService.isReservationDoneForFamillyAndMonth(anneeMois,
-        user.getUser().getFamille())) {
+    if (anneeMois != null /*
+                           * &&
+                           * !cantineService.isReservationDoneForFamillyAndMonth
+                           * (anneeMois, user.getUser().getFamille())
+                           */) {
       Set<Integer> jours = cantineService.getDateOuvert();
       ReserverRepasForm form = new ReserverRepasForm();
       form.setAnneeMois(
