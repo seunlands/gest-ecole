@@ -73,7 +73,7 @@ public class ReserverRepasController {
     CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
         .getPrincipal();
     model.addAttribute("user", user);
-    YearMonth anneeMois = cantineService.getMoisAnneeReservation();
+    // YearMonth anneeMois = cantineService.getMoisAnneeReservation();
 
     return "cantine/reserverRepas";
   }

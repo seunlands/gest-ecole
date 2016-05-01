@@ -2,8 +2,10 @@ package fr.lepellerin.ecole.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -42,4 +44,10 @@ public class GestEcoleSecurityConfig extends WebSecurityConfigurerAdapter {
 
   }
   // @formatter:on
+
+  @Bean
+  public ShaPasswordEncoder passwordEncoder() {
+    return new ShaPasswordEncoder(256);
+  }
+
 }

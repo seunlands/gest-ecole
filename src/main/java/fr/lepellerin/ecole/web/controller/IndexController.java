@@ -9,7 +9,7 @@ public class IndexController {
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String welcomePage() {
-    return "/accueil/home";
+    return "accueil/home";
   }
 
 }
