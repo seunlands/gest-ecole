@@ -1,13 +1,17 @@
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,15 +25,17 @@ public class Famille implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  private int IDfamille;
+  @GeneratedValue
+  @Column(name = "IDfamille")
+  private int id;
 
-  private int allocataire;
+  private Integer allocataire;
 
   @Column(name = "autorisation_cafpro")
-  private int autorisationCafpro;
+  private Integer autorisationCafpro;
 
   @Column(name = "cattiers_helios")
-  private int cattiersHelios;
+  private Integer cattiersHelios;
 
   @Lob
   @Column(name = "code_comptable")
@@ -75,10 +81,10 @@ public class Famille implements Serializable {
   private String memo;
 
   @Column(name = "natidtiers_helios")
-  private int natidtiersHelios;
+  private Integer natidtiersHelios;
 
   @Column(name = "natjur_helios")
-  private int natjurHelios;
+  private Integer natjurHelios;
 
   @Column(name = "num_allocataire")
   private String numAllocataire;
@@ -145,38 +151,41 @@ public class Famille implements Serializable {
   @Column(name = "titulaire_helios")
   private int titulaireHelios;
 
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "famille")
+  private Set<Rattachement> rattachements;
+
   public Famille() {
   }
 
-  public int getIDfamille() {
-    return this.IDfamille;
+  public int getId() {
+    return this.id;
   }
 
-  public void setIDfamille(int IDfamille) {
-    this.IDfamille = IDfamille;
+  public void setId(int id) {
+    this.id = id;
   }
 
-  public int getAllocataire() {
+  public Integer getAllocataire() {
     return this.allocataire;
   }
 
-  public void setAllocataire(int allocataire) {
+  public void setAllocataire(Integer allocataire) {
     this.allocataire = allocataire;
   }
 
-  public int getAutorisationCafpro() {
+  public Integer getAutorisationCafpro() {
     return this.autorisationCafpro;
   }
 
-  public void setAutorisationCafpro(int autorisationCafpro) {
+  public void setAutorisationCafpro(Integer autorisationCafpro) {
     this.autorisationCafpro = autorisationCafpro;
   }
 
-  public int getCattiersHelios() {
+  public Integer getCattiersHelios() {
     return this.cattiersHelios;
   }
 
-  public void setCattiersHelios(int cattiersHelios) {
+  public void setCattiersHelios(Integer cattiersHelios) {
     this.cattiersHelios = cattiersHelios;
   }
 
@@ -276,19 +285,19 @@ public class Famille implements Serializable {
     this.memo = memo;
   }
 
-  public int getNatidtiersHelios() {
+  public Integer getNatidtiersHelios() {
     return this.natidtiersHelios;
   }
 
-  public void setNatidtiersHelios(int natidtiersHelios) {
+  public void setNatidtiersHelios(Integer natidtiersHelios) {
     this.natidtiersHelios = natidtiersHelios;
   }
 
-  public int getNatjurHelios() {
+  public Integer getNatjurHelios() {
     return this.natjurHelios;
   }
 
-  public void setNatjurHelios(int natjurHelios) {
+  public void setNatjurHelios(Integer natjurHelios) {
     this.natjurHelios = natjurHelios;
   }
 
@@ -450,6 +459,14 @@ public class Famille implements Serializable {
 
   public void setTitulaireHelios(int titulaireHelios) {
     this.titulaireHelios = titulaireHelios;
+  }
+
+  public Set<Rattachement> getRattachements() {
+    return rattachements;
+  }
+
+  public void setRattachements(Set<Rattachement> rattachements) {
+    this.rattachements = rattachements;
   }
 
 }

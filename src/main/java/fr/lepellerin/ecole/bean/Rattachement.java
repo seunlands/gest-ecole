@@ -2,7 +2,9 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,9 +21,12 @@ public class Rattachement implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  private int IDrattachement;
+  @GeneratedValue
+  @Column(name = "IDrattachement")
+  private int id;
 
-  private int IDcategorie;
+  @Column(name = "IDcategorie")
+  private int idCategorie;
 
   @ManyToOne
   @JoinColumn(name = "IDfamille")
@@ -36,20 +41,20 @@ public class Rattachement implements Serializable {
   public Rattachement() {
   }
 
-  public int getIDrattachement() {
-    return this.IDrattachement;
+  public int getId() {
+    return this.id;
   }
 
-  public void setIDrattachement(int IDrattachement) {
-    this.IDrattachement = IDrattachement;
+  public void setId(int id) {
+    this.id = id;
   }
 
-  public int getIDcategorie() {
-    return this.IDcategorie;
+  public int getIdCategorie() {
+    return this.idCategorie;
   }
 
-  public void setIDcategorie(int IDcategorie) {
-    this.IDcategorie = IDcategorie;
+  public void setIdCategorie(int idCategorie) {
+    this.idCategorie = idCategorie;
   }
 
   public Famille getFamille() {

@@ -1,0 +1,5 @@
+Questions
+---------------------
+
+> Création des comptes, comment on construit le username.
+	->on prend les individus de la famille de categorie 1 et on concat nom different avec tiret
