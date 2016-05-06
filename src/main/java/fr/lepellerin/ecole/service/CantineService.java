@@ -10,7 +10,7 @@ public interface CantineService {
   Set<Integer> getDateOuvert();
 
   /**
-   * @return le mois année de la réservation en masse. (null si non ouverte)e
+   * @return le mois année de la réservation en masse. (null si non ouverte)
    */
   YearMonth getMoisAnneeReservation();
 
