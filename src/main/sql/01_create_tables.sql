@@ -9,6 +9,3 @@ CREATE TABLE `users` (
    KEY `fk_user_famille` (`id_famille`),
    CONSTRAINT `fk_user_famille` FOREIGN KEY (`id_famille`) REFERENCES `familles` (`IDfamille`)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
- 
- INSERT INTO users (username, password, role, enabled) VALUES ('admin', 'admin', 'ROLE_ADMIN', 1);
- 
