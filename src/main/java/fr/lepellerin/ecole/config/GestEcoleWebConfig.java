@@ -28,12 +28,23 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
    *
    * @return template resolver
    */
-  @Bean
-  public TemplateResolver templateResolver() {
+  private TemplateResolver templateResolver() {
     ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
     templateResolver.setPrefix("templates/");
     templateResolver.setSuffix(".html");
     templateResolver.setTemplateMode("HTML5");
+    templateResolver.setCacheable(false);
+    templateResolver.setOrder(2);
+    return templateResolver;
+  }
+
+  private TemplateResolver emailTemplateResolver() {
+    TemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+    templateResolver.setPrefix("email/");
+    templateResolver.setSuffix(".html");
+    templateResolver.setTemplateMode("HTML5");
+    templateResolver.setCharacterEncoding("UTF-8");
+    templateResolver.setOrder(1);
     templateResolver.setCacheable(false);
     return templateResolver;
   }
@@ -46,10 +57,10 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
    * @return template engine
    */
   @Bean
-  @Autowired
-  public SpringTemplateEngine templateEngine(TemplateResolver templateResolver) {
+  public SpringTemplateEngine templateEngine() {
     SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-    templateEngine.setTemplateResolver(templateResolver);
+    templateEngine.addTemplateResolver(this.emailTemplateResolver());
+    templateEngine.addTemplateResolver(this.templateResolver());
     templateEngine.addDialect(new LayoutDialect());
     templateEngine.addDialect(new Java8TimeDialect());
     templateEngine.addDialect(new SpringSecurityDialect());
