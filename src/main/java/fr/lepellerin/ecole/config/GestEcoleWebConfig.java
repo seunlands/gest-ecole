@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
@@ -51,6 +52,7 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
     templateEngine.setTemplateResolver(templateResolver);
     templateEngine.addDialect(new LayoutDialect());
     templateEngine.addDialect(new Java8TimeDialect());
+    templateEngine.addDialect(new SpringSecurityDialect());
     return templateEngine;
   }
 

@@ -33,6 +33,7 @@ public class GestEcoleSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/assets/**").permitAll()
             .antMatchers("/webjars/**").permitAll()
             .antMatchers("/cantine/**").access("hasRole('ROLE_FAMILLE')")
+            .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
             .antMatchers("/**").authenticated()
            .and()
         .formLogin()
