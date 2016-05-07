@@ -30,9 +30,11 @@ public class GestEcoleSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
         .authorizeRequests()
+            .antMatchers("/forgottenPassword").permitAll()
             .antMatchers("/assets/**").permitAll()
             .antMatchers("/webjars/**").permitAll()
             .antMatchers("/cantine/**").access("hasRole('ROLE_FAMILLE')")
+            .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
             .antMatchers("/**").authenticated()
            .and()
         .formLogin()

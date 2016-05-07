@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title data-th-remove="all">Template for HTML email for forgotten password</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+    	<div>
+  			<p>Bonjour <b data-th-text="${name}">Peter</b>!</p>
+  			<p>Un oubli ça arrive ;). Ton nouveau mot de passe est <b data-th-text="${pwd}">motdepasse</b>.</p>
+  			<p>A bientôt</p>
+  			<p>L'équipe Gestécole.</p>
+  		</div>
+    </body>
+</html>

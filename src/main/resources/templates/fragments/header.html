@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<body>
 		<div th:fragment="header">
 			<nav class="navbar navbar-default">
@@ -8,14 +8,16 @@
 						<a class="navbar-brand" th:href="@{/}">Gest-Ecole</a>
 					</div>
 					<ul class="nav navbar-nav">
-						<li class="dropdown active"><a class="dropdown-toggle"
+						
+						<li sec:authorize="hasRole('ROLE_FAMILLE')" class="dropdown active"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">Cantine <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a th:href="@{/cantine/init}">Réserver des repas de cantine</a></li>
 								<li><a th:href="@{/cantine/details/init}">Voir les détails des réservations</a></li>
 							</ul>
 						</li>
-						<li class="dropdown active"><a class="dropdown-toggle"
+						
+						<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown active"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a th:href="@{/admin/creerCompte/init}">Créer les comptes utilisateurs</a></li>
