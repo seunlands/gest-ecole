@@ -5,6 +5,8 @@ Pré-requis
 * Avoir une BDD Noethys
 * Exécuter le fichier SQL src/main/sql/01_create_tables.sql
 	* pensez à changer le mot de passe de l'administrateur (par défaut, admin/admin)
+		* le mots de passe sont hashés avec BCrypt. Utiliser la classe PasswordGenerator pour les générer.
+		* par exemeple, admin = $2a$11$B7pndaIk/dynIpMrJRnJd.aqsJT.lnLAkNUfVnhLxClGCkaSgL1CK 
 * Installer Maven (v3 ou supérieur)
 * Installer JDK v8
 * Installer git

@@ -1,6 +1,9 @@
 RAF
 ------------------
 -Spring security
->hashage mot de passe
->envoi mail reinit mot de passe
->mise mot de passe au hasard
+>hashage mot de passe > DONE
+>envoi mail reinit mot de passe > DONE
+>mise mot de passe au hasard > DONE
+>user peut changer son mot de passe
+
+

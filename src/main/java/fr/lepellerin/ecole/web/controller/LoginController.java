@@ -1,6 +1,7 @@
 package fr.lepellerin.ecole.web.controller;
 
 import fr.lepellerin.ecole.service.EmailService;
+import fr.lepellerin.ecole.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,9 +9,12 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.thymeleaf.context.Context;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +25,9 @@ public class LoginController {
 
   @Autowired
   private EmailService emailService;
+
+  @Autowired
+  private UtilisateurService utilisateurService;
 
   @RequestMapping(value = "/login", method = RequestMethod.GET)
   public String login() {
@@ -61,7 +68,9 @@ public class LoginController {
    * @return nom de la vue
    */
   @RequestMapping(value = "/forgottenPassword", method = RequestMethod.POST)
-  public String resetPwdPage() {
+  public String resetPwdPage(@RequestParam final String email) {
+    // find family by email.
+    Map<String, List<String>> pwds = this.utilisateurService.resetPasswordForFamille(email);
     final Context ctx = new Context(Locale.ROOT);
     ctx.setVariable("name", "Seun");
     ctx.setVariable("pwd", "motdepasse");

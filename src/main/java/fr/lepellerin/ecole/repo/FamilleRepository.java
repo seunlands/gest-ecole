@@ -12,4 +12,8 @@ public interface FamilleRepository extends JpaRepository<Famille, Integer> {
       + "where r.idCategorie = 2 and not exists (select 1 from User u where u.famille = f)")
   List<Famille> findWithoutUserAccount();
 
+  @Query("select distinct f from Famille f join f.rattachements r join r.individu i "
+      + "where i.mail = ?1")
+  List<Famille> findFamilleByEmail(String email);
+
 }

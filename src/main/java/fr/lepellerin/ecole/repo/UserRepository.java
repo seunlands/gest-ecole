@@ -1,5 +1,6 @@
 package fr.lepellerin.ecole.repo;
 
+import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.bean.security.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -11,5 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UserRepository extends JpaRepository<User, String> {
 
-  User findByUsername(String username);
+  User findOneByUsername(String username);
+
+  User findOneByFamille(Famille famille);
 }

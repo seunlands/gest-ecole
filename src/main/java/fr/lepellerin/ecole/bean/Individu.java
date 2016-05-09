@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -21,7 +22,9 @@ public class Individu implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  private int IDindividu;
+  @GeneratedValue
+  @Column(name = "IDindividu")
+  private int id;
 
   @Column(name = "adresse_auto")
   private Integer adresseAuto;
@@ -49,15 +52,18 @@ public class Individu implements Serializable {
   @JoinColumn(name = "IDcategorie_travail")
   private CategoriesTravail categorieTravail;
 
-  private int IDcivilite;
+  @Column(name = "IDcivilite")
+  private int idCivilite;
 
   @ManyToOne
   @JoinColumn(name = "IDmedecin")
   private Medecin medecin;
 
-  private int IDnationalite;
+  @Column(name = "IDnationalite")
+  private int idNationalite;
 
-  private int IDpays_naiss;
+  @Column(name = "IDpays_naiss")
+  private int idPaysNaiss;
 
   @ManyToOne
   @JoinColumn(name = "IDsecteur")
@@ -114,12 +120,12 @@ public class Individu implements Serializable {
   public Individu() {
   }
 
-  public int getIDindividu() {
-    return this.IDindividu;
+  public int getId() {
+    return this.id;
   }
 
-  public void setIDindividu(int IDindividu) {
-    this.IDindividu = IDindividu;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public Integer getAdresseAuto() {
@@ -194,12 +200,12 @@ public class Individu implements Serializable {
     this.categorieTravail = categorieTravail;
   }
 
-  public int getIDcivilite() {
-    return this.IDcivilite;
+  public int getIdCivilite() {
+    return this.idCivilite;
   }
 
-  public void setIDcivilite(int IDcivilite) {
-    this.IDcivilite = IDcivilite;
+  public void setIdCivilite(int idCivilite) {
+    this.idCivilite = idCivilite;
   }
 
   public Medecin getMedecin() {
@@ -210,20 +216,20 @@ public class Individu implements Serializable {
     this.medecin = medecin;
   }
 
-  public int getIDnationalite() {
-    return this.IDnationalite;
+  public int getIdNationalite() {
+    return this.idNationalite;
   }
 
-  public void setIDnationalite(int IDnationalite) {
-    this.IDnationalite = IDnationalite;
+  public void setIdNationalite(int idNationalite) {
+    this.idNationalite = idNationalite;
   }
 
-  public int getIDpays_naiss() {
-    return this.IDpays_naiss;
+  public int getIdPaysNaiss() {
+    return this.idPaysNaiss;
   }
 
-  public void setIDpays_naiss(int IDpays_naiss) {
-    this.IDpays_naiss = IDpays_naiss;
+  public void setIdPaysNaiss(int idPaysNaiss) {
+    this.idPaysNaiss = idPaysNaiss;
   }
 
   public Secteur getSecteur() {
