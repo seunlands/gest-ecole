@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the individus database table.
- * 
+ *
  */
 @Table(name = "individus")
 @Entity
