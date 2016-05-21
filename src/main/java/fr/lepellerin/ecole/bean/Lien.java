@@ -32,7 +32,7 @@ import javax.persistence.Table;
 @Table(name = "liens")
 
 public class Lien implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   private int IDlien;

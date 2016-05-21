@@ -34,7 +34,7 @@ import javax.persistence.Table;
 @Table(name = "groupes_activites")
 
 public class GroupeActivite implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   private int IDgroupe_activite;

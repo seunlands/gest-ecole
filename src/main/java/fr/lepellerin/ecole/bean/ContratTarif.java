@@ -35,7 +35,7 @@ import javax.persistence.Table;
 @Table(name = "contrats_tarifs")
 
 public class ContratTarif implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   private int IDcontrat_tarif;

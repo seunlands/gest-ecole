@@ -36,7 +36,7 @@ import javax.persistence.Table;
 @Table(name = "compta_budgets")
 
 public class ComptaBudget implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   private int IDbudget;

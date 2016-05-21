@@ -34,7 +34,7 @@ import javax.persistence.Table;
 @Table(name = "nomade_archivage")
 
 public class NomadeArchivage implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   private int IDarchive;

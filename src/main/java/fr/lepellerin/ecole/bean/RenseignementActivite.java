@@ -34,7 +34,7 @@ import javax.persistence.Table;
 @Table(name = "renseignements_activites")
 
 public class RenseignementActivite implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   private int IDrenseignement;

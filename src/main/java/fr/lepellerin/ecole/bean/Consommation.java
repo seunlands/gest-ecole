@@ -39,7 +39,7 @@ import javax.persistence.TemporalType;
 @Table(name = "consommations")
 
 public class Consommation implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   @GeneratedValue

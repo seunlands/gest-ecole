@@ -33,7 +33,7 @@ import javax.persistence.Lob;
 @Entity
 
 public class Organisateur implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   private int IDorganisateur;

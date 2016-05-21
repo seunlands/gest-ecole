@@ -33,7 +33,7 @@ import javax.persistence.Table;
 @Table(name = "depots_cotisations")
 
 public class DepotCotisation implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   private int IDdepot_cotisation;

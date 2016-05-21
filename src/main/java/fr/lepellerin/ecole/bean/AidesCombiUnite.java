@@ -33,7 +33,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "aides_combi_unites")
 public class AidesCombiUnite implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   private int IDaide_combi_unite;

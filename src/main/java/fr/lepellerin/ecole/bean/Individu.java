@@ -37,7 +37,7 @@ import javax.persistence.Table;
 @Entity
 
 public class Individu implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   @GeneratedValue

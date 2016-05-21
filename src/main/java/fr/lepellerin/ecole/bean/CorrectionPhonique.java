@@ -33,7 +33,7 @@ import javax.persistence.Table;
 @Table(name = "corrections_phoniques")
 
 public class CorrectionPhonique implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   private int IDcorrection;

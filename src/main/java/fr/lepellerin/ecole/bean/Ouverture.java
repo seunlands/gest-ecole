@@ -38,7 +38,7 @@ import javax.persistence.TemporalType;
 @Table(name = "ouvertures")
 
 public class Ouverture implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   @Column(name = "IDouverture")

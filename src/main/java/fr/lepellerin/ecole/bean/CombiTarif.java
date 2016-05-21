@@ -35,7 +35,7 @@ import javax.persistence.Table;
 @Table(name = "combi_tarifs")
 
 public class CombiTarif implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   private int IDcombi_tarif;

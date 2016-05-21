@@ -33,7 +33,7 @@ import javax.persistence.Table;
 @Table(name = "types_groupes_activites")
 
 public class TypeGroupeActivite implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 20160520L;
 
   @Id
   private int IDtype_groupe_activite;
