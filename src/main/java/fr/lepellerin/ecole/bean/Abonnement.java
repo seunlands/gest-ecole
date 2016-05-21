@@ -20,7 +20,9 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -37,7 +39,9 @@ public class Abonnement implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDabonnement;
+  @GeneratedValue
+  @Column(name = "IDabonnement")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDindividu")
@@ -47,15 +51,12 @@ public class Abonnement implements Serializable {
   @JoinColumn(name = "IDliste")
   private ListeDiffusion liste;
 
-  public Abonnement() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDabonnement() {
-    return this.IDabonnement;
-  }
-
-  public void setIDabonnement(int IDabonnement) {
-    this.IDabonnement = IDabonnement;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public Individu getIndividu() {

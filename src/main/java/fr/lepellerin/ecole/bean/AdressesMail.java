@@ -20,7 +20,9 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -35,7 +37,9 @@ public class AdressesMail implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDadresse;
+  @GeneratedValue
+  @Column(name = "IDadresse")
+  private int id;
 
   private String adresse;
 
@@ -49,15 +53,12 @@ public class AdressesMail implements Serializable {
 
   private String smtp;
 
-  public AdressesMail() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDadresse() {
-    return this.IDadresse;
-  }
-
-  public void setIDadresse(int IDadresse) {
-    this.IDadresse = IDadresse;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getAdresse() {

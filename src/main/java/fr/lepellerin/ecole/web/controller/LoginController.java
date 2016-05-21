@@ -20,6 +20,9 @@ package fr.lepellerin.ecole.web.controller;
 
 import fr.lepellerin.ecole.service.EmailService;
 import fr.lepellerin.ecole.service.UtilisateurService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -40,6 +43,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class LoginController {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
   @Autowired
   private EmailService emailService;
@@ -95,7 +100,7 @@ public class LoginController {
     try {
       this.emailService.sendSimpleMail("test", "test", "test", "forgottenEmail", ctx);
     } catch (MessagingException e) {
-      // TODO Auto-generated catch block
+      LOGGER.error("ERROR sending email : " + e.getMessage());
       e.printStackTrace();
     }
     return "accueil/forgottenPwd";

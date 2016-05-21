@@ -147,7 +147,7 @@ public class CantineServiceImpl implements CantineService {
 
   private Activite getCantineActivite() {
     Activite activite = new Activite();
-    activite.setIDactivite(1);
+    activite.setId(1);
     return activite;
   }
 

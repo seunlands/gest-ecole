@@ -22,6 +22,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -37,7 +38,9 @@ public class Activite implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDactivite;
+  @GeneratedValue
+  @Column(name = "IDactivite")
+  private int id;
 
   private String abrege;
 
@@ -90,7 +93,7 @@ public class Activite implements Serializable {
   private Integer psuUnitePrevision;
 
   @Column(name = "public")
-  private String public_;
+  private String publique;
 
   private String rue;
 
@@ -103,15 +106,12 @@ public class Activite implements Serializable {
 
   private String ville;
 
-  public Activite() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDactivite() {
-    return this.IDactivite;
-  }
-
-  public void setIDactivite(int IDactivite) {
-    this.IDactivite = IDactivite;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getAbrege() {
@@ -258,12 +258,12 @@ public class Activite implements Serializable {
     this.psuUnitePrevision = psuUnitePrevision;
   }
 
-  public String getPublic_() {
-    return this.public_;
+  public String getPublique() {
+    return this.publique;
   }
 
-  public void setPublic_(String public_) {
-    this.public_ = public_;
+  public void setPublique(String publique) {
+    this.publique = publique;
   }
 
   public String getRue() {

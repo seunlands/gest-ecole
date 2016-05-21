@@ -22,6 +22,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -38,7 +39,9 @@ public class Agrement implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDagrement;
+  @GeneratedValue
+  @Column(name = "IDagrement")
+  private int id;
 
   private String agrement;
 
@@ -52,15 +55,12 @@ public class Agrement implements Serializable {
   @JoinColumn(name = "IDactivite")
   private Activite activite;
 
-  public Agrement() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDagrement() {
-    return this.IDagrement;
-  }
-
-  public void setIDagrement(int IDagrement) {
-    this.IDagrement = IDagrement;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getAgrement() {

@@ -29,4 +29,11 @@ public class GestecoleApplication {
   public static void main(String[] args) {
     SpringApplication.run(GestecoleApplication.class, args);
   }
+  
+  /**
+   * constructeur par defaut.
+   */
+  public GestecoleApplication() {
+	  
+  }
 }
