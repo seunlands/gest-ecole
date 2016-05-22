@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the combi_tarifs_unites database table.
- * 
+ *
  */
 @Entity
 @Table(name = "combi_tarifs_unites")
@@ -37,7 +37,9 @@ public class CombiTarifsUnite implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcombi_tarif_unite;
+  @GeneratedValue
+  @Column(name = "IDcombi_tarif_unite")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDcombi_tarif")
@@ -45,44 +47,41 @@ public class CombiTarifsUnite implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "IDtarif")
-  private Tarif IDtarif;
+  private Tarif tarif;
 
   @ManyToOne
   @JoinColumn(name = "IDunite")
   private Unite unite;
 
-  public CombiTarifsUnite() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcombi_tarif_unite() {
-    return this.IDcombi_tarif_unite;
-  }
-
-  public void setIDcombi_tarif_unite(int IDcombi_tarif_unite) {
-    this.IDcombi_tarif_unite = IDcombi_tarif_unite;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public CombiTarif getCombiTarif() {
     return combiTarif;
   }
 
-  public void setCombiTarif(CombiTarif combiTarif) {
+  public void setCombiTarif(final CombiTarif combiTarif) {
     this.combiTarif = combiTarif;
   }
 
-  public Tarif getIDtarif() {
-    return IDtarif;
+  public Tarif getTarif() {
+    return this.tarif;
   }
 
-  public void setIDtarif(Tarif iDtarif) {
-    IDtarif = iDtarif;
+  public void setTarif(final Tarif tarif) {
+    this.tarif = tarif;
   }
 
   public Unite getUnite() {
     return unite;
   }
 
-  public void setUnite(Unite unite) {
+  public void setUnite(final Unite unite) {
     this.unite = unite;
   }
 

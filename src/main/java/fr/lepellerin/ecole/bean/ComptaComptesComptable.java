@@ -15,19 +15,19 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the compta_comptes_comptables database table.
- * 
+ *
  */
 @Entity
 @Table(name = "compta_comptes_comptables")
@@ -36,29 +36,28 @@ public class ComptaComptesComptable implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcompte;
+  @GeneratedValue
+  @Column(name = "IDcompte")
+  private int id;
 
   @Lob
   private String nom;
 
   private String numero;
 
-  public ComptaComptesComptable() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcompte() {
-    return this.IDcompte;
-  }
-
-  public void setIDcompte(int IDcompte) {
-    this.IDcompte = IDcompte;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getNom() {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 
@@ -66,7 +65,7 @@ public class ComptaComptesComptable implements Serializable {
     return this.numero;
   }
 
-  public void setNumero(String numero) {
+  public void setNumero(final String numero) {
     this.numero = numero;
   }
 

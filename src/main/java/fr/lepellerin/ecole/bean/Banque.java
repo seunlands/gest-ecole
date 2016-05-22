@@ -15,19 +15,18 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the banques database table.
- * 
+ *
  */
 @Entity
 @Table(name = "banques")
@@ -35,7 +34,9 @@ public class Banque implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDbanque;
+  @GeneratedValue
+  @Column(name = "IDbanque")
+  private int id;
 
   @Column(name = "cp_resid")
   private String cpResid;
@@ -48,22 +49,19 @@ public class Banque implements Serializable {
   @Column(name = "ville_resid")
   private String villeResid;
 
-  public Banque() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDbanque() {
-    return this.IDbanque;
-  }
-
-  public void setIDbanque(int IDbanque) {
-    this.IDbanque = IDbanque;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getCpResid() {
     return this.cpResid;
   }
 
-  public void setCpResid(String cpResid) {
+  public void setCpResid(final String cpResid) {
     this.cpResid = cpResid;
   }
 
@@ -71,7 +69,7 @@ public class Banque implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 
@@ -79,7 +77,7 @@ public class Banque implements Serializable {
     return this.rueResid;
   }
 
-  public void setRueResid(String rueResid) {
+  public void setRueResid(final String rueResid) {
     this.rueResid = rueResid;
   }
 
@@ -87,7 +85,7 @@ public class Banque implements Serializable {
     return this.villeResid;
   }
 
-  public void setVilleResid(String villeResid) {
+  public void setVilleResid(final String villeResid) {
     this.villeResid = villeResid;
   }
 

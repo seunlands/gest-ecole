@@ -23,6 +23,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class GeneratePasswords {
 
+  /**
+   * methode de generation de hash de mot de passe.
+   * @param args : arguments
+   */
   public static void main(String[] args) {
 
     String password = "admin";

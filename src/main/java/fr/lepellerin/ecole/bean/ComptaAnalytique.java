@@ -15,19 +15,19 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the compta_analytiques database table.
- * 
+ *
  */
 @Entity
 @Table(name = "compta_analytiques")
@@ -36,7 +36,9 @@ public class ComptaAnalytique implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDanalytique;
+  @GeneratedValue
+  @Column(name = "IDanalytique")
+  private int id;
 
   private String abrege;
 
@@ -45,22 +47,19 @@ public class ComptaAnalytique implements Serializable {
   @Lob
   private String nom;
 
-  public ComptaAnalytique() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDanalytique() {
-    return this.IDanalytique;
-  }
-
-  public void setIDanalytique(int IDanalytique) {
-    this.IDanalytique = IDanalytique;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getAbrege() {
     return this.abrege;
   }
 
-  public void setAbrege(String abrege) {
+  public void setAbrege(final String abrege) {
     this.abrege = abrege;
   }
 
@@ -68,7 +67,7 @@ public class ComptaAnalytique implements Serializable {
     return this.defaut;
   }
 
-  public void setDefaut(int defaut) {
+  public void setDefaut(final int defaut) {
     this.defaut = defaut;
   }
 
@@ -76,7 +75,7 @@ public class ComptaAnalytique implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 

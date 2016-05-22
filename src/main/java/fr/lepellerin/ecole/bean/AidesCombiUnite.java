@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the aides_combi_unites database table.
- * 
+ *
  */
 @Entity
 @Table(name = "aides_combi_unites")
@@ -36,7 +36,9 @@ public class AidesCombiUnite implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDaide_combi_unite;
+  @GeneratedValue
+  @Column(name = "IDaide_combi_unite")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDaide")
@@ -46,24 +48,23 @@ public class AidesCombiUnite implements Serializable {
   @JoinColumn(name = "IDaide_combi")
   private AidesCombinaison aideCombinaison;
 
-  private int IDunite;
+  @ManyToOne
+  @JoinColumn(name = "IDunite")
+  private Unite unite;
 
-  public AidesCombiUnite() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDaide_combi_unite() {
-    return this.IDaide_combi_unite;
-  }
-
-  public void setIDaide_combi_unite(int IDaide_combi_unite) {
-    this.IDaide_combi_unite = IDaide_combi_unite;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public Aide getAide() {
     return aide;
   }
 
-  public void setAide(Aide aide) {
+  public void setAide(final Aide aide) {
     this.aide = aide;
   }
 
@@ -71,16 +72,16 @@ public class AidesCombiUnite implements Serializable {
     return aideCombinaison;
   }
 
-  public void setAideCombinaison(AidesCombinaison aideCombinaison) {
+  public void setAideCombinaison(final AidesCombinaison aideCombinaison) {
     this.aideCombinaison = aideCombinaison;
   }
 
-  public int getIDunite() {
-    return this.IDunite;
+  public Unite getUnite() {
+    return this.unite;
   }
 
-  public void setIDunite(int IDunite) {
-    this.IDunite = IDunite;
+  public void setUnite(final Unite unite) {
+    this.unite = unite;
   }
 
 }

@@ -33,6 +33,11 @@ public class DetaillerReservationRepasController {
 
   private static final String VUE = "cantine/detaillerRepas";
 
+  /**
+   * init le model de la page details des reservations.
+   * @param model : model spring
+   * @return le nom de la vue
+   */
   @RequestMapping("/init")
   public String init(final Model model) {
 

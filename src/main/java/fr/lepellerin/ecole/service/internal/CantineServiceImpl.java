@@ -99,6 +99,12 @@ public class CantineServiceImpl implements CantineService {
     return !consos.isEmpty();
   }
 
+  /**
+   * enregistre les reservation.
+   * @param famille : famille
+   * @param anneeMois : le annee mois
+   * @param reserveLundi : reserve t on le lundi
+   */
   public void saveReservation(final Famille famille, final YearMonth anneeMois,
       final boolean reserveLundi) {
     List<Inscription> icts = this.inscriptionRepository

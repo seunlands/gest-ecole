@@ -15,11 +15,9 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the agrements database table.
- * 
+ *
  */
 @Entity
 @Table(name = "agrements")
@@ -43,7 +41,8 @@ public class Agrement implements Serializable {
   @Column(name = "IDagrement")
   private int id;
 
-  private String agrement;
+  @Column(name = "agrement")
+  private String libelle;
 
   @Column(name = "date_debut")
   private String dateDebut;
@@ -59,23 +58,23 @@ public class Agrement implements Serializable {
     return this.id;
   }
 
-  public void setId(int id) {
+  public void setId(final int id) {
     this.id = id;
   }
 
-  public String getAgrement() {
-    return this.agrement;
+  public String getLibelle() {
+    return this.libelle;
   }
 
-  public void setAgrement(String agrement) {
-    this.agrement = agrement;
+  public void setLibelle(final String libelle) {
+    this.libelle = libelle;
   }
 
   public String getDateDebut() {
     return this.dateDebut;
   }
 
-  public void setDateDebut(String dateDebut) {
+  public void setDateDebut(final String dateDebut) {
     this.dateDebut = dateDebut;
   }
 
@@ -83,7 +82,7 @@ public class Agrement implements Serializable {
     return this.dateFin;
   }
 
-  public void setDateFin(String dateFin) {
+  public void setDateFin(final String dateFin) {
     this.dateFin = dateFin;
   }
 
@@ -91,7 +90,7 @@ public class Agrement implements Serializable {
     return activite;
   }
 
-  public void setActivite(Activite activite) {
+  public void setActivite(final Activite activite) {
     this.activite = activite;
   }
 

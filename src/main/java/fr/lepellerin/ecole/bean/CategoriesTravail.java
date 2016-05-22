@@ -15,18 +15,18 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the categories_travail database table.
- * 
+ *
  */
 @Entity
 @Table(name = "categories_travail")
@@ -35,26 +35,25 @@ public class CategoriesTravail implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcategorie;
+  @GeneratedValue
+  @Column(name = "IDcategorie")
+  private int id;
 
   private String nom;
 
-  public CategoriesTravail() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcategorie() {
-    return this.IDcategorie;
-  }
-
-  public void setIDcategorie(int IDcategorie) {
-    this.IDcategorie = IDcategorie;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getNom() {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 

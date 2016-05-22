@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the aides_montants database table.
- * 
+ *
  */
 @Entity
 @Table(name = "aides_montants")
@@ -36,7 +36,9 @@ public class AidesMontant implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDaide_montant;
+  @GeneratedValue
+  @Column(name = "IDaide_montant")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDaide")
@@ -44,22 +46,19 @@ public class AidesMontant implements Serializable {
 
   private double montant;
 
-  public AidesMontant() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDaide_montant() {
-    return this.IDaide_montant;
-  }
-
-  public void setIDaide_montant(int IDaide_montant) {
-    this.IDaide_montant = IDaide_montant;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public Aide getAide() {
     return aide;
   }
 
-  public void setAide(Aide aide) {
+  public void setAide(final Aide aide) {
     this.aide = aide;
   }
 
@@ -67,7 +66,7 @@ public class AidesMontant implements Serializable {
     return this.montant;
   }
 
-  public void setMontant(double montant) {
+  public void setMontant(final double montant) {
     this.montant = montant;
   }
 

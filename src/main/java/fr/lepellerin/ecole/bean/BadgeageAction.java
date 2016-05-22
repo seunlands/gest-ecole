@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -30,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the badgeage_actions database table.
- * 
+ *
  */
 @Entity
 @Table(name = "badgeage_actions")
@@ -38,7 +37,9 @@ public class BadgeageAction implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDaction;
+  @GeneratedValue
+  @Column(name = "IDaction")
+  private int id;
 
   @Lob
   private String action;
@@ -127,22 +128,19 @@ public class BadgeageAction implements Serializable {
 
   private int ordre;
 
-  public BadgeageAction() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDaction() {
-    return this.IDaction;
-  }
-
-  public void setIDaction(int IDaction) {
-    this.IDaction = IDaction;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getAction() {
     return this.action;
   }
 
-  public void setAction(String action) {
+  public void setAction(final String action) {
     this.action = action;
   }
 
@@ -150,7 +148,7 @@ public class BadgeageAction implements Serializable {
     return this.actionActivite;
   }
 
-  public void setActionActivite(String actionActivite) {
+  public void setActionActivite(final String actionActivite) {
     this.actionActivite = actionActivite;
   }
 
@@ -158,7 +156,7 @@ public class BadgeageAction implements Serializable {
     return this.actionAttente;
   }
 
-  public void setActionAttente(String actionAttente) {
+  public void setActionAttente(final String actionAttente) {
     this.actionAttente = actionAttente;
   }
 
@@ -166,7 +164,7 @@ public class BadgeageAction implements Serializable {
     return this.actionDate;
   }
 
-  public void setActionDate(String actionDate) {
+  public void setActionDate(final String actionDate) {
     this.actionDate = actionDate;
   }
 
@@ -174,7 +172,7 @@ public class BadgeageAction implements Serializable {
     return this.actionDemande;
   }
 
-  public void setActionDemande(String actionDemande) {
+  public void setActionDemande(final String actionDemande) {
     this.actionDemande = actionDemande;
   }
 
@@ -182,7 +180,7 @@ public class BadgeageAction implements Serializable {
     return this.actionDuree;
   }
 
-  public void setActionDuree(String actionDuree) {
+  public void setActionDuree(final String actionDuree) {
     this.actionDuree = actionDuree;
   }
 
@@ -190,7 +188,7 @@ public class BadgeageAction implements Serializable {
     return this.actionEtat;
   }
 
-  public void setActionEtat(String actionEtat) {
+  public void setActionEtat(final String actionEtat) {
     this.actionEtat = actionEtat;
   }
 
@@ -198,7 +196,7 @@ public class BadgeageAction implements Serializable {
     return this.actionFrequence;
   }
 
-  public void setActionFrequence(String actionFrequence) {
+  public void setActionFrequence(final String actionFrequence) {
     this.actionFrequence = actionFrequence;
   }
 
@@ -206,7 +204,7 @@ public class BadgeageAction implements Serializable {
     return this.actionHeureDebut;
   }
 
-  public void setActionHeureDebut(String actionHeureDebut) {
+  public void setActionHeureDebut(final String actionHeureDebut) {
     this.actionHeureDebut = actionHeureDebut;
   }
 
@@ -214,7 +212,7 @@ public class BadgeageAction implements Serializable {
     return this.actionHeureFin;
   }
 
-  public void setActionHeureFin(String actionHeureFin) {
+  public void setActionHeureFin(final String actionHeureFin) {
     this.actionHeureFin = actionHeureFin;
   }
 
@@ -222,7 +220,7 @@ public class BadgeageAction implements Serializable {
     return this.actionIcone;
   }
 
-  public void setActionIcone(String actionIcone) {
+  public void setActionIcone(final String actionIcone) {
     this.actionIcone = actionIcone;
   }
 
@@ -230,7 +228,7 @@ public class BadgeageAction implements Serializable {
     return this.actionMessage;
   }
 
-  public void setActionMessage(String actionMessage) {
+  public void setActionMessage(final String actionMessage) {
     this.actionMessage = actionMessage;
   }
 
@@ -238,7 +236,7 @@ public class BadgeageAction implements Serializable {
     return this.actionQuestion;
   }
 
-  public void setActionQuestion(String actionQuestion) {
+  public void setActionQuestion(final String actionQuestion) {
     this.actionQuestion = actionQuestion;
   }
 
@@ -246,7 +244,7 @@ public class BadgeageAction implements Serializable {
     return this.actionTicket;
   }
 
-  public void setActionTicket(String actionTicket) {
+  public void setActionTicket(final String actionTicket) {
     this.actionTicket = actionTicket;
   }
 
@@ -254,7 +252,7 @@ public class BadgeageAction implements Serializable {
     return this.actionUnite;
   }
 
-  public void setActionUnite(String actionUnite) {
+  public void setActionUnite(final String actionUnite) {
     this.actionUnite = actionUnite;
   }
 
@@ -262,7 +260,7 @@ public class BadgeageAction implements Serializable {
     return this.actionVocal;
   }
 
-  public void setActionVocal(String actionVocal) {
+  public void setActionVocal(final String actionVocal) {
     this.actionVocal = actionVocal;
   }
 
@@ -270,7 +268,7 @@ public class BadgeageAction implements Serializable {
     return this.conditionActivite;
   }
 
-  public void setConditionActivite(String conditionActivite) {
+  public void setConditionActivite(final String conditionActivite) {
     this.conditionActivite = conditionActivite;
   }
 
@@ -278,7 +276,7 @@ public class BadgeageAction implements Serializable {
     return this.conditionHeure;
   }
 
-  public void setConditionHeure(String conditionHeure) {
+  public void setConditionHeure(final String conditionHeure) {
     this.conditionHeure = conditionHeure;
   }
 
@@ -286,7 +284,7 @@ public class BadgeageAction implements Serializable {
     return this.conditionPeriode;
   }
 
-  public void setConditionPeriode(String conditionPeriode) {
+  public void setConditionPeriode(final String conditionPeriode) {
     this.conditionPeriode = conditionPeriode;
   }
 
@@ -294,7 +292,7 @@ public class BadgeageAction implements Serializable {
     return this.conditionPoste;
   }
 
-  public void setConditionPoste(String conditionPoste) {
+  public void setConditionPoste(final String conditionPoste) {
     this.conditionPoste = conditionPoste;
   }
 
@@ -302,7 +300,7 @@ public class BadgeageAction implements Serializable {
     return this.conditionQuestionnaire;
   }
 
-  public void setConditionQuestionnaire(String conditionQuestionnaire) {
+  public void setConditionQuestionnaire(final String conditionQuestionnaire) {
     this.conditionQuestionnaire = conditionQuestionnaire;
   }
 
@@ -310,7 +308,7 @@ public class BadgeageAction implements Serializable {
     return procedure;
   }
 
-  public void setProcedure(BadgeageProcedure procedure) {
+  public void setProcedure(final BadgeageProcedure procedure) {
     this.procedure = procedure;
   }
 
@@ -318,7 +316,7 @@ public class BadgeageAction implements Serializable {
     return this.ordre;
   }
 
-  public void setOrdre(int ordre) {
+  public void setOrdre(final int ordre) {
     this.ordre = ordre;
   }
 

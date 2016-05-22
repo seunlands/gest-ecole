@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the aides_beneficiaires database table.
- * 
+ *
  */
 @Entity
 @Table(name = "aides_beneficiaires")
@@ -37,7 +37,9 @@ public class AidesBeneficiaire implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDaide_beneficiaire;
+  @GeneratedValue
+  @Column(name = "IDaide_beneficiaire")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDaide")
@@ -47,22 +49,19 @@ public class AidesBeneficiaire implements Serializable {
   @JoinColumn(name = "IDindividu")
   private Individu individu;
 
-  public AidesBeneficiaire() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDaide_beneficiaire() {
-    return this.IDaide_beneficiaire;
-  }
-
-  public void setIDaide_beneficiaire(int IDaide_beneficiaire) {
-    this.IDaide_beneficiaire = IDaide_beneficiaire;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public Aide getAide() {
     return aide;
   }
 
-  public void setAide(Aide aide) {
+  public void setAide(final Aide aide) {
     this.aide = aide;
   }
 
@@ -70,7 +69,7 @@ public class AidesBeneficiaire implements Serializable {
     return individu;
   }
 
-  public void setIndividu(Individu individu) {
+  public void setIndividu(final Individu individu) {
     this.individu = individu;
   }
 

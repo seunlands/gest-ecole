@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -29,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the badgeage_messages database table.
- * 
+ *
  */
 @Entity
 @Table(name = "badgeage_messages")
@@ -37,7 +37,9 @@ public class BadgeageMessage implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDmessage;
+  @GeneratedValue
+  @Column(name = "IDmessage")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDaction")
@@ -50,22 +52,19 @@ public class BadgeageMessage implements Serializable {
   @Lob
   private String message;
 
-  public BadgeageMessage() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDmessage() {
-    return this.IDmessage;
-  }
-
-  public void setIDmessage(int IDmessage) {
-    this.IDmessage = IDmessage;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public BadgeageAction getAction() {
     return action;
   }
 
-  public void setAction(BadgeageAction action) {
+  public void setAction(final BadgeageAction action) {
     this.action = action;
   }
 
@@ -73,7 +72,7 @@ public class BadgeageMessage implements Serializable {
     return procedure;
   }
 
-  public void setProcedure(BadgeageProcedure procedure) {
+  public void setProcedure(final BadgeageProcedure procedure) {
     this.procedure = procedure;
   }
 
@@ -81,7 +80,7 @@ public class BadgeageMessage implements Serializable {
     return this.message;
   }
 
-  public void setMessage(String message) {
+  public void setMessage(final String message) {
     this.message = message;
   }
 

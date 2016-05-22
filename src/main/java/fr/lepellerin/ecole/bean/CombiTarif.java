@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the combi_tarifs database table.
- * 
+ *
  */
 @Entity
 @Table(name = "combi_tarifs")
@@ -38,7 +37,9 @@ public class CombiTarif implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcombi_tarif;
+  @GeneratedValue
+  @Column(name = "IDcombi_tarif")
+  private int id;
 
   private String date;
 
@@ -55,22 +56,19 @@ public class CombiTarif implements Serializable {
 
   private String type;
 
-  public CombiTarif() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcombi_tarif() {
-    return this.IDcombi_tarif;
-  }
-
-  public void setIDcombi_tarif(int IDcombi_tarif) {
-    this.IDcombi_tarif = IDcombi_tarif;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getDate() {
     return this.date;
   }
 
-  public void setDate(String date) {
+  public void setDate(final String date) {
     this.date = date;
   }
 
@@ -78,7 +76,7 @@ public class CombiTarif implements Serializable {
     return groupe;
   }
 
-  public void setGroupe(Groupe groupe) {
+  public void setGroupe(final Groupe groupe) {
     this.groupe = groupe;
   }
 
@@ -86,7 +84,7 @@ public class CombiTarif implements Serializable {
     return tarif;
   }
 
-  public void setTarif(Tarif tarif) {
+  public void setTarif(final Tarif tarif) {
     this.tarif = tarif;
   }
 
@@ -94,7 +92,7 @@ public class CombiTarif implements Serializable {
     return this.quantiteMax;
   }
 
-  public void setQuantiteMax(int quantiteMax) {
+  public void setQuantiteMax(final int quantiteMax) {
     this.quantiteMax = quantiteMax;
   }
 
@@ -102,7 +100,7 @@ public class CombiTarif implements Serializable {
     return this.type;
   }
 
-  public void setType(String type) {
+  public void setType(final String type) {
     this.type = type;
   }
 

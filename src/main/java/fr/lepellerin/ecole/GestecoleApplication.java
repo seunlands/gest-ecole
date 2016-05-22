@@ -34,6 +34,6 @@ public class GestecoleApplication {
    * constructeur par defaut.
    */
   public GestecoleApplication() {
-	  
+    super();
   }
 }

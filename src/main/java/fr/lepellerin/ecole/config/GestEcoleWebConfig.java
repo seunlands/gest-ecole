@@ -70,8 +70,6 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
   /**
    * init spring template engine.
    *
-   * @param templateResolver
-   *          template resolver
    * @return template engine
    */
   @Bean

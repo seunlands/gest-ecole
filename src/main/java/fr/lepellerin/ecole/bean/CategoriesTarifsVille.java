@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the categories_tarifs_villes database table.
- * 
+ *
  */
 @Entity
 @Table(name = "categories_tarifs_villes")
@@ -37,7 +37,9 @@ public class CategoriesTarifsVille implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDville;
+  @GeneratedValue
+  @Column(name = "IDville")
+  private int id;
 
   private String cp;
 
@@ -47,22 +49,19 @@ public class CategoriesTarifsVille implements Serializable {
 
   private String nom;
 
-  public CategoriesTarifsVille() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDville() {
-    return this.IDville;
-  }
-
-  public void setIDville(int IDville) {
-    this.IDville = IDville;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getCp() {
     return this.cp;
   }
 
-  public void setCp(String cp) {
+  public void setCp(final String cp) {
     this.cp = cp;
   }
 
@@ -70,7 +69,7 @@ public class CategoriesTarifsVille implements Serializable {
     return categorieTarif;
   }
 
-  public void setCategorieTarif(CategoriesTarif categorieTarif) {
+  public void setCategorieTarif(final CategoriesTarif categorieTarif) {
     this.categorieTarif = categorieTarif;
   }
 
@@ -78,7 +77,7 @@ public class CategoriesTarifsVille implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 

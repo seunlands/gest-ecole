@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -30,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the compta_operations database table.
- * 
+ *
  */
 @Entity
 @Table(name = "compta_operations")
@@ -39,7 +38,9 @@ public class ComptaOperation implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDoperation;
+  @GeneratedValue
+  @Column(name = "IDoperation")
+  private int id;
 
   private String date;
 
@@ -79,22 +80,19 @@ public class ComptaOperation implements Serializable {
 
   private String type;
 
-  public ComptaOperation() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDoperation() {
-    return this.IDoperation;
-  }
-
-  public void setIDoperation(int IDoperation) {
-    this.IDoperation = IDoperation;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getDate() {
     return this.date;
   }
 
-  public void setDate(String date) {
+  public void setDate(final String date) {
     this.date = date;
   }
 
@@ -102,7 +100,7 @@ public class ComptaOperation implements Serializable {
     return compteBancaire;
   }
 
-  public void setCompteBancaire(CompteBancaire compteBancaire) {
+  public void setCompteBancaire(final CompteBancaire compteBancaire) {
     this.compteBancaire = compteBancaire;
   }
 
@@ -110,7 +108,7 @@ public class ComptaOperation implements Serializable {
     return mode;
   }
 
-  public void setMode(ModeReglement mode) {
+  public void setMode(final ModeReglement mode) {
     this.mode = mode;
   }
 
@@ -118,7 +116,7 @@ public class ComptaOperation implements Serializable {
     return releve;
   }
 
-  public void setReleve(ComptaReleve releve) {
+  public void setReleve(final ComptaReleve releve) {
     this.releve = releve;
   }
 
@@ -126,7 +124,7 @@ public class ComptaOperation implements Serializable {
     return tiers;
   }
 
-  public void setTiers(ComptaTier tiers) {
+  public void setTiers(final ComptaTier tiers) {
     this.tiers = tiers;
   }
 
@@ -134,7 +132,7 @@ public class ComptaOperation implements Serializable {
     return virement;
   }
 
-  public void setVirement(ComptaVirement virement) {
+  public void setVirement(final ComptaVirement virement) {
     this.virement = virement;
   }
 
@@ -142,7 +140,7 @@ public class ComptaOperation implements Serializable {
     return this.libelle;
   }
 
-  public void setLibelle(String libelle) {
+  public void setLibelle(final String libelle) {
     this.libelle = libelle;
   }
 
@@ -150,7 +148,7 @@ public class ComptaOperation implements Serializable {
     return this.montant;
   }
 
-  public void setMontant(double montant) {
+  public void setMontant(final double montant) {
     this.montant = montant;
   }
 
@@ -158,7 +156,7 @@ public class ComptaOperation implements Serializable {
     return this.numPiece;
   }
 
-  public void setNumPiece(String numPiece) {
+  public void setNumPiece(final String numPiece) {
     this.numPiece = numPiece;
   }
 
@@ -166,7 +164,7 @@ public class ComptaOperation implements Serializable {
     return this.observations;
   }
 
-  public void setObservations(String observations) {
+  public void setObservations(final String observations) {
     this.observations = observations;
   }
 
@@ -174,7 +172,7 @@ public class ComptaOperation implements Serializable {
     return this.refPiece;
   }
 
-  public void setRefPiece(String refPiece) {
+  public void setRefPiece(final String refPiece) {
     this.refPiece = refPiece;
   }
 
@@ -182,7 +180,7 @@ public class ComptaOperation implements Serializable {
     return this.type;
   }
 
-  public void setType(String type) {
+  public void setType(final String type) {
     this.type = type;
   }
 

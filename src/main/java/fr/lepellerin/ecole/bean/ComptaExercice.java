@@ -15,20 +15,19 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the compta_exercices database table.
- * 
+ *
  */
 @Entity
 @Table(name = "compta_exercices")
@@ -37,7 +36,9 @@ public class ComptaExercice implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDexercice;
+  @GeneratedValue
+  @Column(name = "IDexercice")
+  private int id;
 
   @Column(name = "date_debut")
   private String dateDebut;
@@ -50,22 +51,19 @@ public class ComptaExercice implements Serializable {
   @Lob
   private String nom;
 
-  public ComptaExercice() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDexercice() {
-    return this.IDexercice;
-  }
-
-  public void setIDexercice(int IDexercice) {
-    this.IDexercice = IDexercice;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getDateDebut() {
     return this.dateDebut;
   }
 
-  public void setDateDebut(String dateDebut) {
+  public void setDateDebut(final String dateDebut) {
     this.dateDebut = dateDebut;
   }
 
@@ -73,7 +71,7 @@ public class ComptaExercice implements Serializable {
     return this.dateFin;
   }
 
-  public void setDateFin(String dateFin) {
+  public void setDateFin(final String dateFin) {
     this.dateFin = dateFin;
   }
 
@@ -81,7 +79,7 @@ public class ComptaExercice implements Serializable {
     return this.defaut;
   }
 
-  public void setDefaut(int defaut) {
+  public void setDefaut(final int defaut) {
     this.defaut = defaut;
   }
 
@@ -89,7 +87,7 @@ public class ComptaExercice implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 

@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -29,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the compta_categories_budget database table.
- * 
+ *
  */
 @Entity
 @Table(name = "compta_categories_budget")
@@ -37,7 +37,9 @@ public class ComptaCategoriesBudget implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcategorie_budget;
+  @GeneratedValue
+  @Column(name = "IDcategorie_budget")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDbudget")
@@ -52,22 +54,19 @@ public class ComptaCategoriesBudget implements Serializable {
   @Lob
   private String valeur;
 
-  public ComptaCategoriesBudget() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcategorie_budget() {
-    return this.IDcategorie_budget;
-  }
-
-  public void setIDcategorie_budget(int IDcategorie_budget) {
-    this.IDcategorie_budget = IDcategorie_budget;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public ComptaBudget getBudget() {
     return budget;
   }
 
-  public void setBudget(ComptaBudget budget) {
+  public void setBudget(final ComptaBudget budget) {
     this.budget = budget;
   }
 
@@ -75,7 +74,7 @@ public class ComptaCategoriesBudget implements Serializable {
     return categorie;
   }
 
-  public void setCategorie(ComptaCategorie categorie) {
+  public void setCategorie(final ComptaCategorie categorie) {
     this.categorie = categorie;
   }
 
@@ -83,7 +82,7 @@ public class ComptaCategoriesBudget implements Serializable {
     return this.type;
   }
 
-  public void setType(String type) {
+  public void setType(final String type) {
     this.type = type;
   }
 
@@ -91,7 +90,7 @@ public class ComptaCategoriesBudget implements Serializable {
     return this.valeur;
   }
 
-  public void setValeur(String valeur) {
+  public void setValeur(final String valeur) {
     this.valeur = valeur;
   }
 

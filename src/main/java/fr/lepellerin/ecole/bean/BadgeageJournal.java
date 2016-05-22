@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -29,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the badgeage_journal database table.
- * 
+ *
  */
 @Entity
 @Table(name = "badgeage_journal")
@@ -37,7 +37,9 @@ public class BadgeageJournal implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDaction;
+  @GeneratedValue
+  @Column(name = "IDaction")
+  private int id;
 
   @Lob
   private String action;
@@ -56,22 +58,19 @@ public class BadgeageJournal implements Serializable {
   @Lob
   private String resultat;
 
-  public BadgeageJournal() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDaction() {
-    return this.IDaction;
-  }
-
-  public void setIDaction(int IDaction) {
-    this.IDaction = IDaction;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getAction() {
     return this.action;
   }
 
-  public void setAction(String action) {
+  public void setAction(final String action) {
     this.action = action;
   }
 
@@ -79,7 +78,7 @@ public class BadgeageJournal implements Serializable {
     return this.date;
   }
 
-  public void setDate(String date) {
+  public void setDate(final String date) {
     this.date = date;
   }
 
@@ -87,7 +86,7 @@ public class BadgeageJournal implements Serializable {
     return this.heure;
   }
 
-  public void setHeure(String heure) {
+  public void setHeure(final String heure) {
     this.heure = heure;
   }
 
@@ -95,7 +94,7 @@ public class BadgeageJournal implements Serializable {
     return individus;
   }
 
-  public void setIndividus(Individu individus) {
+  public void setIndividus(final Individu individus) {
     this.individus = individus;
   }
 
@@ -103,7 +102,7 @@ public class BadgeageJournal implements Serializable {
     return this.individu;
   }
 
-  public void setIndividu(String individu) {
+  public void setIndividu(final String individu) {
     this.individu = individu;
   }
 
@@ -111,7 +110,7 @@ public class BadgeageJournal implements Serializable {
     return this.resultat;
   }
 
-  public void setResultat(String resultat) {
+  public void setResultat(final String resultat) {
     this.resultat = resultat;
   }
 

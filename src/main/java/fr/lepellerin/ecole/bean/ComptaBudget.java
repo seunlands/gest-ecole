@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -30,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the compta_budgets database table.
- * 
+ *
  */
 @Entity
 @Table(name = "compta_budgets")
@@ -39,7 +38,9 @@ public class ComptaBudget implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDbudget;
+  @GeneratedValue
+  @Column(name = "IDbudget")
+  private int id;
 
   @Lob
   private String analytiques;
@@ -59,22 +60,19 @@ public class ComptaBudget implements Serializable {
 
   private String observations;
 
-  public ComptaBudget() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDbudget() {
-    return this.IDbudget;
-  }
-
-  public void setIDbudget(int IDbudget) {
-    this.IDbudget = IDbudget;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getAnalytiques() {
     return this.analytiques;
   }
 
-  public void setAnalytiques(String analytiques) {
+  public void setAnalytiques(final String analytiques) {
     this.analytiques = analytiques;
   }
 
@@ -82,7 +80,7 @@ public class ComptaBudget implements Serializable {
     return this.dateDebut;
   }
 
-  public void setDateDebut(String dateDebut) {
+  public void setDateDebut(final String dateDebut) {
     this.dateDebut = dateDebut;
   }
 
@@ -90,7 +88,7 @@ public class ComptaBudget implements Serializable {
     return this.dateFin;
   }
 
-  public void setDateFin(String dateFin) {
+  public void setDateFin(final String dateFin) {
     this.dateFin = dateFin;
   }
 
@@ -98,7 +96,7 @@ public class ComptaBudget implements Serializable {
     return exercice;
   }
 
-  public void setExercice(ComptaExercice exercice) {
+  public void setExercice(final ComptaExercice exercice) {
     this.exercice = exercice;
   }
 
@@ -106,7 +104,7 @@ public class ComptaBudget implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 
@@ -114,7 +112,7 @@ public class ComptaBudget implements Serializable {
     return this.observations;
   }
 
-  public void setObservations(String observations) {
+  public void setObservations(final String observations) {
     this.observations = observations;
   }
 

@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the aides database table.
- * 
+ *
  */
 @Entity
 @Table(name = "aides")
@@ -38,7 +37,9 @@ public class Aide implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDaide;
+  @GeneratedValue
+  @Column(name = "IDaide")
+  private int id;
 
   @Column(name = "date_debut")
   private String dateDebut;
@@ -66,22 +67,19 @@ public class Aide implements Serializable {
 
   private String nom;
 
-  public Aide() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDaide() {
-    return this.IDaide;
-  }
-
-  public void setIDaide(int IDaide) {
-    this.IDaide = IDaide;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getDateDebut() {
     return this.dateDebut;
   }
 
-  public void setDateDebut(String dateDebut) {
+  public void setDateDebut(final String dateDebut) {
     this.dateDebut = dateDebut;
   }
 
@@ -89,7 +87,7 @@ public class Aide implements Serializable {
     return this.dateFin;
   }
 
-  public void setDateFin(String dateFin) {
+  public void setDateFin(final String dateFin) {
     this.dateFin = dateFin;
   }
 
@@ -97,7 +95,7 @@ public class Aide implements Serializable {
     return activite;
   }
 
-  public void setActivite(Activite activite) {
+  public void setActivite(final Activite activite) {
     this.activite = activite;
   }
 
@@ -105,7 +103,7 @@ public class Aide implements Serializable {
     return caisse;
   }
 
-  public void setCaisse(Caisse caisse) {
+  public void setCaisse(final Caisse caisse) {
     this.caisse = caisse;
   }
 
@@ -113,7 +111,7 @@ public class Aide implements Serializable {
     return famille;
   }
 
-  public void setFamille(Famille famille) {
+  public void setFamille(final Famille famille) {
     this.famille = famille;
   }
 
@@ -121,7 +119,7 @@ public class Aide implements Serializable {
     return this.montantMax;
   }
 
-  public void setMontantMax(double montantMax) {
+  public void setMontantMax(final double montantMax) {
     this.montantMax = montantMax;
   }
 
@@ -129,7 +127,7 @@ public class Aide implements Serializable {
     return this.nbreDatesMax;
   }
 
-  public void setNbreDatesMax(int nbreDatesMax) {
+  public void setNbreDatesMax(final int nbreDatesMax) {
     this.nbreDatesMax = nbreDatesMax;
   }
 
@@ -137,7 +135,7 @@ public class Aide implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 

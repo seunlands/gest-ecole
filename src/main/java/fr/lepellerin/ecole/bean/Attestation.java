@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -30,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the attestations database table.
- * 
+ *
  */
 @Entity
 @Table(name = "attestations")
@@ -38,7 +37,9 @@ public class Attestation implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDattestation;
+  @GeneratedValue
+  @Column(name = "IDattestation")
+  private int id;
 
   @Lob
   private String activites;
@@ -71,22 +72,19 @@ public class Attestation implements Serializable {
 
   private double total;
 
-  public Attestation() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDattestation() {
-    return this.IDattestation;
-  }
-
-  public void setIDattestation(int IDattestation) {
-    this.IDattestation = IDattestation;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getActivites() {
     return this.activites;
   }
 
-  public void setActivites(String activites) {
+  public void setActivites(final String activites) {
     this.activites = activites;
   }
 
@@ -94,7 +92,7 @@ public class Attestation implements Serializable {
     return this.dateDebut;
   }
 
-  public void setDateDebut(String dateDebut) {
+  public void setDateDebut(final String dateDebut) {
     this.dateDebut = dateDebut;
   }
 
@@ -102,7 +100,7 @@ public class Attestation implements Serializable {
     return this.dateEdition;
   }
 
-  public void setDateEdition(String dateEdition) {
+  public void setDateEdition(final String dateEdition) {
     this.dateEdition = dateEdition;
   }
 
@@ -110,7 +108,7 @@ public class Attestation implements Serializable {
     return this.dateFin;
   }
 
-  public void setDateFin(String dateFin) {
+  public void setDateFin(final String dateFin) {
     this.dateFin = dateFin;
   }
 
@@ -118,7 +116,7 @@ public class Attestation implements Serializable {
     return famille;
   }
 
-  public void setFamille(Famille famille) {
+  public void setFamille(final Famille famille) {
     this.famille = famille;
   }
 
@@ -126,7 +124,7 @@ public class Attestation implements Serializable {
     return utilisateur;
   }
 
-  public void setUtilisateur(Utilisateur utilisateur) {
+  public void setUtilisateur(final Utilisateur utilisateur) {
     this.utilisateur = utilisateur;
   }
 
@@ -134,7 +132,7 @@ public class Attestation implements Serializable {
     return this.individus;
   }
 
-  public void setIndividus(String individus) {
+  public void setIndividus(final String individus) {
     this.individus = individus;
   }
 
@@ -142,7 +140,7 @@ public class Attestation implements Serializable {
     return this.numero;
   }
 
-  public void setNumero(int numero) {
+  public void setNumero(final int numero) {
     this.numero = numero;
   }
 
@@ -150,7 +148,7 @@ public class Attestation implements Serializable {
     return this.regle;
   }
 
-  public void setRegle(double regle) {
+  public void setRegle(final double regle) {
     this.regle = regle;
   }
 
@@ -158,7 +156,7 @@ public class Attestation implements Serializable {
     return this.solde;
   }
 
-  public void setSolde(double solde) {
+  public void setSolde(final double solde) {
     this.solde = solde;
   }
 
@@ -166,7 +164,7 @@ public class Attestation implements Serializable {
     return this.total;
   }
 
-  public void setTotal(double total) {
+  public void setTotal(final double total) {
     this.total = total;
   }
 

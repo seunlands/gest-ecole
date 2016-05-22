@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -29,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the compta_categories database table.
- * 
+ *
  */
 @Entity
 @Table(name = "compta_categories")
@@ -38,7 +38,9 @@ public class ComptaCategorie implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcategorie;
+  @GeneratedValue
+  @Column(name = "IDcategorie")
+  private int id;
 
   private String abrege;
 
@@ -53,22 +55,19 @@ public class ComptaCategorie implements Serializable {
 
   private String type;
 
-  public ComptaCategorie() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcategorie() {
-    return this.IDcategorie;
-  }
-
-  public void setIDcategorie(int IDcategorie) {
-    this.IDcategorie = IDcategorie;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getAbrege() {
     return this.abrege;
   }
 
-  public void setAbrege(String abrege) {
+  public void setAbrege(final String abrege) {
     this.abrege = abrege;
   }
 
@@ -76,7 +75,7 @@ public class ComptaCategorie implements Serializable {
     return compte;
   }
 
-  public void setCompte(ComptaComptesComptable compte) {
+  public void setCompte(final ComptaComptesComptable compte) {
     this.compte = compte;
   }
 
@@ -84,7 +83,7 @@ public class ComptaCategorie implements Serializable {
     return this.journal;
   }
 
-  public void setJournal(String journal) {
+  public void setJournal(final String journal) {
     this.journal = journal;
   }
 
@@ -92,7 +91,7 @@ public class ComptaCategorie implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 
@@ -100,7 +99,7 @@ public class ComptaCategorie implements Serializable {
     return this.type;
   }
 
-  public void setType(String type) {
+  public void setType(final String type) {
     this.type = type;
   }
 

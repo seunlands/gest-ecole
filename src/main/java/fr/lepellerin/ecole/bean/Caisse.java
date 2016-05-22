@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the caisses database table.
- * 
+ *
  */
 @Entity
 @Table(name = "caisses")
@@ -37,7 +37,9 @@ public class Caisse implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcaisse;
+  @GeneratedValue
+  @Column(name = "IDcaisse")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDregime")
@@ -45,22 +47,19 @@ public class Caisse implements Serializable {
 
   private String nom;
 
-  public Caisse() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcaisse() {
-    return this.IDcaisse;
-  }
-
-  public void setIDcaisse(int IDcaisse) {
-    this.IDcaisse = IDcaisse;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public Regime getRegime() {
     return regime;
   }
 
-  public void setRegime(Regime regime) {
+  public void setRegime(final Regime regime) {
     this.regime = regime;
   }
 
@@ -68,7 +67,7 @@ public class Caisse implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 

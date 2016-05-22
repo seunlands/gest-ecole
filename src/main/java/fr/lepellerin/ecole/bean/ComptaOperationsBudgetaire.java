@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -30,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the compta_operations_budgetaires database table.
- * 
+ *
  */
 @Entity
 @Table(name = "compta_operations_budgetaires")
@@ -39,7 +38,9 @@ public class ComptaOperationsBudgetaire implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDoperation_budgetaire;
+  @GeneratedValue
+  @Column(name = "IDoperation_budgetaire")
+  private int id;
 
   @Column(name = "date_budget")
   private String dateBudget;
@@ -59,22 +60,19 @@ public class ComptaOperationsBudgetaire implements Serializable {
 
   private String type;
 
-  public ComptaOperationsBudgetaire() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDoperation_budgetaire() {
-    return this.IDoperation_budgetaire;
-  }
-
-  public void setIDoperation_budgetaire(int IDoperation_budgetaire) {
-    this.IDoperation_budgetaire = IDoperation_budgetaire;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getDateBudget() {
     return this.dateBudget;
   }
 
-  public void setDateBudget(String dateBudget) {
+  public void setDateBudget(final String dateBudget) {
     this.dateBudget = dateBudget;
   }
 
@@ -82,7 +80,7 @@ public class ComptaOperationsBudgetaire implements Serializable {
     return analytique;
   }
 
-  public void setAnalytique(ComptaAnalytique analytique) {
+  public void setAnalytique(final ComptaAnalytique analytique) {
     this.analytique = analytique;
   }
 
@@ -90,7 +88,7 @@ public class ComptaOperationsBudgetaire implements Serializable {
     return categorie;
   }
 
-  public void setCategorie(ComptaCategorie categorie) {
+  public void setCategorie(final ComptaCategorie categorie) {
     this.categorie = categorie;
   }
 
@@ -98,7 +96,7 @@ public class ComptaOperationsBudgetaire implements Serializable {
     return this.libelle;
   }
 
-  public void setLibelle(String libelle) {
+  public void setLibelle(final String libelle) {
     this.libelle = libelle;
   }
 
@@ -106,7 +104,7 @@ public class ComptaOperationsBudgetaire implements Serializable {
     return this.montant;
   }
 
-  public void setMontant(double montant) {
+  public void setMontant(final double montant) {
     this.montant = montant;
   }
 
@@ -114,7 +112,7 @@ public class ComptaOperationsBudgetaire implements Serializable {
     return this.type;
   }
 
-  public void setType(String type) {
+  public void setType(final String type) {
     this.type = type;
   }
 
