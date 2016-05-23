@@ -15,12 +15,10 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +31,7 @@ import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the consommations database table.
- * 
+ *
  */
 @Entity
 @Table(name = "consommations")
@@ -104,14 +102,11 @@ public class Consommation implements Serializable {
 
   private int verrouillage;
 
-  public Consommation() {
-  }
-
   public int getId() {
     return this.id;
   }
 
-  public void setId(int id) {
+  public void setId(final int id) {
     this.id = id;
   }
 
@@ -119,7 +114,7 @@ public class Consommation implements Serializable {
     return this.date;
   }
 
-  public void setDate(Date date) {
+  public void setDate(final Date date) {
     this.date = date;
   }
 
@@ -127,7 +122,7 @@ public class Consommation implements Serializable {
     return this.dateSaisie;
   }
 
-  public void setDateSaisie(String dateSaisie) {
+  public void setDateSaisie(final String dateSaisie) {
     this.dateSaisie = dateSaisie;
   }
 
@@ -135,7 +130,7 @@ public class Consommation implements Serializable {
     return this.etat;
   }
 
-  public void setEtat(String etat) {
+  public void setEtat(final String etat) {
     this.etat = etat;
   }
 
@@ -143,7 +138,7 @@ public class Consommation implements Serializable {
     return this.etiquettes;
   }
 
-  public void setEtiquettes(String etiquettes) {
+  public void setEtiquettes(final String etiquettes) {
     this.etiquettes = etiquettes;
   }
 
@@ -151,7 +146,7 @@ public class Consommation implements Serializable {
     return this.forfait;
   }
 
-  public void setForfait(Integer forfait) {
+  public void setForfait(final Integer forfait) {
     this.forfait = forfait;
   }
 
@@ -159,7 +154,7 @@ public class Consommation implements Serializable {
     return this.heureDebut;
   }
 
-  public void setHeureDebut(String heureDebut) {
+  public void setHeureDebut(final String heureDebut) {
     this.heureDebut = heureDebut;
   }
 
@@ -167,7 +162,7 @@ public class Consommation implements Serializable {
     return this.heureFin;
   }
 
-  public void setHeureFin(String heureFin) {
+  public void setHeureFin(final String heureFin) {
     this.heureFin = heureFin;
   }
 
@@ -175,7 +170,7 @@ public class Consommation implements Serializable {
     return activite;
   }
 
-  public void setActivite(Activite activite) {
+  public void setActivite(final Activite activite) {
     this.activite = activite;
   }
 
@@ -183,7 +178,7 @@ public class Consommation implements Serializable {
     return categorieTarif;
   }
 
-  public void setCategorieTarif(CategoriesTarif categorieTarif) {
+  public void setCategorieTarif(final CategoriesTarif categorieTarif) {
     this.categorieTarif = categorieTarif;
   }
 
@@ -191,7 +186,7 @@ public class Consommation implements Serializable {
     return comptePayeur;
   }
 
-  public void setComptePayeur(ComptePayeur comptePayeur) {
+  public void setComptePayeur(final ComptePayeur comptePayeur) {
     this.comptePayeur = comptePayeur;
   }
 
@@ -199,7 +194,7 @@ public class Consommation implements Serializable {
     return groupe;
   }
 
-  public void setGroupe(Groupe groupe) {
+  public void setGroupe(final Groupe groupe) {
     this.groupe = groupe;
   }
 
@@ -207,7 +202,7 @@ public class Consommation implements Serializable {
     return individu;
   }
 
-  public void setIndividu(Individu individu) {
+  public void setIndividu(final Individu individu) {
     this.individu = individu;
   }
 
@@ -215,7 +210,7 @@ public class Consommation implements Serializable {
     return inscription;
   }
 
-  public void setInscription(Inscription inscription) {
+  public void setInscription(final Inscription inscription) {
     this.inscription = inscription;
   }
 
@@ -223,7 +218,7 @@ public class Consommation implements Serializable {
     return prestation;
   }
 
-  public void setPrestation(Prestation prestation) {
+  public void setPrestation(final Prestation prestation) {
     this.prestation = prestation;
   }
 
@@ -231,7 +226,7 @@ public class Consommation implements Serializable {
     return unite;
   }
 
-  public void setUnite(Unite unite) {
+  public void setUnite(final Unite unite) {
     this.unite = unite;
   }
 
@@ -239,7 +234,7 @@ public class Consommation implements Serializable {
     return utilisateur;
   }
 
-  public void setUtilisateur(Utilisateur utilisateur) {
+  public void setUtilisateur(final Utilisateur utilisateur) {
     this.utilisateur = utilisateur;
   }
 
@@ -247,7 +242,7 @@ public class Consommation implements Serializable {
     return this.quantite;
   }
 
-  public void setQuantite(Integer quantite) {
+  public void setQuantite(final Integer quantite) {
     this.quantite = quantite;
   }
 
@@ -255,7 +250,7 @@ public class Consommation implements Serializable {
     return this.verrouillage;
   }
 
-  public void setVerrouillage(int verrouillage) {
+  public void setVerrouillage(final int verrouillage) {
     this.verrouillage = verrouillage;
   }
 

@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the inscriptions database table.
- * 
+ *
  */
 @Entity
 @Table(name = "inscriptions")
@@ -38,7 +37,9 @@ public class Inscription implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDinscription;
+  @GeneratedValue
+  @Column(name = "IDinscription")
+  private int id;
 
   @Column(name = "date_inscription")
   private String dateInscription;
@@ -49,11 +50,11 @@ public class Inscription implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "IDcategorie_tarif")
-  private CategoriesTarif categorie_tarif;
+  private CategoriesTarif categorieTarif;
 
   @ManyToOne
   @JoinColumn(name = "IDcompte_payeur")
-  private ComptePayeur compte_payeur;
+  private ComptePayeur comptePayeur;
 
   @ManyToOne
   @JoinColumn(name = "IDfamille")
@@ -69,22 +70,19 @@ public class Inscription implements Serializable {
 
   private int parti;
 
-  public Inscription() {
-  }
-
   public int getIDinscription() {
-    return this.IDinscription;
+    return this.id;
   }
 
-  public void setIDinscription(int IDinscription) {
-    this.IDinscription = IDinscription;
+  public void setIDinscription(final int id) {
+    this.id = id;
   }
 
   public String getDateInscription() {
     return this.dateInscription;
   }
 
-  public void setDateInscription(String dateInscription) {
+  public void setDateInscription(final String dateInscription) {
     this.dateInscription = dateInscription;
   }
 
@@ -92,31 +90,31 @@ public class Inscription implements Serializable {
     return activite;
   }
 
-  public void setActivite(Activite activite) {
+  public void setActivite(final Activite activite) {
     this.activite = activite;
   }
 
-  public CategoriesTarif getCategorie_tarif() {
-    return categorie_tarif;
+  public CategoriesTarif getCategorieTarif() {
+    return categorieTarif;
   }
 
-  public void setCategorie_tarif(CategoriesTarif categorie_tarif) {
-    this.categorie_tarif = categorie_tarif;
+  public void setCategorieTarif(final CategoriesTarif categorieTarif) {
+    this.categorieTarif = categorieTarif;
   }
 
-  public ComptePayeur getCompte_payeur() {
-    return compte_payeur;
+  public ComptePayeur getComptePayeur() {
+    return comptePayeur;
   }
 
-  public void setCompte_payeur(ComptePayeur compte_payeur) {
-    this.compte_payeur = compte_payeur;
+  public void setComptePayeur(final ComptePayeur comptePayeur) {
+    this.comptePayeur = comptePayeur;
   }
 
   public Famille getFamille() {
     return famille;
   }
 
-  public void setFamille(Famille famille) {
+  public void setFamille(final Famille famille) {
     this.famille = famille;
   }
 
@@ -124,7 +122,7 @@ public class Inscription implements Serializable {
     return groupe;
   }
 
-  public void setGroupe(Groupe groupe) {
+  public void setGroupe(final Groupe groupe) {
     this.groupe = groupe;
   }
 
@@ -132,7 +130,7 @@ public class Inscription implements Serializable {
     return individu;
   }
 
-  public void setIndividu(Individu individu) {
+  public void setIndividu(final Individu individu) {
     this.individu = individu;
   }
 
@@ -140,7 +138,7 @@ public class Inscription implements Serializable {
     return this.parti;
   }
 
-  public void setParti(int parti) {
+  public void setParti(final int parti) {
     this.parti = parti;
   }
 

@@ -15,21 +15,20 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
-
 /**
  * The persistent class for the historique database table.
- * 
+ *
  */
 @Entity
 
@@ -37,7 +36,9 @@ public class Historique implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDaction;
+  @GeneratedValue
+  @Column(name = "IDaction")
+  private int id;
 
   @Lob
   private String action;
@@ -46,7 +47,8 @@ public class Historique implements Serializable {
 
   private String heure;
 
-  private int IDcategorie;
+  @Column(name = "IDcategorie")
+  private int idCategorie;
 
   @ManyToOne
   @JoinColumn(name = "IDfamille")
@@ -60,22 +62,19 @@ public class Historique implements Serializable {
   @JoinColumn(name = "IDutilisateur")
   private Utilisateur utilisateur;
 
-  public Historique() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDaction() {
-    return this.IDaction;
-  }
-
-  public void setIDaction(int IDaction) {
-    this.IDaction = IDaction;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getAction() {
     return this.action;
   }
 
-  public void setAction(String action) {
+  public void setAction(final String action) {
     this.action = action;
   }
 
@@ -83,7 +82,7 @@ public class Historique implements Serializable {
     return this.date;
   }
 
-  public void setDate(String date) {
+  public void setDate(final String date) {
     this.date = date;
   }
 
@@ -91,23 +90,23 @@ public class Historique implements Serializable {
     return this.heure;
   }
 
-  public void setHeure(String heure) {
+  public void setHeure(final String heure) {
     this.heure = heure;
   }
 
-  public int getIDcategorie() {
-    return this.IDcategorie;
+  public int getIdCategorie() {
+    return this.idCategorie;
   }
 
-  public void setIDcategorie(int IDcategorie) {
-    this.IDcategorie = IDcategorie;
+  public void setIdCategorie(final int idCategorie) {
+    this.idCategorie = idCategorie;
   }
 
   public Famille getFamille() {
     return famille;
   }
 
-  public void setFamille(Famille famille) {
+  public void setFamille(final Famille famille) {
     this.famille = famille;
   }
 
@@ -115,7 +114,7 @@ public class Historique implements Serializable {
     return individu;
   }
 
-  public void setIndividu(Individu individu) {
+  public void setIndividu(final Individu individu) {
     this.individu = individu;
   }
 
@@ -123,7 +122,7 @@ public class Historique implements Serializable {
     return utilisateur;
   }
 
-  public void setUtilisateur(Utilisateur utilisateur) {
+  public void setUtilisateur(final Utilisateur utilisateur) {
     this.utilisateur = utilisateur;
   }
 

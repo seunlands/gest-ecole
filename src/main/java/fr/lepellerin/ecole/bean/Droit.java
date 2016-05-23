@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -29,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the droits database table.
- * 
+ *
  */
 @Entity
 @Table(name = "droits")
@@ -38,7 +38,9 @@ public class Droit implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDdroit;
+  @GeneratedValue
+  @Column(name = "IDdroit")
+  private int id;
 
   private String action;
 
@@ -51,24 +53,23 @@ public class Droit implements Serializable {
   @JoinColumn(name = "IDmodele")
   private ModeleDroit modele;
 
-  private int IDutilisateur;
+  @ManyToOne
+  @JoinColumn(name = "IDutilisateur")
+  private Utilisateur utilisateur;
 
-  public Droit() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDdroit() {
-    return this.IDdroit;
-  }
-
-  public void setIDdroit(int IDdroit) {
-    this.IDdroit = IDdroit;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getAction() {
     return this.action;
   }
 
-  public void setAction(String action) {
+  public void setAction(final String action) {
     this.action = action;
   }
 
@@ -76,7 +77,7 @@ public class Droit implements Serializable {
     return this.categorie;
   }
 
-  public void setCategorie(String categorie) {
+  public void setCategorie(final String categorie) {
     this.categorie = categorie;
   }
 
@@ -84,7 +85,7 @@ public class Droit implements Serializable {
     return this.etat;
   }
 
-  public void setEtat(String etat) {
+  public void setEtat(final String etat) {
     this.etat = etat;
   }
 
@@ -92,16 +93,16 @@ public class Droit implements Serializable {
     return modele;
   }
 
-  public void setModele(ModeleDroit modele) {
+  public void setModele(final ModeleDroit modele) {
     this.modele = modele;
   }
 
-  public int getIDutilisateur() {
-    return this.IDutilisateur;
+  public Utilisateur getIDutilisateur() {
+    return this.utilisateur;
   }
 
-  public void setIDutilisateur(int IDutilisateur) {
-    this.IDutilisateur = IDutilisateur;
+  public void setIDutilisateur(final Utilisateur utilisateur) {
+    this.utilisateur = utilisateur;
   }
 
 }

@@ -15,20 +15,19 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the depots database table.
- * 
+ *
  */
 @Entity
 @Table(name = "depots")
@@ -37,14 +36,17 @@ public class Depot implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDdepot;
+  @GeneratedValue
+  @Column(name = "IDdepot")
+  private int id;
 
   @Column(name = "code_compta")
   private String codeCompta;
 
   private String date;
 
-  private int IDcompte;
+  @Column(name = "IDcompte")
+  private int idCompte;
 
   private String nom;
 
@@ -53,22 +55,19 @@ public class Depot implements Serializable {
 
   private int verrouillage;
 
-  public Depot() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDdepot() {
-    return this.IDdepot;
-  }
-
-  public void setIDdepot(int IDdepot) {
-    this.IDdepot = IDdepot;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getCodeCompta() {
     return this.codeCompta;
   }
 
-  public void setCodeCompta(String codeCompta) {
+  public void setCodeCompta(final String codeCompta) {
     this.codeCompta = codeCompta;
   }
 
@@ -76,23 +75,23 @@ public class Depot implements Serializable {
     return this.date;
   }
 
-  public void setDate(String date) {
+  public void setDate(final String date) {
     this.date = date;
   }
 
-  public int getIDcompte() {
-    return this.IDcompte;
+  public int getIdCompte() {
+    return this.idCompte;
   }
 
-  public void setIDcompte(int IDcompte) {
-    this.IDcompte = IDcompte;
+  public void setIdCompte(final int idCompte) {
+    this.idCompte = idCompte;
   }
 
   public String getNom() {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 
@@ -100,7 +99,7 @@ public class Depot implements Serializable {
     return this.observations;
   }
 
-  public void setObservations(String observations) {
+  public void setObservations(final String observations) {
     this.observations = observations;
   }
 
@@ -108,7 +107,7 @@ public class Depot implements Serializable {
     return this.verrouillage;
   }
 
-  public void setVerrouillage(int verrouillage) {
+  public void setVerrouillage(final int verrouillage) {
     this.verrouillage = verrouillage;
   }
 

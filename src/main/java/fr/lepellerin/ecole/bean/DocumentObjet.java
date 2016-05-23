@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -29,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the documents_objets database table.
- * 
+ *
  */
 @Entity
 @Table(name = "documents_objets")
@@ -38,7 +38,9 @@ public class DocumentObjet implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDobjet;
+  @GeneratedValue
+  @Column(name = "IDobjet")
+  private int id;
 
   private int afficheNumero;
 
@@ -133,30 +135,29 @@ public class DocumentObjet implements Serializable {
 
   private int weightPolice;
 
-  private int x;
+  @Column(name = "x")
+  private int pointX;
 
   private int xmodifiable;
 
-  private int y;
+  @Column(name = "y")
+  private int pointY;
 
   private int ymodifiable;
 
-  public DocumentObjet() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDobjet() {
-    return this.IDobjet;
-  }
-
-  public void setIDobjet(int IDobjet) {
-    this.IDobjet = IDobjet;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public int getAfficheNumero() {
     return this.afficheNumero;
   }
 
-  public void setAfficheNumero(int afficheNumero) {
+  public void setAfficheNumero(final int afficheNumero) {
     this.afficheNumero = afficheNumero;
   }
 
@@ -164,7 +165,7 @@ public class DocumentObjet implements Serializable {
     return this.alignement;
   }
 
-  public void setAlignement(String alignement) {
+  public void setAlignement(final String alignement) {
     this.alignement = alignement;
   }
 
@@ -172,7 +173,7 @@ public class DocumentObjet implements Serializable {
     return this.categorie;
   }
 
-  public void setCategorie(String categorie) {
+  public void setCategorie(final String categorie) {
     this.categorie = categorie;
   }
 
@@ -180,7 +181,7 @@ public class DocumentObjet implements Serializable {
     return this.champ;
   }
 
-  public void setChamp(String champ) {
+  public void setChamp(final String champ) {
     this.champ = champ;
   }
 
@@ -188,7 +189,7 @@ public class DocumentObjet implements Serializable {
     return this.couleurFond;
   }
 
-  public void setCouleurFond(String couleurFond) {
+  public void setCouleurFond(final String couleurFond) {
     this.couleurFond = couleurFond;
   }
 
@@ -196,7 +197,7 @@ public class DocumentObjet implements Serializable {
     return this.couleurTexte;
   }
 
-  public void setCouleurTexte(String couleurTexte) {
+  public void setCouleurTexte(final String couleurTexte) {
     this.couleurTexte = couleurTexte;
   }
 
@@ -204,7 +205,7 @@ public class DocumentObjet implements Serializable {
     return this.couleurTrait;
   }
 
-  public void setCouleurTrait(String couleurTrait) {
+  public void setCouleurTrait(final String couleurTrait) {
     this.couleurTrait = couleurTrait;
   }
 
@@ -212,7 +213,7 @@ public class DocumentObjet implements Serializable {
     return this.coulRemplis;
   }
 
-  public void setCoulRemplis(String coulRemplis) {
+  public void setCoulRemplis(final String coulRemplis) {
     this.coulRemplis = coulRemplis;
   }
 
@@ -220,7 +221,7 @@ public class DocumentObjet implements Serializable {
     return this.epaissTrait;
   }
 
-  public void setEpaissTrait(double epaissTrait) {
+  public void setEpaissTrait(final double epaissTrait) {
     this.epaissTrait = epaissTrait;
   }
 
@@ -228,7 +229,7 @@ public class DocumentObjet implements Serializable {
     return this.familyPolice;
   }
 
-  public void setFamilyPolice(int familyPolice) {
+  public void setFamilyPolice(final int familyPolice) {
     this.familyPolice = familyPolice;
   }
 
@@ -236,7 +237,7 @@ public class DocumentObjet implements Serializable {
     return this.hauteur;
   }
 
-  public void setHauteur(int hauteur) {
+  public void setHauteur(final int hauteur) {
     this.hauteur = hauteur;
   }
 
@@ -244,7 +245,7 @@ public class DocumentObjet implements Serializable {
     return this.hauteurMax;
   }
 
-  public void setHauteurMax(int hauteurMax) {
+  public void setHauteurMax(final int hauteurMax) {
     this.hauteurMax = hauteurMax;
   }
 
@@ -252,7 +253,7 @@ public class DocumentObjet implements Serializable {
     return this.hauteurMin;
   }
 
-  public void setHauteurMin(int hauteurMin) {
+  public void setHauteurMin(final int hauteurMin) {
     this.hauteurMin = hauteurMin;
   }
 
@@ -260,7 +261,7 @@ public class DocumentObjet implements Serializable {
     return this.hauteurModifiable;
   }
 
-  public void setHauteurModifiable(int hauteurModifiable) {
+  public void setHauteurModifiable(final int hauteurModifiable) {
     this.hauteurModifiable = hauteurModifiable;
   }
 
@@ -268,7 +269,7 @@ public class DocumentObjet implements Serializable {
     return modele;
   }
 
-  public void setModele(DocumentModele modele) {
+  public void setModele(final DocumentModele modele) {
     this.modele = modele;
   }
 
@@ -276,7 +277,7 @@ public class DocumentObjet implements Serializable {
     return this.image;
   }
 
-  public void setImage(byte[] image) {
+  public void setImage(final byte[] image) {
     this.image = image;
   }
 
@@ -284,7 +285,7 @@ public class DocumentObjet implements Serializable {
     return this.interditModifProportions;
   }
 
-  public void setInterditModifProportions(int interditModifProportions) {
+  public void setInterditModifProportions(final int interditModifProportions) {
     this.interditModifProportions = interditModifProportions;
   }
 
@@ -292,7 +293,7 @@ public class DocumentObjet implements Serializable {
     return this.interligne;
   }
 
-  public void setInterligne(double interligne) {
+  public void setInterligne(final double interligne) {
     this.interligne = interligne;
   }
 
@@ -300,7 +301,7 @@ public class DocumentObjet implements Serializable {
     return this.largeur;
   }
 
-  public void setLargeur(int largeur) {
+  public void setLargeur(final int largeur) {
     this.largeur = largeur;
   }
 
@@ -308,7 +309,7 @@ public class DocumentObjet implements Serializable {
     return this.largeurMax;
   }
 
-  public void setLargeurMax(int largeurMax) {
+  public void setLargeurMax(final int largeurMax) {
     this.largeurMax = largeurMax;
   }
 
@@ -316,7 +317,7 @@ public class DocumentObjet implements Serializable {
     return this.largeurMin;
   }
 
-  public void setLargeurMin(int largeurMin) {
+  public void setLargeurMin(final int largeurMin) {
     this.largeurMin = largeurMin;
   }
 
@@ -324,7 +325,7 @@ public class DocumentObjet implements Serializable {
     return this.largeurModifiable;
   }
 
-  public void setLargeurModifiable(int largeurModifiable) {
+  public void setLargeurModifiable(final int largeurModifiable) {
     this.largeurModifiable = largeurModifiable;
   }
 
@@ -332,7 +333,7 @@ public class DocumentObjet implements Serializable {
     return this.largeurTexte;
   }
 
-  public void setLargeurTexte(int largeurTexte) {
+  public void setLargeurTexte(final int largeurTexte) {
     this.largeurTexte = largeurTexte;
   }
 
@@ -340,7 +341,7 @@ public class DocumentObjet implements Serializable {
     return this.nbreMax;
   }
 
-  public void setNbreMax(int nbreMax) {
+  public void setNbreMax(final int nbreMax) {
     this.nbreMax = nbreMax;
   }
 
@@ -348,7 +349,7 @@ public class DocumentObjet implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 
@@ -356,7 +357,7 @@ public class DocumentObjet implements Serializable {
     return this.nomPolice;
   }
 
-  public void setNomPolice(String nomPolice) {
+  public void setNomPolice(final String nomPolice) {
     this.nomPolice = nomPolice;
   }
 
@@ -364,7 +365,7 @@ public class DocumentObjet implements Serializable {
     return this.norme;
   }
 
-  public void setNorme(String norme) {
+  public void setNorme(final String norme) {
     this.norme = norme;
   }
 
@@ -372,7 +373,7 @@ public class DocumentObjet implements Serializable {
     return this.obligatoire;
   }
 
-  public void setObligatoire(int obligatoire) {
+  public void setObligatoire(final int obligatoire) {
     this.obligatoire = obligatoire;
   }
 
@@ -380,7 +381,7 @@ public class DocumentObjet implements Serializable {
     return this.ordre;
   }
 
-  public void setOrdre(int ordre) {
+  public void setOrdre(final int ordre) {
     this.ordre = ordre;
   }
 
@@ -388,7 +389,7 @@ public class DocumentObjet implements Serializable {
     return this.padding;
   }
 
-  public void setPadding(double padding) {
+  public void setPadding(final double padding) {
     this.padding = padding;
   }
 
@@ -396,7 +397,7 @@ public class DocumentObjet implements Serializable {
     return this.points;
   }
 
-  public void setPoints(String points) {
+  public void setPoints(final String points) {
     this.points = points;
   }
 
@@ -404,7 +405,7 @@ public class DocumentObjet implements Serializable {
     return this.soulignePolice;
   }
 
-  public void setSoulignePolice(int soulignePolice) {
+  public void setSoulignePolice(final int soulignePolice) {
     this.soulignePolice = soulignePolice;
   }
 
@@ -412,7 +413,7 @@ public class DocumentObjet implements Serializable {
     return this.stylePolice;
   }
 
-  public void setStylePolice(int stylePolice) {
+  public void setStylePolice(final int stylePolice) {
     this.stylePolice = stylePolice;
   }
 
@@ -420,7 +421,7 @@ public class DocumentObjet implements Serializable {
     return this.styleRemplis;
   }
 
-  public void setStyleRemplis(String styleRemplis) {
+  public void setStyleRemplis(final String styleRemplis) {
     this.styleRemplis = styleRemplis;
   }
 
@@ -428,7 +429,7 @@ public class DocumentObjet implements Serializable {
     return this.styleTrait;
   }
 
-  public void setStyleTrait(String styleTrait) {
+  public void setStyleTrait(final String styleTrait) {
     this.styleTrait = styleTrait;
   }
 
@@ -436,7 +437,7 @@ public class DocumentObjet implements Serializable {
     return this.taillePolice;
   }
 
-  public void setTaillePolice(int taillePolice) {
+  public void setTaillePolice(final int taillePolice) {
     this.taillePolice = taillePolice;
   }
 
@@ -444,7 +445,7 @@ public class DocumentObjet implements Serializable {
     return this.texte;
   }
 
-  public void setTexte(String texte) {
+  public void setTexte(final String texte) {
     this.texte = texte;
   }
 
@@ -452,7 +453,7 @@ public class DocumentObjet implements Serializable {
     return this.typeImage;
   }
 
-  public void setTypeImage(String typeImage) {
+  public void setTypeImage(final String typeImage) {
     this.typeImage = typeImage;
   }
 
@@ -460,7 +461,7 @@ public class DocumentObjet implements Serializable {
     return this.verrouillageHauteur;
   }
 
-  public void setVerrouillageHauteur(int verrouillageHauteur) {
+  public void setVerrouillageHauteur(final int verrouillageHauteur) {
     this.verrouillageHauteur = verrouillageHauteur;
   }
 
@@ -468,7 +469,7 @@ public class DocumentObjet implements Serializable {
     return this.verrouillageLargeur;
   }
 
-  public void setVerrouillageLargeur(int verrouillageLargeur) {
+  public void setVerrouillageLargeur(final int verrouillageLargeur) {
     this.verrouillageLargeur = verrouillageLargeur;
   }
 
@@ -476,7 +477,7 @@ public class DocumentObjet implements Serializable {
     return this.verrouillageProportions;
   }
 
-  public void setVerrouillageProportions(int verrouillageProportions) {
+  public void setVerrouillageProportions(final int verrouillageProportions) {
     this.verrouillageProportions = verrouillageProportions;
   }
 
@@ -484,7 +485,7 @@ public class DocumentObjet implements Serializable {
     return this.verrouillageX;
   }
 
-  public void setVerrouillageX(int verrouillageX) {
+  public void setVerrouillageX(final int verrouillageX) {
     this.verrouillageX = verrouillageX;
   }
 
@@ -492,7 +493,7 @@ public class DocumentObjet implements Serializable {
     return this.verrouillageY;
   }
 
-  public void setVerrouillageY(int verrouillageY) {
+  public void setVerrouillageY(final int verrouillageY) {
     this.verrouillageY = verrouillageY;
   }
 
@@ -500,39 +501,39 @@ public class DocumentObjet implements Serializable {
     return this.weightPolice;
   }
 
-  public void setWeightPolice(int weightPolice) {
+  public void setWeightPolice(final int weightPolice) {
     this.weightPolice = weightPolice;
   }
 
-  public int getX() {
-    return this.x;
+  public int getPointX() {
+    return this.pointX;
   }
 
-  public void setX(int x) {
-    this.x = x;
+  public void setPointX(final int pointX) {
+    this.pointX = pointX;
   }
 
   public int getXmodifiable() {
     return this.xmodifiable;
   }
 
-  public void setXmodifiable(int xmodifiable) {
+  public void setXmodifiable(final int xmodifiable) {
     this.xmodifiable = xmodifiable;
   }
 
-  public int getY() {
-    return this.y;
+  public int getPointY() {
+    return this.pointY;
   }
 
-  public void setY(int y) {
-    this.y = y;
+  public void setPointY(final int pointY) {
+    this.pointY = pointY;
   }
 
   public int getYmodifiable() {
     return this.ymodifiable;
   }
 
-  public void setYmodifiable(int ymodifiable) {
+  public void setYmodifiable(final int ymodifiable) {
     this.ymodifiable = ymodifiable;
   }
 

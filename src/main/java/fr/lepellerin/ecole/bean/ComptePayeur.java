@@ -15,11 +15,9 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the comptes_payeurs database table.
- * 
+ *
  */
 @Entity
 @Table(name = "comptes_payeurs")
@@ -51,14 +49,11 @@ public class ComptePayeur implements Serializable {
   @JoinColumn(name = "IDindividu")
   private Individu individu;
 
-  public ComptePayeur() {
-  }
-
   public int getId() {
     return this.id;
   }
 
-  public void setId(int id) {
+  public void setId(final int id) {
     this.id = id;
   }
 
@@ -66,7 +61,7 @@ public class ComptePayeur implements Serializable {
     return famille;
   }
 
-  public void setFamille(Famille famille) {
+  public void setFamille(final Famille famille) {
     this.famille = famille;
   }
 
@@ -74,7 +69,7 @@ public class ComptePayeur implements Serializable {
     return individu;
   }
 
-  public void setIndividu(Individu individu) {
+  public void setIndividu(final Individu individu) {
     this.individu = individu;
   }
 

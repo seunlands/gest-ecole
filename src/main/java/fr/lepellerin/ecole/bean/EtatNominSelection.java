@@ -15,19 +15,20 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the etat_nomin_selections database table.
- * 
+ *
  */
 @Entity
 @Table(name = "etat_nomin_selections")
@@ -36,48 +37,48 @@ public class EtatNominSelection implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDselection;
+  @GeneratedValue
+  @Column(name = "IDselection")
+  private int id;
 
   @Lob
   private String code;
 
-  @Lob
-  private String IDprofil;
+  @ManyToOne
+  @Column(name = "IDprofil")
+  private EtatNominProfil profil;
 
   private int ordre;
 
-  public EtatNominSelection() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDselection() {
-    return this.IDselection;
-  }
-
-  public void setIDselection(int IDselection) {
-    this.IDselection = IDselection;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getCode() {
     return this.code;
   }
 
-  public void setCode(String code) {
+  public void setCode(final String code) {
     this.code = code;
   }
 
-  public String getIDprofil() {
-    return this.IDprofil;
+  public EtatNominProfil getProfil() {
+    return this.profil;
   }
 
-  public void setIDprofil(String IDprofil) {
-    this.IDprofil = IDprofil;
+  public void setProfil(final EtatNominProfil profil) {
+    this.profil = profil;
   }
 
   public int getOrdre() {
     return this.ordre;
   }
 
-  public void setOrdre(int ordre) {
+  public void setOrdre(final int ordre) {
     this.ordre = ordre;
   }
 

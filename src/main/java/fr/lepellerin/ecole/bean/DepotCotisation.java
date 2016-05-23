@@ -15,19 +15,19 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the depots_cotisations database table.
- * 
+ *
  */
 @Entity
 @Table(name = "depots_cotisations")
@@ -36,7 +36,9 @@ public class DepotCotisation implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDdepot_cotisation;
+  @GeneratedValue
+  @Column(name = "IDdepot_cotisation")
+  private int id;
 
   private String date;
 
@@ -47,22 +49,19 @@ public class DepotCotisation implements Serializable {
 
   private int verrouillage;
 
-  public DepotCotisation() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDdepot_cotisation() {
-    return this.IDdepot_cotisation;
-  }
-
-  public void setIDdepot_cotisation(int IDdepot_cotisation) {
-    this.IDdepot_cotisation = IDdepot_cotisation;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getDate() {
     return this.date;
   }
 
-  public void setDate(String date) {
+  public void setDate(final String date) {
     this.date = date;
   }
 
@@ -70,7 +69,7 @@ public class DepotCotisation implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 
@@ -78,7 +77,7 @@ public class DepotCotisation implements Serializable {
     return this.observations;
   }
 
-  public void setObservations(String observations) {
+  public void setObservations(final String observations) {
     this.observations = observations;
   }
 
@@ -86,7 +85,7 @@ public class DepotCotisation implements Serializable {
     return this.verrouillage;
   }
 
-  public void setVerrouillage(int verrouillage) {
+  public void setVerrouillage(final int verrouillage) {
     this.verrouillage = verrouillage;
   }
 

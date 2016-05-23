@@ -15,19 +15,19 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the documents_modeles database table.
- * 
+ *
  */
 @Entity
 @Table(name = "documents_modeles")
@@ -36,7 +36,9 @@ public class DocumentModele implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDmodele;
+  @GeneratedValue
+  @Column(name = "IDmodele")
+  private int id;
 
   private String categorie;
 
@@ -44,7 +46,8 @@ public class DocumentModele implements Serializable {
 
   private int hauteur;
 
-  private int IDfond;
+  @Column(name = "IDfond")
+  private int idFond;
 
   private int largeur;
 
@@ -55,22 +58,19 @@ public class DocumentModele implements Serializable {
 
   private int supprimable;
 
-  public DocumentModele() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDmodele() {
-    return this.IDmodele;
-  }
-
-  public void setIDmodele(int IDmodele) {
-    this.IDmodele = IDmodele;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getCategorie() {
     return this.categorie;
   }
 
-  public void setCategorie(String categorie) {
+  public void setCategorie(final String categorie) {
     this.categorie = categorie;
   }
 
@@ -78,7 +78,7 @@ public class DocumentModele implements Serializable {
     return this.defaut;
   }
 
-  public void setDefaut(int defaut) {
+  public void setDefaut(final int defaut) {
     this.defaut = defaut;
   }
 
@@ -86,23 +86,23 @@ public class DocumentModele implements Serializable {
     return this.hauteur;
   }
 
-  public void setHauteur(int hauteur) {
+  public void setHauteur(final int hauteur) {
     this.hauteur = hauteur;
   }
 
-  public int getIDfond() {
-    return this.IDfond;
+  public int getIdFond() {
+    return this.idFond;
   }
 
-  public void setIDfond(int IDfond) {
-    this.IDfond = IDfond;
+  public void setIdFond(final int idFond) {
+    this.idFond = idFond;
   }
 
   public int getLargeur() {
     return this.largeur;
   }
 
-  public void setLargeur(int largeur) {
+  public void setLargeur(final int largeur) {
     this.largeur = largeur;
   }
 
@@ -110,7 +110,7 @@ public class DocumentModele implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 
@@ -118,7 +118,7 @@ public class DocumentModele implements Serializable {
     return this.observations;
   }
 
-  public void setObservations(String observations) {
+  public void setObservations(final String observations) {
     this.observations = observations;
   }
 
@@ -126,7 +126,7 @@ public class DocumentModele implements Serializable {
     return this.supprimable;
   }
 
-  public void setSupprimable(int supprimable) {
+  public void setSupprimable(final int supprimable) {
     this.supprimable = supprimable;
   }
 

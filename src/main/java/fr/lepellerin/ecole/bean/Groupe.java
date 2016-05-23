@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the groupes database table.
- * 
+ *
  */
 @Entity
 @Table(name = "groupes")
@@ -37,7 +37,9 @@ public class Groupe implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDgroupe;
+  @GeneratedValue
+  @Column(name = "IDgroupe")
+  private int id;
 
   private String abrege;
 
@@ -49,22 +51,19 @@ public class Groupe implements Serializable {
 
   private int ordre;
 
-  public Groupe() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDgroupe() {
-    return this.IDgroupe;
-  }
-
-  public void setIDgroupe(int IDgroupe) {
-    this.IDgroupe = IDgroupe;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getAbrege() {
     return this.abrege;
   }
 
-  public void setAbrege(String abrege) {
+  public void setAbrege(final String abrege) {
     this.abrege = abrege;
   }
 
@@ -72,7 +71,7 @@ public class Groupe implements Serializable {
     return activite;
   }
 
-  public void setActivite(Activite activite) {
+  public void setActivite(final Activite activite) {
     this.activite = activite;
   }
 
@@ -80,7 +79,7 @@ public class Groupe implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 
@@ -88,7 +87,7 @@ public class Groupe implements Serializable {
     return this.ordre;
   }
 
-  public void setOrdre(int ordre) {
+  public void setOrdre(final int ordre) {
     this.ordre = ordre;
   }
 

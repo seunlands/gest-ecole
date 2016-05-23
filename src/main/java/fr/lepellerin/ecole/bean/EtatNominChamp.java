@@ -15,19 +15,19 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the etat_nomin_champs database table.
- * 
+ *
  */
 @Entity
 @Table(name = "etat_nomin_champs")
@@ -36,7 +36,9 @@ public class EtatNominChamp implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDchamp;
+  @GeneratedValue
+  @Column(name = "IDchamp")
+  private int id;
 
   @Lob
   private String code;
@@ -50,22 +52,19 @@ public class EtatNominChamp implements Serializable {
   @Lob
   private String titre;
 
-  public EtatNominChamp() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDchamp() {
-    return this.IDchamp;
-  }
-
-  public void setIDchamp(int IDchamp) {
-    this.IDchamp = IDchamp;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getCode() {
     return this.code;
   }
 
-  public void setCode(String code) {
+  public void setCode(final String code) {
     this.code = code;
   }
 
@@ -73,7 +72,7 @@ public class EtatNominChamp implements Serializable {
     return this.formule;
   }
 
-  public void setFormule(String formule) {
+  public void setFormule(final String formule) {
     this.formule = formule;
   }
 
@@ -81,7 +80,7 @@ public class EtatNominChamp implements Serializable {
     return this.label;
   }
 
-  public void setLabel(String label) {
+  public void setLabel(final String label) {
     this.label = label;
   }
 
@@ -89,7 +88,7 @@ public class EtatNominChamp implements Serializable {
     return this.titre;
   }
 
-  public void setTitre(String titre) {
+  public void setTitre(final String titre) {
     this.titre = titre;
   }
 

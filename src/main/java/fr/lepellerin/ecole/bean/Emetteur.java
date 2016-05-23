@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -29,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the emetteurs database table.
- * 
+ *
  */
 @Entity
 @Table(name = "emetteurs")
@@ -38,7 +38,9 @@ public class Emetteur implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDemetteur;
+  @GeneratedValue
+  @Column(name = "IDemetteur")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDmode")
@@ -49,22 +51,19 @@ public class Emetteur implements Serializable {
 
   private String nom;
 
-  public Emetteur() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDemetteur() {
-    return this.IDemetteur;
-  }
-
-  public void setIDemetteur(int IDemetteur) {
-    this.IDemetteur = IDemetteur;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public ModeReglement getMode() {
     return mode;
   }
 
-  public void setMode(ModeReglement mode) {
+  public void setMode(final ModeReglement mode) {
     this.mode = mode;
   }
 
@@ -72,7 +71,7 @@ public class Emetteur implements Serializable {
     return this.image;
   }
 
-  public void setImage(byte[] image) {
+  public void setImage(final byte[] image) {
     this.image = image;
   }
 
@@ -80,7 +79,7 @@ public class Emetteur implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 

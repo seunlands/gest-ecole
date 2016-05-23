@@ -15,12 +15,10 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +32,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the familles database table.
- * 
+ *
  */
 @Entity
 @Table(name = "familles")
@@ -172,14 +170,11 @@ public class Famille implements Serializable {
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "famille")
   private Set<Rattachement> rattachements;
 
-  public Famille() {
-  }
-
   public int getId() {
     return this.id;
   }
 
-  public void setId(int id) {
+  public void setId(final int id) {
     this.id = id;
   }
 
@@ -187,7 +182,7 @@ public class Famille implements Serializable {
     return this.allocataire;
   }
 
-  public void setAllocataire(Integer allocataire) {
+  public void setAllocataire(final Integer allocataire) {
     this.allocataire = allocataire;
   }
 
@@ -195,7 +190,7 @@ public class Famille implements Serializable {
     return this.autorisationCafpro;
   }
 
-  public void setAutorisationCafpro(Integer autorisationCafpro) {
+  public void setAutorisationCafpro(final Integer autorisationCafpro) {
     this.autorisationCafpro = autorisationCafpro;
   }
 
@@ -203,7 +198,7 @@ public class Famille implements Serializable {
     return this.cattiersHelios;
   }
 
-  public void setCattiersHelios(Integer cattiersHelios) {
+  public void setCattiersHelios(final Integer cattiersHelios) {
     this.cattiersHelios = cattiersHelios;
   }
 
@@ -211,7 +206,7 @@ public class Famille implements Serializable {
     return this.codeComptable;
   }
 
-  public void setCodeComptable(String codeComptable) {
+  public void setCodeComptable(final String codeComptable) {
     this.codeComptable = codeComptable;
   }
 
@@ -219,7 +214,7 @@ public class Famille implements Serializable {
     return this.dateCreation;
   }
 
-  public void setDateCreation(String dateCreation) {
+  public void setDateCreation(final String dateCreation) {
     this.dateCreation = dateCreation;
   }
 
@@ -227,7 +222,7 @@ public class Famille implements Serializable {
     return this.emailDepots;
   }
 
-  public void setEmailDepots(String emailDepots) {
+  public void setEmailDepots(final String emailDepots) {
     this.emailDepots = emailDepots;
   }
 
@@ -235,7 +230,7 @@ public class Famille implements Serializable {
     return this.emailFactures;
   }
 
-  public void setEmailFactures(String emailFactures) {
+  public void setEmailFactures(final String emailFactures) {
     this.emailFactures = emailFactures;
   }
 
@@ -243,7 +238,7 @@ public class Famille implements Serializable {
     return this.emailRecus;
   }
 
-  public void setEmailRecus(String emailRecus) {
+  public void setEmailRecus(final String emailRecus) {
     this.emailRecus = emailRecus;
   }
 
@@ -251,7 +246,7 @@ public class Famille implements Serializable {
     return caisse;
   }
 
-  public void setCaisse(Caisse caisse) {
+  public void setCaisse(final Caisse caisse) {
     this.caisse = caisse;
   }
 
@@ -259,7 +254,7 @@ public class Famille implements Serializable {
     return comptePayeur;
   }
 
-  public void setComptePayeur(ComptePayeur comptePayeur) {
+  public void setComptePayeur(final ComptePayeur comptePayeur) {
     this.comptePayeur = comptePayeur;
   }
 
@@ -267,7 +262,7 @@ public class Famille implements Serializable {
     return this.idtiersHelios;
   }
 
-  public void setIdtiersHelios(String idtiersHelios) {
+  public void setIdtiersHelios(final String idtiersHelios) {
     this.idtiersHelios = idtiersHelios;
   }
 
@@ -275,7 +270,7 @@ public class Famille implements Serializable {
     return this.internetActif;
   }
 
-  public void setInternetActif(int internetActif) {
+  public void setInternetActif(final int internetActif) {
     this.internetActif = internetActif;
   }
 
@@ -283,7 +278,7 @@ public class Famille implements Serializable {
     return this.internetIdentifiant;
   }
 
-  public void setInternetIdentifiant(String internetIdentifiant) {
+  public void setInternetIdentifiant(final String internetIdentifiant) {
     this.internetIdentifiant = internetIdentifiant;
   }
 
@@ -291,7 +286,7 @@ public class Famille implements Serializable {
     return this.internetMdp;
   }
 
-  public void setInternetMdp(String internetMdp) {
+  public void setInternetMdp(final String internetMdp) {
     this.internetMdp = internetMdp;
   }
 
@@ -299,7 +294,7 @@ public class Famille implements Serializable {
     return this.memo;
   }
 
-  public void setMemo(String memo) {
+  public void setMemo(final String memo) {
     this.memo = memo;
   }
 
@@ -307,7 +302,7 @@ public class Famille implements Serializable {
     return this.natidtiersHelios;
   }
 
-  public void setNatidtiersHelios(Integer natidtiersHelios) {
+  public void setNatidtiersHelios(final Integer natidtiersHelios) {
     this.natidtiersHelios = natidtiersHelios;
   }
 
@@ -315,7 +310,7 @@ public class Famille implements Serializable {
     return this.natjurHelios;
   }
 
-  public void setNatjurHelios(Integer natjurHelios) {
+  public void setNatjurHelios(final Integer natjurHelios) {
     this.natjurHelios = natjurHelios;
   }
 
@@ -323,7 +318,7 @@ public class Famille implements Serializable {
     return this.numAllocataire;
   }
 
-  public void setNumAllocataire(String numAllocataire) {
+  public void setNumAllocataire(final String numAllocataire) {
     this.numAllocataire = numAllocataire;
   }
 
@@ -331,7 +326,7 @@ public class Famille implements Serializable {
     return this.prelevementActivation;
   }
 
-  public void setPrelevementActivation(Integer prelevementActivation) {
+  public void setPrelevementActivation(final Integer prelevementActivation) {
     this.prelevementActivation = prelevementActivation;
   }
 
@@ -339,7 +334,7 @@ public class Famille implements Serializable {
     return this.prelevementBanque;
   }
 
-  public void setPrelevementBanque(Integer prelevementBanque) {
+  public void setPrelevementBanque(final Integer prelevementBanque) {
     this.prelevementBanque = prelevementBanque;
   }
 
@@ -347,7 +342,7 @@ public class Famille implements Serializable {
     return this.prelevementBic;
   }
 
-  public void setPrelevementBic(String prelevementBic) {
+  public void setPrelevementBic(final String prelevementBic) {
     this.prelevementBic = prelevementBic;
   }
 
@@ -355,7 +350,7 @@ public class Famille implements Serializable {
     return this.prelevementCle;
   }
 
-  public void setPrelevementCle(String prelevementCle) {
+  public void setPrelevementCle(final String prelevementCle) {
     this.prelevementCle = prelevementCle;
   }
 
@@ -363,7 +358,7 @@ public class Famille implements Serializable {
     return this.prelevementCleIban;
   }
 
-  public void setPrelevementCleIban(String prelevementCleIban) {
+  public void setPrelevementCleIban(final String prelevementCleIban) {
     this.prelevementCleIban = prelevementCleIban;
   }
 
@@ -371,7 +366,7 @@ public class Famille implements Serializable {
     return this.prelevementCp;
   }
 
-  public void setPrelevementCp(String prelevementCp) {
+  public void setPrelevementCp(final String prelevementCp) {
     this.prelevementCp = prelevementCp;
   }
 
@@ -379,7 +374,7 @@ public class Famille implements Serializable {
     return this.prelevementDateMandat;
   }
 
-  public void setPrelevementDateMandat(String prelevementDateMandat) {
+  public void setPrelevementDateMandat(final String prelevementDateMandat) {
     this.prelevementDateMandat = prelevementDateMandat;
   }
 
@@ -387,7 +382,7 @@ public class Famille implements Serializable {
     return this.prelevementEtab;
   }
 
-  public void setPrelevementEtab(String prelevementEtab) {
+  public void setPrelevementEtab(final String prelevementEtab) {
     this.prelevementEtab = prelevementEtab;
   }
 
@@ -395,7 +390,7 @@ public class Famille implements Serializable {
     return this.prelevementGuichet;
   }
 
-  public void setPrelevementGuichet(String prelevementGuichet) {
+  public void setPrelevementGuichet(final String prelevementGuichet) {
     this.prelevementGuichet = prelevementGuichet;
   }
 
@@ -403,7 +398,7 @@ public class Famille implements Serializable {
     return this.prelevementIban;
   }
 
-  public void setPrelevementIban(String prelevementIban) {
+  public void setPrelevementIban(final String prelevementIban) {
     this.prelevementIban = prelevementIban;
   }
 
@@ -411,7 +406,7 @@ public class Famille implements Serializable {
     return this.prelevementIndividu;
   }
 
-  public void setPrelevementIndividu(Integer prelevementIndividu) {
+  public void setPrelevementIndividu(final Integer prelevementIndividu) {
     this.prelevementIndividu = prelevementIndividu;
   }
 
@@ -419,7 +414,7 @@ public class Famille implements Serializable {
     return this.prelevementMemo;
   }
 
-  public void setPrelevementMemo(String prelevementMemo) {
+  public void setPrelevementMemo(final String prelevementMemo) {
     this.prelevementMemo = prelevementMemo;
   }
 
@@ -427,7 +422,7 @@ public class Famille implements Serializable {
     return this.prelevementNom;
   }
 
-  public void setPrelevementNom(String prelevementNom) {
+  public void setPrelevementNom(final String prelevementNom) {
     this.prelevementNom = prelevementNom;
   }
 
@@ -435,7 +430,7 @@ public class Famille implements Serializable {
     return this.prelevementNumero;
   }
 
-  public void setPrelevementNumero(String prelevementNumero) {
+  public void setPrelevementNumero(final String prelevementNumero) {
     this.prelevementNumero = prelevementNumero;
   }
 
@@ -443,7 +438,7 @@ public class Famille implements Serializable {
     return this.prelevementReferenceMandat;
   }
 
-  public void setPrelevementReferenceMandat(String prelevementReferenceMandat) {
+  public void setPrelevementReferenceMandat(final String prelevementReferenceMandat) {
     this.prelevementReferenceMandat = prelevementReferenceMandat;
   }
 
@@ -451,7 +446,7 @@ public class Famille implements Serializable {
     return this.prelevementRue;
   }
 
-  public void setPrelevementRue(String prelevementRue) {
+  public void setPrelevementRue(final String prelevementRue) {
     this.prelevementRue = prelevementRue;
   }
 
@@ -459,7 +454,7 @@ public class Famille implements Serializable {
     return this.prelevementVille;
   }
 
-  public void setPrelevementVille(String prelevementVille) {
+  public void setPrelevementVille(final String prelevementVille) {
     this.prelevementVille = prelevementVille;
   }
 
@@ -467,7 +462,7 @@ public class Famille implements Serializable {
     return this.reftiersHelios;
   }
 
-  public void setReftiersHelios(String reftiersHelios) {
+  public void setReftiersHelios(final String reftiersHelios) {
     this.reftiersHelios = reftiersHelios;
   }
 
@@ -475,7 +470,7 @@ public class Famille implements Serializable {
     return this.titulaireHelios;
   }
 
-  public void setTitulaireHelios(int titulaireHelios) {
+  public void setTitulaireHelios(final int titulaireHelios) {
     this.titulaireHelios = titulaireHelios;
   }
 
@@ -483,7 +478,7 @@ public class Famille implements Serializable {
     return rattachements;
   }
 
-  public void setRattachements(Set<Rattachement> rattachements) {
+  public void setRattachements(final Set<Rattachement> rattachements) {
     this.rattachements = rattachements;
   }
 

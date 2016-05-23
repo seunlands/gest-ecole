@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -30,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the factures database table.
- * 
+ *
  */
 @Entity
 @Table(name = "factures")
@@ -39,7 +38,9 @@ public class Facture implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDfacture;
+  @GeneratedValue
+  @Column(name = "IDfacture")
+  private int id;
 
   @Lob
   private String activites;
@@ -84,22 +85,19 @@ public class Facture implements Serializable {
 
   private double total;
 
-  public Facture() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDfacture() {
-    return this.IDfacture;
-  }
-
-  public void setIDfacture(int IDfacture) {
-    this.IDfacture = IDfacture;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getActivites() {
     return this.activites;
   }
 
-  public void setActivites(String activites) {
+  public void setActivites(final String activites) {
     this.activites = activites;
   }
 
@@ -107,7 +105,7 @@ public class Facture implements Serializable {
     return this.dateDebut;
   }
 
-  public void setDateDebut(String dateDebut) {
+  public void setDateDebut(final String dateDebut) {
     this.dateDebut = dateDebut;
   }
 
@@ -115,7 +113,7 @@ public class Facture implements Serializable {
     return this.dateEcheance;
   }
 
-  public void setDateEcheance(String dateEcheance) {
+  public void setDateEcheance(final String dateEcheance) {
     this.dateEcheance = dateEcheance;
   }
 
@@ -123,7 +121,7 @@ public class Facture implements Serializable {
     return this.dateEdition;
   }
 
-  public void setDateEdition(String dateEdition) {
+  public void setDateEdition(final String dateEdition) {
     this.dateEdition = dateEdition;
   }
 
@@ -131,7 +129,7 @@ public class Facture implements Serializable {
     return this.dateFin;
   }
 
-  public void setDateFin(String dateFin) {
+  public void setDateFin(final String dateFin) {
     this.dateFin = dateFin;
   }
 
@@ -139,7 +137,7 @@ public class Facture implements Serializable {
     return this.etat;
   }
 
-  public void setEtat(String etat) {
+  public void setEtat(final String etat) {
     this.etat = etat;
   }
 
@@ -147,7 +145,7 @@ public class Facture implements Serializable {
     return comptePayeur;
   }
 
-  public void setComptePayeur(ComptePayeur comptePayeur) {
+  public void setComptePayeur(final ComptePayeur comptePayeur) {
     this.comptePayeur = comptePayeur;
   }
 
@@ -155,7 +153,7 @@ public class Facture implements Serializable {
     return lot;
   }
 
-  public void setLot(LotFacture lot) {
+  public void setLot(final LotFacture lot) {
     this.lot = lot;
   }
 
@@ -163,7 +161,7 @@ public class Facture implements Serializable {
     return utilisateur;
   }
 
-  public void setUtilisateur(Utilisateur utilisateur) {
+  public void setUtilisateur(final Utilisateur utilisateur) {
     this.utilisateur = utilisateur;
   }
 
@@ -171,7 +169,7 @@ public class Facture implements Serializable {
     return this.individus;
   }
 
-  public void setIndividus(String individus) {
+  public void setIndividus(final String individus) {
     this.individus = individus;
   }
 
@@ -179,7 +177,7 @@ public class Facture implements Serializable {
     return this.numero;
   }
 
-  public void setNumero(int numero) {
+  public void setNumero(final int numero) {
     this.numero = numero;
   }
 
@@ -187,7 +185,7 @@ public class Facture implements Serializable {
     return this.prestations;
   }
 
-  public void setPrestations(String prestations) {
+  public void setPrestations(final String prestations) {
     this.prestations = prestations;
   }
 
@@ -195,7 +193,7 @@ public class Facture implements Serializable {
     return this.regle;
   }
 
-  public void setRegle(double regle) {
+  public void setRegle(final double regle) {
     this.regle = regle;
   }
 
@@ -203,7 +201,7 @@ public class Facture implements Serializable {
     return this.solde;
   }
 
-  public void setSolde(double solde) {
+  public void setSolde(final double solde) {
     this.solde = solde;
   }
 
@@ -211,7 +209,7 @@ public class Facture implements Serializable {
     return this.total;
   }
 
-  public void setTotal(double total) {
+  public void setTotal(final double total) {
     this.total = total;
   }
 

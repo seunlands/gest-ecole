@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the groupes_activites database table.
- * 
+ *
  */
 @Entity
 @Table(name = "groupes_activites")
@@ -37,7 +37,9 @@ public class GroupeActivite implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDgroupe_activite;
+  @GeneratedValue
+  @Column(name = "IDgroupe_activite")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDactivite")
@@ -47,22 +49,19 @@ public class GroupeActivite implements Serializable {
   @JoinColumn(name = "IDtype_groupe_activite")
   private TypeGroupeActivite typeGroupeActivite;
 
-  public GroupeActivite() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDgroupe_activite() {
-    return this.IDgroupe_activite;
-  }
-
-  public void setIDgroupe_activite(int IDgroupe_activite) {
-    this.IDgroupe_activite = IDgroupe_activite;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public Activite getActivite() {
     return activite;
   }
 
-  public void setActivite(Activite activite) {
+  public void setActivite(final Activite activite) {
     this.activite = activite;
   }
 
@@ -70,7 +69,7 @@ public class GroupeActivite implements Serializable {
     return typeGroupeActivite;
   }
 
-  public void setTypeGroupeActivite(TypeGroupeActivite typeGroupeActivite) {
+  public void setTypeGroupeActivite(final TypeGroupeActivite typeGroupeActivite) {
     this.typeGroupeActivite = typeGroupeActivite;
   }
 

@@ -15,18 +15,20 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the liens database table.
- * 
+ *
  */
 @Entity
 @Table(name = "liens")
@@ -35,76 +37,83 @@ public class Lien implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDlien;
+  @GeneratedValue
+  @Column(name = "IDlien")
+  private int id;
 
-  private int IDautorisation;
+  @Column(name = "IDlien")
+  private int idAutorisation;
 
-  private int IDfamille;
+  @ManyToOne
+  @JoinColumn(name = "IDfamille")
+  private Famille famille;
 
-  private int IDindividu_objet;
+  @ManyToOne
+  @JoinColumn(name = "IDindividu_objet")
+  private Individu individuObjet;
 
-  private int IDindividu_sujet;
+  @ManyToOne
+  @JoinColumn(name = "IDindividu_sujet")
+  private Individu individuSujet;
 
-  private int IDtype_lien;
+  @Column(name = "IDtype_lien")
+  private int idTypeLien;
 
   private int responsable;
 
-  public Lien() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDlien() {
-    return this.IDlien;
+  public void setId(final int id) {
+    this.id = id;
   }
 
-  public void setIDlien(int IDlien) {
-    this.IDlien = IDlien;
+  public int getIdAutorisation() {
+    return idAutorisation;
   }
 
-  public int getIDautorisation() {
-    return this.IDautorisation;
+  public void setIdAutorisation(final int idAutorisation) {
+    this.idAutorisation = idAutorisation;
   }
 
-  public void setIDautorisation(int IDautorisation) {
-    this.IDautorisation = IDautorisation;
+  public Famille getFamille() {
+    return famille;
   }
 
-  public int getIDfamille() {
-    return this.IDfamille;
+  public void setFamille(final Famille famille) {
+    this.famille = famille;
   }
 
-  public void setIDfamille(int IDfamille) {
-    this.IDfamille = IDfamille;
+  public Individu getIndividuObjet() {
+    return individuObjet;
   }
 
-  public int getIDindividu_objet() {
-    return this.IDindividu_objet;
+  public void setIndividuObjet(final Individu individuObjet) {
+    this.individuObjet = individuObjet;
   }
 
-  public void setIDindividu_objet(int IDindividu_objet) {
-    this.IDindividu_objet = IDindividu_objet;
+  public Individu getIndividuSujet() {
+    return individuSujet;
   }
 
-  public int getIDindividu_sujet() {
-    return this.IDindividu_sujet;
+  public void setIndividuSujet(final Individu individuSujet) {
+    this.individuSujet = individuSujet;
   }
 
-  public void setIDindividu_sujet(int IDindividu_sujet) {
-    this.IDindividu_sujet = IDindividu_sujet;
+  public int getIdTypeLien() {
+    return idTypeLien;
   }
 
-  public int getIDtype_lien() {
-    return this.IDtype_lien;
-  }
-
-  public void setIDtype_lien(int IDtype_lien) {
-    this.IDtype_lien = IDtype_lien;
+  public void setIdTypeLien(final int idTypeLien) {
+    this.idTypeLien = idTypeLien;
   }
 
   public int getResponsable() {
     return this.responsable;
   }
 
-  public void setResponsable(int responsable) {
+  public void setResponsable(final int responsable) {
     this.responsable = responsable;
   }
 

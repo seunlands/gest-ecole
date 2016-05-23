@@ -15,11 +15,9 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -135,14 +133,11 @@ public class Individu implements Serializable {
   @Column(name = "ville_resid")
   private String villeResid;
 
-  public Individu() {
-  }
-
   public int getId() {
     return this.id;
   }
 
-  public void setId(int id) {
+  public void setId(final int id) {
     this.id = id;
   }
 
@@ -150,7 +145,7 @@ public class Individu implements Serializable {
     return this.adresseAuto;
   }
 
-  public void setAdresseAuto(Integer adresseAuto) {
+  public void setAdresseAuto(final Integer adresseAuto) {
     this.adresseAuto = adresseAuto;
   }
 
@@ -158,7 +153,7 @@ public class Individu implements Serializable {
     return this.anneeDeces;
   }
 
-  public void setAnneeDeces(Integer anneeDeces) {
+  public void setAnneeDeces(final Integer anneeDeces) {
     this.anneeDeces = anneeDeces;
   }
 
@@ -166,7 +161,7 @@ public class Individu implements Serializable {
     return this.cpNaiss;
   }
 
-  public void setCpNaiss(String cpNaiss) {
+  public void setCpNaiss(final String cpNaiss) {
     this.cpNaiss = cpNaiss;
   }
 
@@ -174,7 +169,7 @@ public class Individu implements Serializable {
     return this.cpResid;
   }
 
-  public void setCpResid(String cpResid) {
+  public void setCpResid(final String cpResid) {
     this.cpResid = cpResid;
   }
 
@@ -182,7 +177,7 @@ public class Individu implements Serializable {
     return this.dateCreation;
   }
 
-  public void setDateCreation(String dateCreation) {
+  public void setDateCreation(final String dateCreation) {
     this.dateCreation = dateCreation;
   }
 
@@ -190,7 +185,7 @@ public class Individu implements Serializable {
     return this.dateNaiss;
   }
 
-  public void setDateNaiss(String dateNaiss) {
+  public void setDateNaiss(final String dateNaiss) {
     this.dateNaiss = dateNaiss;
   }
 
@@ -198,7 +193,7 @@ public class Individu implements Serializable {
     return this.deces;
   }
 
-  public void setDeces(Integer deces) {
+  public void setDeces(final Integer deces) {
     this.deces = deces;
   }
 
@@ -206,7 +201,7 @@ public class Individu implements Serializable {
     return this.employeur;
   }
 
-  public void setEmployeur(String employeur) {
+  public void setEmployeur(final String employeur) {
     this.employeur = employeur;
   }
 
@@ -214,7 +209,7 @@ public class Individu implements Serializable {
     return categorieTravail;
   }
 
-  public void setCategorieTravail(CategoriesTravail categorieTravail) {
+  public void setCategorieTravail(final CategoriesTravail categorieTravail) {
     this.categorieTravail = categorieTravail;
   }
 
@@ -222,7 +217,7 @@ public class Individu implements Serializable {
     return this.idCivilite;
   }
 
-  public void setIdCivilite(int idCivilite) {
+  public void setIdCivilite(final int idCivilite) {
     this.idCivilite = idCivilite;
   }
 
@@ -230,7 +225,7 @@ public class Individu implements Serializable {
     return medecin;
   }
 
-  public void setMedecin(Medecin medecin) {
+  public void setMedecin(final Medecin medecin) {
     this.medecin = medecin;
   }
 
@@ -238,7 +233,7 @@ public class Individu implements Serializable {
     return this.idNationalite;
   }
 
-  public void setIdNationalite(int idNationalite) {
+  public void setIdNationalite(final int idNationalite) {
     this.idNationalite = idNationalite;
   }
 
@@ -246,7 +241,7 @@ public class Individu implements Serializable {
     return this.idPaysNaiss;
   }
 
-  public void setIdPaysNaiss(int idPaysNaiss) {
+  public void setIdPaysNaiss(final int idPaysNaiss) {
     this.idPaysNaiss = idPaysNaiss;
   }
 
@@ -254,7 +249,7 @@ public class Individu implements Serializable {
     return secteur;
   }
 
-  public void setSecteur(Secteur secteur) {
+  public void setSecteur(final Secteur secteur) {
     this.secteur = secteur;
   }
 
@@ -262,7 +257,7 @@ public class Individu implements Serializable {
     return typeSieste;
   }
 
-  public void setTypeSieste(TypeSieste typeSieste) {
+  public void setTypeSieste(final TypeSieste typeSieste) {
     this.typeSieste = typeSieste;
   }
 
@@ -270,7 +265,7 @@ public class Individu implements Serializable {
     return this.mail;
   }
 
-  public void setMail(String mail) {
+  public void setMail(final String mail) {
     this.mail = mail;
   }
 
@@ -278,7 +273,7 @@ public class Individu implements Serializable {
     return this.memo;
   }
 
-  public void setMemo(String memo) {
+  public void setMemo(final String memo) {
     this.memo = memo;
   }
 
@@ -286,7 +281,7 @@ public class Individu implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 
@@ -294,7 +289,7 @@ public class Individu implements Serializable {
     return this.nomJfille;
   }
 
-  public void setNomJfille(String nomJfille) {
+  public void setNomJfille(final String nomJfille) {
     this.nomJfille = nomJfille;
   }
 
@@ -302,7 +297,7 @@ public class Individu implements Serializable {
     return this.numSecu;
   }
 
-  public void setNumSecu(String numSecu) {
+  public void setNumSecu(final String numSecu) {
     this.numSecu = numSecu;
   }
 
@@ -310,7 +305,7 @@ public class Individu implements Serializable {
     return this.prenom;
   }
 
-  public void setPrenom(String prenom) {
+  public void setPrenom(final String prenom) {
     this.prenom = prenom;
   }
 
@@ -318,7 +313,7 @@ public class Individu implements Serializable {
     return this.profession;
   }
 
-  public void setProfession(String profession) {
+  public void setProfession(final String profession) {
     this.profession = profession;
   }
 
@@ -326,7 +321,7 @@ public class Individu implements Serializable {
     return this.rueResid;
   }
 
-  public void setRueResid(String rueResid) {
+  public void setRueResid(final String rueResid) {
     this.rueResid = rueResid;
   }
 
@@ -334,7 +329,7 @@ public class Individu implements Serializable {
     return this.telDomicile;
   }
 
-  public void setTelDomicile(String telDomicile) {
+  public void setTelDomicile(final String telDomicile) {
     this.telDomicile = telDomicile;
   }
 
@@ -342,7 +337,7 @@ public class Individu implements Serializable {
     return this.telFax;
   }
 
-  public void setTelFax(String telFax) {
+  public void setTelFax(final String telFax) {
     this.telFax = telFax;
   }
 
@@ -350,7 +345,7 @@ public class Individu implements Serializable {
     return this.telMobile;
   }
 
-  public void setTelMobile(String telMobile) {
+  public void setTelMobile(final String telMobile) {
     this.telMobile = telMobile;
   }
 
@@ -358,7 +353,7 @@ public class Individu implements Serializable {
     return this.travailFax;
   }
 
-  public void setTravailFax(String travailFax) {
+  public void setTravailFax(final String travailFax) {
     this.travailFax = travailFax;
   }
 
@@ -366,7 +361,7 @@ public class Individu implements Serializable {
     return this.travailMail;
   }
 
-  public void setTravailMail(String travailMail) {
+  public void setTravailMail(final String travailMail) {
     this.travailMail = travailMail;
   }
 
@@ -374,7 +369,7 @@ public class Individu implements Serializable {
     return this.travailTel;
   }
 
-  public void setTravailTel(String travailTel) {
+  public void setTravailTel(final String travailTel) {
     this.travailTel = travailTel;
   }
 
@@ -382,7 +377,7 @@ public class Individu implements Serializable {
     return this.villeNaiss;
   }
 
-  public void setVilleNaiss(String villeNaiss) {
+  public void setVilleNaiss(final String villeNaiss) {
     this.villeNaiss = villeNaiss;
   }
 
@@ -390,7 +385,7 @@ public class Individu implements Serializable {
     return this.villeResid;
   }
 
-  public void setVilleResid(String villeResid) {
+  public void setVilleResid(final String villeResid) {
     this.villeResid = villeResid;
   }
 

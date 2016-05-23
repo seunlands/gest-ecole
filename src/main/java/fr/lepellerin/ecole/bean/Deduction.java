@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the deductions database table.
- * 
+ *
  */
 @Entity
 @Table(name = "deductions")
@@ -37,7 +37,9 @@ public class Deduction implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDdeduction;
+  @GeneratedValue
+  @Column(name = "IDdeduction")
+  private int id;
 
   private String date;
 
@@ -57,22 +59,19 @@ public class Deduction implements Serializable {
 
   private double montant;
 
-  public Deduction() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDdeduction() {
-    return this.IDdeduction;
-  }
-
-  public void setIDdeduction(int IDdeduction) {
-    this.IDdeduction = IDdeduction;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getDate() {
     return this.date;
   }
 
-  public void setDate(String date) {
+  public void setDate(final String date) {
     this.date = date;
   }
 
@@ -80,7 +79,7 @@ public class Deduction implements Serializable {
     return aide;
   }
 
-  public void setAide(Aide aide) {
+  public void setAide(final Aide aide) {
     this.aide = aide;
   }
 
@@ -88,7 +87,7 @@ public class Deduction implements Serializable {
     return comptePayeur;
   }
 
-  public void setComptePayeur(ComptePayeur comptePayeur) {
+  public void setComptePayeur(final ComptePayeur comptePayeur) {
     this.comptePayeur = comptePayeur;
   }
 
@@ -96,7 +95,7 @@ public class Deduction implements Serializable {
     return prestation;
   }
 
-  public void setPrestation(Prestation prestation) {
+  public void setPrestation(final Prestation prestation) {
     this.prestation = prestation;
   }
 
@@ -104,7 +103,7 @@ public class Deduction implements Serializable {
     return this.label;
   }
 
-  public void setLabel(String label) {
+  public void setLabel(final String label) {
     this.label = label;
   }
 
@@ -112,7 +111,7 @@ public class Deduction implements Serializable {
     return this.montant;
   }
 
-  public void setMontant(double montant) {
+  public void setMontant(final double montant) {
     this.montant = montant;
   }
 

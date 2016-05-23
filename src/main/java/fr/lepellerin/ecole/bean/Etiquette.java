@@ -15,12 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -29,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the etiquettes database table.
- * 
+ *
  */
 @Entity
 @Table(name = "etiquettes")
@@ -38,7 +38,9 @@ public class Etiquette implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDetiquette;
+  @GeneratedValue
+  @Column(name = "IDetiquette")
+  private int id;
 
   private int active;
 
@@ -55,22 +57,19 @@ public class Etiquette implements Serializable {
 
   private int parent;
 
-  public Etiquette() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDetiquette() {
-    return this.IDetiquette;
-  }
-
-  public void setIDetiquette(int IDetiquette) {
-    this.IDetiquette = IDetiquette;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public int getActive() {
     return this.active;
   }
 
-  public void setActive(int active) {
+  public void setActive(final int active) {
     this.active = active;
   }
 
@@ -78,7 +77,7 @@ public class Etiquette implements Serializable {
     return this.couleur;
   }
 
-  public void setCouleur(String couleur) {
+  public void setCouleur(final String couleur) {
     this.couleur = couleur;
   }
 
@@ -86,7 +85,7 @@ public class Etiquette implements Serializable {
     return activite;
   }
 
-  public void setActivite(Activite activite) {
+  public void setActivite(final Activite activite) {
     this.activite = activite;
   }
 
@@ -94,7 +93,7 @@ public class Etiquette implements Serializable {
     return this.label;
   }
 
-  public void setLabel(String label) {
+  public void setLabel(final String label) {
     this.label = label;
   }
 
@@ -102,7 +101,7 @@ public class Etiquette implements Serializable {
     return this.ordre;
   }
 
-  public void setOrdre(int ordre) {
+  public void setOrdre(final int ordre) {
     this.ordre = ordre;
   }
 
@@ -110,7 +109,7 @@ public class Etiquette implements Serializable {
     return this.parent;
   }
 
-  public void setParent(int parent) {
+  public void setParent(final int parent) {
     this.parent = parent;
   }
 
