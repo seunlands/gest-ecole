@@ -15,19 +15,19 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the corrections_phoniques database table.
- * 
+ *
  */
 @Entity
 @Table(name = "corrections_phoniques")
@@ -36,7 +36,9 @@ public class CorrectionPhonique implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcorrection;
+  @GeneratedValue
+  @Column(name = "IDcorrection")
+  private int id;
 
   @Lob
   private String correction;
@@ -44,22 +46,19 @@ public class CorrectionPhonique implements Serializable {
   @Lob
   private String mot;
 
-  public CorrectionPhonique() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcorrection() {
-    return this.IDcorrection;
-  }
-
-  public void setIDcorrection(int IDcorrection) {
-    this.IDcorrection = IDcorrection;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getCorrection() {
     return this.correction;
   }
 
-  public void setCorrection(String correction) {
+  public void setCorrection(final String correction) {
     this.correction = correction;
   }
 
@@ -67,7 +66,7 @@ public class CorrectionPhonique implements Serializable {
     return this.mot;
   }
 
-  public void setMot(String mot) {
+  public void setMot(final String mot) {
     this.mot = mot;
   }
 

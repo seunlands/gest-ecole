@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -30,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the cotisations database table.
- * 
+ *
  */
 @Entity
 @Table(name = "cotisations")
@@ -39,7 +38,9 @@ public class Cotisation implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcotisation;
+  @GeneratedValue
+  @Column(name = "IDcotisation")
+  private int id;
 
   @Lob
   private String activites;
@@ -74,11 +75,11 @@ public class Cotisation implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "IDtype_cotisation")
-  private TypeCotisation type_cotisation;
+  private TypeCotisation typeCotisation;
 
   @ManyToOne
   @JoinColumn(name = "IDunite_cotisation")
-  private UniteCotisation unite_cotisation;
+  private UniteCotisation uniteCotisation;
 
   @ManyToOne
   @JoinColumn(name = "IDutilisateur")
@@ -89,22 +90,19 @@ public class Cotisation implements Serializable {
   @Lob
   private String observations;
 
-  public Cotisation() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcotisation() {
-    return this.IDcotisation;
-  }
-
-  public void setIDcotisation(int IDcotisation) {
-    this.IDcotisation = IDcotisation;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getActivites() {
     return this.activites;
   }
 
-  public void setActivites(String activites) {
+  public void setActivites(final String activites) {
     this.activites = activites;
   }
 
@@ -112,7 +110,7 @@ public class Cotisation implements Serializable {
     return this.dateCreationCarte;
   }
 
-  public void setDateCreationCarte(String dateCreationCarte) {
+  public void setDateCreationCarte(final String dateCreationCarte) {
     this.dateCreationCarte = dateCreationCarte;
   }
 
@@ -120,7 +118,7 @@ public class Cotisation implements Serializable {
     return this.dateDebut;
   }
 
-  public void setDateDebut(String dateDebut) {
+  public void setDateDebut(final String dateDebut) {
     this.dateDebut = dateDebut;
   }
 
@@ -128,7 +126,7 @@ public class Cotisation implements Serializable {
     return this.dateFin;
   }
 
-  public void setDateFin(String dateFin) {
+  public void setDateFin(final String dateFin) {
     this.dateFin = dateFin;
   }
 
@@ -136,7 +134,7 @@ public class Cotisation implements Serializable {
     return this.dateSaisie;
   }
 
-  public void setDateSaisie(String dateSaisie) {
+  public void setDateSaisie(final String dateSaisie) {
     this.dateSaisie = dateSaisie;
   }
 
@@ -144,7 +142,7 @@ public class Cotisation implements Serializable {
     return depotCotisation;
   }
 
-  public void setDepotCotisation(DepotCotisation depotCotisation) {
+  public void setDepotCotisation(final DepotCotisation depotCotisation) {
     this.depotCotisation = depotCotisation;
   }
 
@@ -152,7 +150,7 @@ public class Cotisation implements Serializable {
     return famille;
   }
 
-  public void setFamille(Famille famille) {
+  public void setFamille(final Famille famille) {
     this.famille = famille;
   }
 
@@ -160,7 +158,7 @@ public class Cotisation implements Serializable {
     return individu;
   }
 
-  public void setIndividu(Individu individu) {
+  public void setIndividu(final Individu individu) {
     this.individu = individu;
   }
 
@@ -168,31 +166,31 @@ public class Cotisation implements Serializable {
     return prestation;
   }
 
-  public void setPrestation(Prestation prestation) {
+  public void setPrestation(final Prestation prestation) {
     this.prestation = prestation;
   }
 
-  public TypeCotisation getType_cotisation() {
-    return type_cotisation;
+  public TypeCotisation getTypeCotisation() {
+    return typeCotisation;
   }
 
-  public void setType_cotisation(TypeCotisation type_cotisation) {
-    this.type_cotisation = type_cotisation;
+  public void setTypeCotisation(final TypeCotisation typeCotisation) {
+    this.typeCotisation = typeCotisation;
   }
 
-  public UniteCotisation getUnite_cotisation() {
-    return unite_cotisation;
+  public UniteCotisation getUniteCotisation() {
+    return uniteCotisation;
   }
 
-  public void setUnite_cotisation(UniteCotisation unite_cotisation) {
-    this.unite_cotisation = unite_cotisation;
+  public void setUniteCotisation(final UniteCotisation uniteCotisation) {
+    this.uniteCotisation = uniteCotisation;
   }
 
   public Utilisateur getUtilisateur() {
     return utilisateur;
   }
 
-  public void setUtilisateur(Utilisateur utilisateur) {
+  public void setUtilisateur(final Utilisateur utilisateur) {
     this.utilisateur = utilisateur;
   }
 
@@ -200,7 +198,7 @@ public class Cotisation implements Serializable {
     return this.numero;
   }
 
-  public void setNumero(String numero) {
+  public void setNumero(final String numero) {
     this.numero = numero;
   }
 
@@ -208,7 +206,7 @@ public class Cotisation implements Serializable {
     return this.observations;
   }
 
-  public void setObservations(String observations) {
+  public void setObservations(final String observations) {
     this.observations = observations;
   }
 

@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the contrats_tarifs database table.
- * 
+ *
  */
 @Entity
 @Table(name = "contrats_tarifs")
@@ -38,7 +37,9 @@ public class ContratTarif implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcontrat_tarif;
+  @GeneratedValue
+  @Column(name = "IDcontrat_tarif")
+  private int id;
 
   @Column(name = "date_debut")
   private String dateDebut;
@@ -59,22 +60,19 @@ public class ContratTarif implements Serializable {
 
   private double taux;
 
-  public ContratTarif() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcontrat_tarif() {
-    return this.IDcontrat_tarif;
-  }
-
-  public void setIDcontrat_tarif(int IDcontrat_tarif) {
-    this.IDcontrat_tarif = IDcontrat_tarif;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getDateDebut() {
     return this.dateDebut;
   }
 
-  public void setDateDebut(String dateDebut) {
+  public void setDateDebut(final String dateDebut) {
     this.dateDebut = dateDebut;
   }
 
@@ -82,7 +80,7 @@ public class ContratTarif implements Serializable {
     return contrat;
   }
 
-  public void setContrat(Contrat contrat) {
+  public void setContrat(final Contrat contrat) {
     this.contrat = contrat;
   }
 
@@ -90,7 +88,7 @@ public class ContratTarif implements Serializable {
     return this.quotient;
   }
 
-  public void setQuotient(int quotient) {
+  public void setQuotient(final int quotient) {
     this.quotient = quotient;
   }
 
@@ -98,7 +96,7 @@ public class ContratTarif implements Serializable {
     return this.revenu;
   }
 
-  public void setRevenu(double revenu) {
+  public void setRevenu(final double revenu) {
     this.revenu = revenu;
   }
 
@@ -106,7 +104,7 @@ public class ContratTarif implements Serializable {
     return this.tarifBase;
   }
 
-  public void setTarifBase(double tarifBase) {
+  public void setTarifBase(final double tarifBase) {
     this.tarifBase = tarifBase;
   }
 
@@ -114,7 +112,7 @@ public class ContratTarif implements Serializable {
     return this.tarifDepassement;
   }
 
-  public void setTarifDepassement(double tarifDepassement) {
+  public void setTarifDepassement(final double tarifDepassement) {
     this.tarifDepassement = tarifDepassement;
   }
 
@@ -122,7 +120,7 @@ public class ContratTarif implements Serializable {
     return this.taux;
   }
 
-  public void setTaux(double taux) {
+  public void setTaux(final double taux) {
     this.taux = taux;
   }
 

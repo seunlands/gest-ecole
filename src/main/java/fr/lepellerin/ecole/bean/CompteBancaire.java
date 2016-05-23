@@ -15,20 +15,19 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the comptes_bancaires database table.
- * 
+ *
  */
 @Entity
 @Table(name = "comptes_bancaires")
@@ -37,7 +36,9 @@ public class CompteBancaire implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcompte;
+  @GeneratedValue
+  @Column(name = "IDcompte")
+  private int id;
 
   @Lob
   private String bic;
@@ -78,22 +79,19 @@ public class CompteBancaire implements Serializable {
   @Lob
   private String raison;
 
-  public CompteBancaire() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcompte() {
-    return this.IDcompte;
-  }
-
-  public void setIDcompte(int IDcompte) {
-    this.IDcompte = IDcompte;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getBic() {
     return this.bic;
   }
 
-  public void setBic(String bic) {
+  public void setBic(final String bic) {
     this.bic = bic;
   }
 
@@ -101,7 +99,7 @@ public class CompteBancaire implements Serializable {
     return this.cleIban;
   }
 
-  public void setCleIban(String cleIban) {
+  public void setCleIban(final String cleIban) {
     this.cleIban = cleIban;
   }
 
@@ -109,7 +107,7 @@ public class CompteBancaire implements Serializable {
     return this.cleRib;
   }
 
-  public void setCleRib(String cleRib) {
+  public void setCleRib(final String cleRib) {
     this.cleRib = cleRib;
   }
 
@@ -117,7 +115,7 @@ public class CompteBancaire implements Serializable {
     return this.codeEtab;
   }
 
-  public void setCodeEtab(String codeEtab) {
+  public void setCodeEtab(final String codeEtab) {
     this.codeEtab = codeEtab;
   }
 
@@ -125,7 +123,7 @@ public class CompteBancaire implements Serializable {
     return this.codeGuichet;
   }
 
-  public void setCodeGuichet(String codeGuichet) {
+  public void setCodeGuichet(final String codeGuichet) {
     this.codeGuichet = codeGuichet;
   }
 
@@ -133,7 +131,7 @@ public class CompteBancaire implements Serializable {
     return this.codeIcs;
   }
 
-  public void setCodeIcs(String codeIcs) {
+  public void setCodeIcs(final String codeIcs) {
     this.codeIcs = codeIcs;
   }
 
@@ -141,7 +139,7 @@ public class CompteBancaire implements Serializable {
     return this.codeNne;
   }
 
-  public void setCodeNne(String codeNne) {
+  public void setCodeNne(final String codeNne) {
     this.codeNne = codeNne;
   }
 
@@ -149,7 +147,7 @@ public class CompteBancaire implements Serializable {
     return this.defaut;
   }
 
-  public void setDefaut(int defaut) {
+  public void setDefaut(final int defaut) {
     this.defaut = defaut;
   }
 
@@ -157,7 +155,7 @@ public class CompteBancaire implements Serializable {
     return this.iban;
   }
 
-  public void setIban(String iban) {
+  public void setIban(final String iban) {
     this.iban = iban;
   }
 
@@ -165,7 +163,7 @@ public class CompteBancaire implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 
@@ -173,7 +171,7 @@ public class CompteBancaire implements Serializable {
     return this.numero;
   }
 
-  public void setNumero(String numero) {
+  public void setNumero(final String numero) {
     this.numero = numero;
   }
 
@@ -181,7 +179,7 @@ public class CompteBancaire implements Serializable {
     return this.raison;
   }
 
-  public void setRaison(String raison) {
+  public void setRaison(final String raison) {
     this.raison = raison;
   }
 

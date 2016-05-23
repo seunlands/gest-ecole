@@ -15,19 +15,19 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the corrections_villes database table.
- * 
+ *
  */
 @Entity
 @Table(name = "corrections_villes")
@@ -36,49 +36,49 @@ public class CorrectionVille implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcorrection;
+  @GeneratedValue
+  @Column(name = "IDcorrection")
+  private int id;
 
   private String cp;
 
-  private int IDville;
+  @Column(name = "IDville")
+  private int idVille;
 
   private String mode;
 
   @Lob
   private String nom;
 
-  public CorrectionVille() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcorrection() {
-    return this.IDcorrection;
-  }
-
-  public void setIDcorrection(int IDcorrection) {
-    this.IDcorrection = IDcorrection;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getCp() {
     return this.cp;
   }
 
-  public void setCp(String cp) {
+  public void setCp(final String cp) {
     this.cp = cp;
   }
 
-  public int getIDville() {
-    return this.IDville;
+  public int getIdVille() {
+    return this.idVille;
   }
 
-  public void setIDville(int IDville) {
-    this.IDville = IDville;
+  public void setIdVille(final int idVille) {
+    this.idVille = idVille;
   }
 
   public String getMode() {
     return this.mode;
   }
 
-  public void setMode(String mode) {
+  public void setMode(final String mode) {
     this.mode = mode;
   }
 
@@ -86,7 +86,7 @@ public class CorrectionVille implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 

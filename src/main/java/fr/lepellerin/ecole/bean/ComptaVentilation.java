@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -30,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the compta_ventilation database table.
- * 
+ *
  */
 @Entity
 @Table(name = "compta_ventilation")
@@ -39,7 +38,9 @@ public class ComptaVentilation implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDventilation;
+  @GeneratedValue
+  @Column(name = "IDventilation")
+  private int id;
 
   @Column(name = "date_budget")
   private String dateBudget;
@@ -65,22 +66,19 @@ public class ComptaVentilation implements Serializable {
 
   private double montant;
 
-  public ComptaVentilation() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDventilation() {
-    return this.IDventilation;
-  }
-
-  public void setIDventilation(int IDventilation) {
-    this.IDventilation = IDventilation;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getDateBudget() {
     return this.dateBudget;
   }
 
-  public void setDateBudget(String dateBudget) {
+  public void setDateBudget(final String dateBudget) {
     this.dateBudget = dateBudget;
   }
 
@@ -88,7 +86,7 @@ public class ComptaVentilation implements Serializable {
     return this.libelle;
   }
 
-  public void setLibelle(String libelle) {
+  public void setLibelle(final String libelle) {
     this.libelle = libelle;
   }
 
@@ -96,7 +94,7 @@ public class ComptaVentilation implements Serializable {
     return this.montant;
   }
 
-  public void setMontant(double montant) {
+  public void setMontant(final double montant) {
     this.montant = montant;
   }
 

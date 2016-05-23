@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -30,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the compta_releves database table.
- * 
+ *
  */
 @Entity
 @Table(name = "compta_releves")
@@ -39,7 +38,9 @@ public class ComptaReleve implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDreleve;
+  @GeneratedValue
+  @Column(name = "IDreleve")
+  private int id;
 
   @Column(name = "date_debut")
   private String dateDebut;
@@ -54,22 +55,19 @@ public class ComptaReleve implements Serializable {
   @Lob
   private String nom;
 
-  public ComptaReleve() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDreleve() {
-    return this.IDreleve;
-  }
-
-  public void setIDreleve(int IDreleve) {
-    this.IDreleve = IDreleve;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public String getDateDebut() {
     return this.dateDebut;
   }
 
-  public void setDateDebut(String dateDebut) {
+  public void setDateDebut(final String dateDebut) {
     this.dateDebut = dateDebut;
   }
 
@@ -77,7 +75,7 @@ public class ComptaReleve implements Serializable {
     return this.dateFin;
   }
 
-  public void setDateFin(String dateFin) {
+  public void setDateFin(final String dateFin) {
     this.dateFin = dateFin;
   }
 
@@ -85,7 +83,7 @@ public class ComptaReleve implements Serializable {
     return compteBancaire;
   }
 
-  public void setCompteBancaire(CompteBancaire compteBancaire) {
+  public void setCompteBancaire(final CompteBancaire compteBancaire) {
     this.compteBancaire = compteBancaire;
   }
 
@@ -93,7 +91,7 @@ public class ComptaReleve implements Serializable {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 

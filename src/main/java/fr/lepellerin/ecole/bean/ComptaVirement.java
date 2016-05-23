@@ -15,18 +15,18 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the compta_virements database table.
- * 
+ *
  */
 @Entity
 @Table(name = "compta_virements")
@@ -35,37 +35,38 @@ public class ComptaVirement implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDvirement;
+  @GeneratedValue
+  @Column(name = "IDvirement")
+  private int id;
 
-  private int IDoperation_credit;
+  @Column(name = "IDoperation_credit")
+  private int idOperationCredit;
 
-  private int IDoperation_debit;
+  @Column(name = "IDoperation_debit")
+  private int idOperationDebit;
 
-  public ComptaVirement() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDvirement() {
-    return this.IDvirement;
+  public void setId(final int id) {
+    this.id = id;
   }
 
-  public void setIDvirement(int IDvirement) {
-    this.IDvirement = IDvirement;
+  public int getIdOperationCredit() {
+    return this.idOperationCredit;
   }
 
-  public int getIDoperation_credit() {
-    return this.IDoperation_credit;
+  public void setIdOperationCredit(final int idOperationCredit) {
+    this.idOperationCredit = idOperationCredit;
   }
 
-  public void setIDoperation_credit(int IDoperation_credit) {
-    this.IDoperation_credit = IDoperation_credit;
+  public int getIdOperationDedit() {
+    return this.idOperationDebit;
   }
 
-  public int getIDoperation_debit() {
-    return this.IDoperation_debit;
-  }
-
-  public void setIDoperation_debit(int IDoperation_debit) {
-    this.IDoperation_debit = IDoperation_debit;
+  public void setIdOperationDedit(final int idOperationDebit) {
+    this.idOperationDebit = idOperationDebit;
   }
 
 }

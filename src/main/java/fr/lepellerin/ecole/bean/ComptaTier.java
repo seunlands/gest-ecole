@@ -15,19 +15,19 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the compta_tiers database table.
- * 
+ *
  */
 @Entity
 @Table(name = "compta_tiers")
@@ -36,9 +36,12 @@ public class ComptaTier implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDtiers;
+  @GeneratedValue
+  @Column(name = "IDtiers")
+  private int id;
 
-  private int IDcode_comptable;
+  @Column(name = "IDcode_comptable")
+  private int idCodeComptable;
 
   @Lob
   private String nom;
@@ -46,30 +49,27 @@ public class ComptaTier implements Serializable {
   @Lob
   private String observations;
 
-  public ComptaTier() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDtiers() {
-    return this.IDtiers;
+  public void setId(final int id) {
+    this.id = id;
   }
 
-  public void setIDtiers(int IDtiers) {
-    this.IDtiers = IDtiers;
+  public int getIdCodeComptable() {
+    return this.idCodeComptable;
   }
 
-  public int getIDcode_comptable() {
-    return this.IDcode_comptable;
-  }
-
-  public void setIDcode_comptable(int IDcode_comptable) {
-    this.IDcode_comptable = IDcode_comptable;
+  public void setIdCodeComptable(final int idCodeComptable) {
+    this.idCodeComptable = idCodeComptable;
   }
 
   public String getNom() {
     return this.nom;
   }
 
-  public void setNom(String nom) {
+  public void setNom(final String nom) {
     this.nom = nom;
   }
 
@@ -77,7 +77,7 @@ public class ComptaTier implements Serializable {
     return this.observations;
   }
 
-  public void setObservations(String observations) {
+  public void setObservations(final String observations) {
     this.observations = observations;
   }
 

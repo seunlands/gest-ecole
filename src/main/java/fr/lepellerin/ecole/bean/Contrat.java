@@ -15,13 +15,12 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -30,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the contrats database table.
- * 
+ *
  */
 @Entity
 @Table(name = "contrats")
@@ -39,7 +38,9 @@ public class Contrat implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcontrat;
+  @GeneratedValue
+  @Column(name = "IDcontrat")
+  private int id;
 
   @Column(name = "arrondi_delta")
   private int arrondiDelta;
@@ -89,22 +90,19 @@ public class Contrat implements Serializable {
 
   private String type;
 
-  public Contrat() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcontrat() {
-    return this.IDcontrat;
-  }
-
-  public void setIDcontrat(int IDcontrat) {
-    this.IDcontrat = IDcontrat;
+  public void setId(final int id) {
+    this.id = id;
   }
 
   public int getArrondiDelta() {
     return this.arrondiDelta;
   }
 
-  public void setArrondiDelta(int arrondiDelta) {
+  public void setArrondiDelta(final int arrondiDelta) {
     this.arrondiDelta = arrondiDelta;
   }
 
@@ -112,7 +110,7 @@ public class Contrat implements Serializable {
     return this.arrondiType;
   }
 
-  public void setArrondiType(String arrondiType) {
+  public void setArrondiType(final String arrondiType) {
     this.arrondiType = arrondiType;
   }
 
@@ -120,7 +118,7 @@ public class Contrat implements Serializable {
     return this.dateDebut;
   }
 
-  public void setDateDebut(String dateDebut) {
+  public void setDateDebut(final String dateDebut) {
     this.dateDebut = dateDebut;
   }
 
@@ -128,7 +126,7 @@ public class Contrat implements Serializable {
     return this.dateFin;
   }
 
-  public void setDateFin(String dateFin) {
+  public void setDateFin(final String dateFin) {
     this.dateFin = dateFin;
   }
 
@@ -136,7 +134,7 @@ public class Contrat implements Serializable {
     return this.dureeAbsencesPrevues;
   }
 
-  public void setDureeAbsencesPrevues(String dureeAbsencesPrevues) {
+  public void setDureeAbsencesPrevues(final String dureeAbsencesPrevues) {
     this.dureeAbsencesPrevues = dureeAbsencesPrevues;
   }
 
@@ -144,7 +142,7 @@ public class Contrat implements Serializable {
     return this.dureeHeuresRegularisation;
   }
 
-  public void setDureeHeuresRegularisation(String dureeHeuresRegularisation) {
+  public void setDureeHeuresRegularisation(final String dureeHeuresRegularisation) {
     this.dureeHeuresRegularisation = dureeHeuresRegularisation;
   }
 
@@ -152,7 +150,7 @@ public class Contrat implements Serializable {
     return this.dureeToleranceDepassement;
   }
 
-  public void setDureeToleranceDepassement(String dureeToleranceDepassement) {
+  public void setDureeToleranceDepassement(final String dureeToleranceDepassement) {
     this.dureeToleranceDepassement = dureeToleranceDepassement;
   }
 
@@ -160,7 +158,7 @@ public class Contrat implements Serializable {
     return activite;
   }
 
-  public void setActivite(Activite activite) {
+  public void setActivite(final Activite activite) {
     this.activite = activite;
   }
 
@@ -168,7 +166,7 @@ public class Contrat implements Serializable {
     return individu;
   }
 
-  public void setIndividu(Individu individu) {
+  public void setIndividu(final Individu individu) {
     this.individu = individu;
   }
 
@@ -176,7 +174,7 @@ public class Contrat implements Serializable {
     return inscription;
   }
 
-  public void setInscription(Inscription inscription) {
+  public void setInscription(final Inscription inscription) {
     this.inscription = inscription;
   }
 
@@ -184,7 +182,7 @@ public class Contrat implements Serializable {
     return tarif;
   }
 
-  public void setTarif(Tarif tarif) {
+  public void setTarif(final Tarif tarif) {
     this.tarif = tarif;
   }
 
@@ -192,7 +190,7 @@ public class Contrat implements Serializable {
     return this.nbreAbsencesPrevues;
   }
 
-  public void setNbreAbsencesPrevues(int nbreAbsencesPrevues) {
+  public void setNbreAbsencesPrevues(final int nbreAbsencesPrevues) {
     this.nbreAbsencesPrevues = nbreAbsencesPrevues;
   }
 
@@ -200,7 +198,7 @@ public class Contrat implements Serializable {
     return this.nbreHeuresRegularisation;
   }
 
-  public void setNbreHeuresRegularisation(int nbreHeuresRegularisation) {
+  public void setNbreHeuresRegularisation(final int nbreHeuresRegularisation) {
     this.nbreHeuresRegularisation = nbreHeuresRegularisation;
   }
 
@@ -208,7 +206,7 @@ public class Contrat implements Serializable {
     return this.observations;
   }
 
-  public void setObservations(String observations) {
+  public void setObservations(final String observations) {
     this.observations = observations;
   }
 
@@ -216,7 +214,7 @@ public class Contrat implements Serializable {
     return this.type;
   }
 
-  public void setType(String type) {
+  public void setType(final String type) {
     this.type = type;
   }
 
