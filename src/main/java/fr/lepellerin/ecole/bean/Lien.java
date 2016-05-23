@@ -41,7 +41,7 @@ public class Lien implements Serializable {
   @Column(name = "IDlien")
   private int id;
 
-  @Column(name = "IDlien")
+  @Column(name = "IDautorisation")
   private int idAutorisation;
 
   @ManyToOne
