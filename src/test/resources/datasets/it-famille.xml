@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <FAMILLES 
+    idfamille="1"
+    internet_actif="1"
+    titulaire_helios="1"
+  />
+  <FAMILLES 
+    idfamille="2"
+    internet_actif="1"
+    titulaire_helios="1"
+    
+  />
+  <USERS 
+    username="test1"
+    id_famille="1"
+    enabled="true"
+    password="test"
+    role="user"
+  />
+  <rattachements
+    IDrattachement="1"
+    IDfamille="1"
+    IDcategorie="2"
+    titulaire="1"
+  />
+  <rattachements
+    IDrattachement="2"
+    IDfamille="2"
+    IDcategorie="2"
+    titulaire="1"
+  />
+</dataset>

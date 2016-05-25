@@ -15,11 +15,9 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +28,7 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the rattachements database table.
- * 
+ *
  */
 @Entity
 @Table(name = "rattachements")
@@ -56,14 +54,11 @@ public class Rattachement implements Serializable {
 
   private int titulaire;
 
-  public Rattachement() {
-  }
-
   public int getId() {
     return this.id;
   }
 
-  public void setId(int id) {
+  public void setId(final int id) {
     this.id = id;
   }
 
@@ -71,7 +66,7 @@ public class Rattachement implements Serializable {
     return this.idCategorie;
   }
 
-  public void setIdCategorie(int idCategorie) {
+  public void setIdCategorie(final int idCategorie) {
     this.idCategorie = idCategorie;
   }
 
@@ -79,7 +74,7 @@ public class Rattachement implements Serializable {
     return famille;
   }
 
-  public void setFamille(Famille famille) {
+  public void setFamille(final Famille famille) {
     this.famille = famille;
   }
 
@@ -87,7 +82,7 @@ public class Rattachement implements Serializable {
     return individu;
   }
 
-  public void setIndividu(Individu individu) {
+  public void setIndividu(final Individu individu) {
     this.individu = individu;
   }
 
@@ -95,7 +90,7 @@ public class Rattachement implements Serializable {
     return this.titulaire;
   }
 
-  public void setTitulaire(int titulaire) {
+  public void setTitulaire(final int titulaire) {
     this.titulaire = titulaire;
   }
 
