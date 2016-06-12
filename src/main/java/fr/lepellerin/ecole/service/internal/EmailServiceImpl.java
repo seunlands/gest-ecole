@@ -15,16 +15,19 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.service.internal;
 
 import fr.lepellerin.ecole.service.EmailService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+
+import java.util.Arrays;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -41,16 +44,23 @@ public class EmailServiceImpl implements EmailService {
   @Override
   public void sendSimpleMail(final String sujet, final String to, final String from,
       final String templateName, final Context mailContext) throws MessagingException {
+    this.sendSimpleMail(sujet, Arrays.asList(to), from, templateName, mailContext);
+  }
+
+  @Override
+  public void sendSimpleMail(final String sujet, final List<String> to, final String from,
+      final String templateName, final Context mailContext) throws MessagingException {
     final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
     final MimeMessageHelper message = new MimeMessageHelper(mimeMessage, "UTF-8");
     message.setSubject(sujet);
     message.setFrom(from);
-    message.setTo(to);
+    message.setTo(to.toArray(new String[] {}));
 
     final String htmlContent = this.templateEngine.process(templateName, mailContext);
     message.setText(htmlContent, true);
 
     this.mailSender.send(mimeMessage);
+
   }
 
 }

@@ -15,18 +15,18 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.service.security.internal;
 
 import fr.lepellerin.ecole.bean.security.User;
 import fr.lepellerin.ecole.repo.UserRepository;
 import fr.lepellerin.ecole.service.security.IUserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  * service user.
- * 
+ *
  * @author landocore
  *
  */
@@ -36,12 +36,12 @@ public class UserServiceImpl implements IUserService {
   private final UserRepository userRepository;
 
   @Autowired
-  public UserServiceImpl(UserRepository userRepository) {
+  public UserServiceImpl(final UserRepository userRepository) {
     this.userRepository = userRepository;
   }
 
   @Override
-  public User getUserByUsername(String username) {
+  public User getUserByUsername(final String username) {
     return this.userRepository.findOneByUsername(username);
   }
 

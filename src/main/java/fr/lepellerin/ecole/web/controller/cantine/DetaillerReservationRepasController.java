@@ -19,6 +19,7 @@
 package fr.lepellerin.ecole.web.controller.cantine;
 
 import fr.lepellerin.ecole.bean.Individu;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

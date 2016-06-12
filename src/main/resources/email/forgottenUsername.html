@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title data-th-remove="all">Template for HTML email for forgotten username</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+    	<div>
+  			<p>Bonjour !</p>
+  			<p>Un oubli ça arrive ;). Les identifiants associés à ton compte sont les suivants :</p>
+  			<ul>
+  				<li th:each="account : ${accounts}" th:text="${account}" />
+  			</ul>
+  			<p>A bientôt</p>
+  			<p>L'équipe Gestécole.</p>
+  		</div>
+    </body>
+</html>

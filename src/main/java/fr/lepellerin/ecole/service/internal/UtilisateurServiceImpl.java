@@ -15,31 +15,27 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.service.internal;
 
 import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.bean.Individu;
-import fr.lepellerin.ecole.bean.Rattachement;
 import fr.lepellerin.ecole.bean.security.Role;
 import fr.lepellerin.ecole.bean.security.User;
+import fr.lepellerin.ecole.exceptions.FunctionalException;
 import fr.lepellerin.ecole.repo.FamilleRepository;
 import fr.lepellerin.ecole.repo.IndividuRepository;
-import fr.lepellerin.ecole.repo.RattachementRepository;
 import fr.lepellerin.ecole.repo.UserRepository;
 import fr.lepellerin.ecole.service.UtilisateurService;
+import fr.lepellerin.ecole.service.dto.ForgottenPwdDto;
 import fr.lepellerin.ecole.utils.PasswordGenerator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
@@ -49,9 +45,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
   @Autowired
   private IndividuRepository individuRepository;
-
-  @Autowired
-  private RattachementRepository rattachementRepository;
 
   @Autowired
   private UserRepository userRepository;
@@ -64,62 +57,67 @@ public class UtilisateurServiceImpl implements UtilisateurService {
   public void creerUserPourFamille() {
     final List<Famille> familles = this.familleRepository.findWithoutUserAccount();
     familles.forEach(fam -> {
-      List<Rattachement> rattachements = this.rattachementRepository.findByFamille(fam);
-      Set<String> noms = new HashSet<>();
-      rattachements.forEach(r -> {
-        if (r.getIdCategorie() == 1) {
-          noms.add(r.getIndividu().getNom());
-        }
-      });
-      final StringBuilder strBuilder = new StringBuilder();
-      String separator = "";
-      for (final String nom : noms) {
-        strBuilder.append(separator);
-        strBuilder.append(nom);
-        separator = "-";
-      }
-
-      int inc = 2;
-      String tmpUserName = strBuilder.toString();
-      while (this.userRepository.findOneByUsername(tmpUserName) != null) {
-        tmpUserName = strBuilder.toString() + "-" + String.valueOf(inc);
-        inc++;
-      }
-
-      User user = new User();
+      final User user = new User();
       user.setFamille(fam);
       user.setEnabled(true);
       user.setRole(Role.ROLE_FAMILLE);
-      user.setUsername(tmpUserName);
-      user.setPassword(tmpUserName);
+      user.setUsername(fam.getInternetIdentifiant());
+      user.setPassword(this.passwordEncoder.encode(fam.getInternetMdp()));
       this.userRepository.save(user);
     });
-
   }
 
   @Override
   @Transactional(readOnly = false)
-  public Map<String, List<String>> resetPasswordForFamille(final String email) {
-    final Map<String, List<String>> pwds = new HashMap<>();
+  public List<ForgottenPwdDto> resetPasswordForFamille(final String email) {
+    final List<ForgottenPwdDto> dtos = new ArrayList<>();
     final List<Famille> fams = this.familleRepository.findFamilleByEmail(email);
     fams.forEach(fam -> {
+      final ForgottenPwdDto dto = new ForgottenPwdDto();
       final String pwd = PasswordGenerator.randomString(8);
       final String hashedPwd = this.passwordEncoder.encode(pwd);
       final List<Individu> individus = this.individuRepository.findUserByFamille(fam);
       final User user = this.userRepository.findOneByFamille(fam);
-      final List<String> emails = pwds.get(pwd) == null ? new ArrayList<>() : pwds.get(pwd);
       if (user != null) {
+        dto.setAccount(user.getUsername());
+        dto.setPassword(pwd);
+        dto.setEmails(new ArrayList<>());
         user.setPassword(hashedPwd);
         individus.forEach(i -> {
           if (i.getMail() != null) {
-            emails.add(i.getMail());
+            dto.getEmails().add(i.getMail());
           }
         });
         this.userRepository.save(user);
-        pwds.put(pwd, emails);
+        dtos.add(dto);
       }
     });
-    return pwds;
+    return dtos;
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public List<String> getUserNameByEmail(final String email) {
+    final List<String> accounts = new ArrayList<>();
+    final List<Famille> fams = this.familleRepository.findFamilleByEmail(email);
+    fams.forEach(fam -> accounts.add(fam.getInternetIdentifiant()));
+    return accounts;
+  }
+
+  @Override
+  @Transactional(readOnly = false)
+  public void changePassword(final User user, final String oldPwd, final String newPwd,
+      final String confirmPwd) throws FunctionalException {
+    if (!this.passwordEncoder.matches(oldPwd, user.getPassword())) {
+      throw new FunctionalException("L'ancien mot de passe n'est pas correct.");
+    }
+    if (!newPwd.equals(confirmPwd)) {
+      throw new FunctionalException(
+          "Le nouveau mot de passe ne correspond pas avec la confirmation.");
+    }
+    user.setPassword(this.passwordEncoder.encode(newPwd));
+    this.userRepository.save(user);
+
   }
 
 }

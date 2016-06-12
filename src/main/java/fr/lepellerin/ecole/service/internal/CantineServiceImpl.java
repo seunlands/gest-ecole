@@ -30,6 +30,7 @@ import fr.lepellerin.ecole.repo.ConsommationRepository;
 import fr.lepellerin.ecole.repo.InscriptionRepository;
 import fr.lepellerin.ecole.repo.OuvertureRepository;
 import fr.lepellerin.ecole.service.CantineService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

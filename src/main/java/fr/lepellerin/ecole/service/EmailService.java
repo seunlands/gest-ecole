@@ -15,16 +15,20 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.service;
 
 import org.thymeleaf.context.Context;
+
+import java.util.List;
 
 import javax.mail.MessagingException;
 
 public interface EmailService {
 
   void sendSimpleMail(String sujet, String to, String from, String templateName,
+      Context mailContext) throws MessagingException;
+
+  void sendSimpleMail(String sujet, List<String> to, String from, String templateName,
       Context mailContext) throws MessagingException;
 
 }

@@ -27,12 +27,13 @@
 
 			<form th:action="@{/login}" method="post" class="form-signin">
 				<h2 class="form-signin-heading">Connectez-vous</h2>
-				<label for="username" class="sr-only">Email address</label>
-				<input type="text" id="username" name="username" class="form-control" placeholder="Famille" />
+				<label for="username" class="sr-only">Identifiant</label>
+				<input type="text" id="username" name="username" class="form-control" placeholder="Identifiant" />
 				<label for="password" class="sr-only">Password</label>
 				<input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe"  />			
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
 				<a href="#" th:href="@{/forgottenPassword}" class="btn btn-primary btn-block">Mot de passe oublié</a>
+				<a href="#" th:href="@{/forgottenUsername}" class="btn btn-primary btn-block">Identifiant oublié</a>
 			</form>
 			
 		</div>

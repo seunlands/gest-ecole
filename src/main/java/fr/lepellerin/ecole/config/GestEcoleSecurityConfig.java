@@ -15,7 +15,6 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,17 +38,19 @@ public class GestEcoleSecurityConfig extends WebSecurityConfigurerAdapter {
   @Autowired
   private UserDetailsService userDetailsService;
 
+  @Override
   @Autowired
-  public void configure(AuthenticationManagerBuilder auth) throws Exception {
+  public void configure(final AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(this.userDetailsService).passwordEncoder(this.passwordEncoder());
   }
 
   // @formatter:off
   @Override
-  protected void configure(HttpSecurity http) throws Exception {
+  protected void configure(final HttpSecurity http) throws Exception {
     http
         .authorizeRequests()
             .antMatchers("/forgottenPassword").permitAll()
+            .antMatchers("/forgottenUsername").permitAll()
             .antMatchers("/assets/**").permitAll()
             .antMatchers("/webjars/**").permitAll()
             .antMatchers("/cantine/**").access("hasRole('ROLE_FAMILLE')")

@@ -19,6 +19,7 @@
 package fr.lepellerin.ecole.repo;
 
 import fr.lepellerin.ecole.bean.Famille;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

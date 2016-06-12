@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.repo;
 
 import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.bean.security.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -22,6 +22,7 @@ import fr.lepellerin.ecole.bean.Activite;
 import fr.lepellerin.ecole.bean.Consommation;
 import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.bean.Individu;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

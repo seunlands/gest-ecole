@@ -15,11 +15,13 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.service;
 
+import fr.lepellerin.ecole.bean.security.User;
+import fr.lepellerin.ecole.exceptions.FunctionalException;
+import fr.lepellerin.ecole.service.dto.ForgottenPwdDto;
+
 import java.util.List;
-import java.util.Map;
 
 public interface UtilisateurService {
 
@@ -30,10 +32,15 @@ public interface UtilisateurService {
 
   /**
    * reset le mot de passe pour une famille.
-   * 
+   *
    * @return map avec cle le mot de passe en clair et value la liste d'email
    *         concerné
    */
-  Map<String, List<String>> resetPasswordForFamille(String email);
+  List<ForgottenPwdDto> resetPasswordForFamille(String email);
+
+  void changePassword(User user, String oldPwd, String newPwd, String confirmPwd)
+      throws FunctionalException;
+
+  List<String> getUserNameByEmail(String email);
 
 }

@@ -26,6 +26,7 @@ import fr.lepellerin.ecole.repo.OuvertureRepository;
 import fr.lepellerin.ecole.repo.VacancesRepository;
 import fr.lepellerin.ecole.service.InscriptionService;
 import fr.lepellerin.ecole.service.dto.PlanningDto;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

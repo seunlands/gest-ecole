@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<body>
+		<div th:fragment="messages">
+			<div th:if="${error != null}" class="alert alert-danger" th:text="${error}"></div>
+			<div th:if="${confirm != null}" class="alert alert-info" th:text="${confirm}"></div>			
+		</div>
+	</body>
+</html>

@@ -18,7 +18,6 @@
 
 package fr.lepellerin.ecole.config;
 
-import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +33,8 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
+
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @EnableWebMvc
 @Configuration
