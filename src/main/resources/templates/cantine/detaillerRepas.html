@@ -19,8 +19,9 @@
 					</tr>
 				</thead> -->
 				<tbody>
-					<tr th:each="ligne : ${planning}">
+					<tr th:each="ligne : ${planning.lignes}">
 						<td th:text="${#temporals.format(ligne.date, 'EEEE d MMM yyyy')}">La date</td>
+						<td th:each="case : ${ligne.cases}">&nbsp;</td>
 						<!-- TODO voir pour affichier les cases ou pas -->
 					</tr>
 				</tbody>

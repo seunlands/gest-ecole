@@ -18,6 +18,7 @@
 package fr.lepellerin.ecole.repo;
 
 import fr.lepellerin.ecole.bean.Activite;
+import fr.lepellerin.ecole.bean.Groupe;
 import fr.lepellerin.ecole.bean.Ouverture;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,6 +29,6 @@ import java.util.List;
 
 public interface OuvertureRepository extends JpaRepository<Ouverture, Integer> {
 
-  @Query("from Ouverture o where o.activite = ?1 and date between ?2 and ?3 order by date")
-  List<Ouverture> findByActiviteAndPeriode(Activite activite, Date debutPeriode, Date finPeriode);
+  @Query("from Ouverture o where o.activite = ?1 and o.groupe = ?2 and date between ?3 and ?4 order by date")
+  List<Ouverture> findByActiviteAndGroupeAndPeriode(Activite activite, Groupe groupe, Date debutPeriode, Date finPeriode);
 }

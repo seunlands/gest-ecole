@@ -18,27 +18,46 @@
 
 package fr.lepellerin.ecole.service.dto;
 
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
-public class PlanningDto {
-
-  private List<Date> dates;
+public class PlanningDto implements Serializable {
 
   /**
-   * constructeur par defaut. Init les listes.
+   * serial UID.
    */
+  private static final long serialVersionUID = 1L;
+  
+  
+  private List<LigneDto> lignes;
+  
   public PlanningDto() {
-    setDates(new ArrayList<>());
+    this.lignes = new ArrayList<>();
+  }
+  
+  public LigneDto getOrCreateLigne(final LocalDate date) {
+    Optional<LigneDto> ligneOpt = lignes.stream().filter(ligne -> ligne.getDate().equals(date)).findAny();
+    if (ligneOpt.isPresent()) {
+      return ligneOpt.get();
+    } else {
+      final LigneDto ligne = new LigneDto(date);
+      lignes.add(ligne);
+      return ligne;
+    }
   }
 
-  public List<Date> getDates() {
-    return dates;
+
+  public List<LigneDto> getLignes() {
+    return lignes;
   }
 
-  public void setDates(List<Date> dates) {
-    this.dates = dates;
+
+  public void setLignes(List<LigneDto> lignes) {
+    this.lignes = lignes;
   }
+
 
 }

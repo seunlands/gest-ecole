@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.web.controller.cantine;
 import fr.lepellerin.ecole.bean.security.CurrentUser;
 import fr.lepellerin.ecole.service.CantineService;
 import fr.lepellerin.ecole.service.dto.CaseDto;
+import fr.lepellerin.ecole.service.dto.PlanningDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -53,10 +54,10 @@ public class DetaillerReservationRepasController {
 
     final YearMonth moisActuel = YearMonth.now();
 
-    final List<CaseDto> cases = this.cantineService.getDateOuvert(moisActuel,
+    final PlanningDto planning = this.cantineService.getDateOuvert(moisActuel,
         user.getUser().getFamille());
 
-    model.addAttribute("planning", cases);
+    model.addAttribute("planning", planning);
 
     return VUE;
   }

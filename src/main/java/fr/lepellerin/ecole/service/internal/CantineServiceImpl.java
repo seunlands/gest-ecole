@@ -17,6 +17,18 @@
 
 package fr.lepellerin.ecole.service.internal;
 
+import java.time.DayOfWeek;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import fr.lepellerin.ecole.bean.Activite;
 import fr.lepellerin.ecole.bean.ComptePayeur;
 import fr.lepellerin.ecole.bean.Consommation;
@@ -33,25 +45,17 @@ import fr.lepellerin.ecole.repo.OuvertureRepository;
 import fr.lepellerin.ecole.repo.RattachementRepository;
 import fr.lepellerin.ecole.service.CantineService;
 import fr.lepellerin.ecole.service.dto.CaseDto;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.time.DayOfWeek;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
+import fr.lepellerin.ecole.service.dto.LigneDto;
+import fr.lepellerin.ecole.service.dto.PlanningDto;
 
 @Service
 public class CantineServiceImpl implements CantineService {
 
   @Autowired
   private OuvertureRepository ouvertureRepository;
+
+  @Autowired
+  private InscriptionRepository ictRepository;
 
   @Autowired
   private RattachementRepository rattachementRepository;
@@ -66,14 +70,15 @@ public class CantineServiceImpl implements CantineService {
   private ComptePayeurRepository comptePayeurRepository;
 
   @Override
-  public List<CaseDto> getDateOuvert(final YearMonth anneeMois, final Famille famille) {
-
+  public PlanningDto getDateOuvert(final YearMonth anneeMois, final Famille famille) {
+    //TODO voir avec +sieurs enfant et recup leur resa pour les afficher
     final List<Rattachement> rattachementFamille = this.rattachementRepository
         .findByFamille(famille);
 
     final List<Individu> enfants = rattachementFamille.stream()
         .filter(rat -> rat.getIdCategorie() == 2).map(Rattachement::getIndividu)
         .collect(Collectors.toList());
+    
 
     final Date startDate = Date
         .from(Instant.from(anneeMois.atDay(1).atStartOfDay(ZoneId.systemDefault())));
@@ -81,22 +86,26 @@ public class CantineServiceImpl implements CantineService {
         .from(Instant.from(anneeMois.atEndOfMonth().atStartOfDay(ZoneId.systemDefault())));
 
     final Activite activite = getCantineActivite();
-    final List<Ouverture> ouvertures = this.ouvertureRepository.findByActiviteAndPeriode(activite,
-        startDate, endDate);
-    final List<CaseDto> cases = new ArrayList<>();
-    ouvertures.forEach(o -> {
-      final LocalDate date = LocalDate.from(((java.sql.Date) o.getDate()).toLocalDate());
-      enfants.forEach(enfant -> {
+    
+    final List<Inscription> icts = this.ictRepository.findByActiviteAndFamille(activite, famille);
+    final PlanningDto planning = new PlanningDto();  
+    icts.forEach(ict -> {
+      final List<Ouverture> ouvertures = this.ouvertureRepository.findByActiviteAndGroupeAndPeriode(activite, ict.getGroupe(),
+          startDate, endDate);
+      ouvertures.forEach(o -> {
+        final LocalDate date = LocalDate.from(((java.sql.Date) o.getDate()).toLocalDate());
+        final LigneDto ligne = planning.getOrCreateLigne(date);
         final CaseDto c = new CaseDto();
         c.setDate(date);
-        c.setIndividu(enfant);
+        c.setIndividu(ict.getIndividu());
         c.setActivite(o.getActivite());
         c.setUnite(o.getUnite());
-        cases.add(c);
+        ligne.getCases().add(c);
       });
     });
 
-    return cases;
+
+    return planning;
   }
 
   @Override
@@ -118,62 +127,6 @@ public class CantineServiceImpl implements CantineService {
         Date.from(anneeMois.atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
         Date.from(anneeMois.atEndOfMonth().atStartOfDay(ZoneId.systemDefault()).toInstant()));
     return !consos.isEmpty();
-  }
-
-  /**
-   * enregistre les reservation.
-   *
-   * @param famille
-   *          : famille
-   * @param anneeMois
-   *          : le annee mois
-   * @param reserveLundi
-   *          : reserve t on le lundi
-   */
-  public void saveReservation(final Famille famille, final YearMonth anneeMois,
-      final boolean reserveLundi) {
-    final List<Inscription> icts = this.inscriptionRepository
-        .findByActiviteAndFamille(this.getCantineActivite(), famille);
-    final List<Ouverture> ouvertures = this.ouvertureRepository.findByActiviteAndPeriode(
-        this.getCantineActivite(),
-        Date.from(anneeMois.atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
-        Date.from(anneeMois.atEndOfMonth().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-    final ComptePayeur cp = this.comptePayeurRepository.findOneByFamille(famille);
-    ouvertures.forEach(o -> {
-      final LocalDate date = o.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-      if (reserveLundi && date.getDayOfWeek() == DayOfWeek.MONDAY) {
-        icts.forEach(i -> {
-          final Prestation presta = new Prestation();
-          presta.setComptePayeur(cp);
-          presta.setDate(o.getDate());
-          presta.setCategorie("consommation");
-
-          final Consommation conso = new Consommation();
-          conso.setDate(o.getDate());
-          conso.setActivite(getCantineActivite());
-          conso.setIndividu(i.getIndividu());
-          conso.setInscription(i);
-
-          // IDUnite => 1
-          // IDgroupe => 1
-          // heuredebut => 12:00
-          // heurefin => 13:30
-          // etat => reservation
-          // verrouillage => 0
-          // dateçsaisie => today
-          // IDUtilisateur => 1
-          // IDcategorie_tarif => 1
-          // IDcompte_payeur => 14
-          // IDprestation => 1452
-          // quantite => null
-          // etiquette => ''
-
-          consommationRepository.save(conso);
-        });
-      }
-    });
-
   }
 
   private Activite getCantineActivite() {
