@@ -49,7 +49,7 @@ public class Consommation implements Serializable {
   private Date date;
 
   @Column(name = "date_saisie")
-  private String dateSaisie;
+  private Date dateSaisie;
 
   private String etat;
 
@@ -119,11 +119,11 @@ public class Consommation implements Serializable {
     this.date = date;
   }
 
-  public String getDateSaisie() {
+  public Date getDateSaisie() {
     return this.dateSaisie;
   }
 
-  public void setDateSaisie(final String dateSaisie) {
+  public void setDateSaisie(final Date dateSaisie) {
     this.dateSaisie = dateSaisie;
   }
 

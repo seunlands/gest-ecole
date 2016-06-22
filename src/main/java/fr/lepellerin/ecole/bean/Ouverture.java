@@ -15,7 +15,6 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
@@ -32,7 +31,7 @@ import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the ouvertures database table.
- * 
+ *
  */
 @Entity
 @Table(name = "ouvertures")
@@ -60,13 +59,14 @@ public class Ouverture implements Serializable {
   private Unite unite;
 
   public Ouverture() {
+    super();
   }
 
   public int getId() {
     return this.id;
   }
 
-  public void setId(int id) {
+  public void setId(final int id) {
     this.id = id;
   }
 
@@ -74,7 +74,7 @@ public class Ouverture implements Serializable {
     return this.date;
   }
 
-  public void setDate(Date date) {
+  public void setDate(final Date date) {
     this.date = date;
   }
 
@@ -82,7 +82,7 @@ public class Ouverture implements Serializable {
     return activite;
   }
 
-  public void setActivite(Activite activite) {
+  public void setActivite(final Activite activite) {
     this.activite = activite;
   }
 
@@ -90,7 +90,7 @@ public class Ouverture implements Serializable {
     return groupe;
   }
 
-  public void setGroupe(Groupe groupe) {
+  public void setGroupe(final Groupe groupe) {
     this.groupe = groupe;
   }
 
@@ -98,7 +98,7 @@ public class Ouverture implements Serializable {
     return unite;
   }
 
-  public void setUnite(Unite unite) {
+  public void setUnite(final Unite unite) {
     this.unite = unite;
   }
 

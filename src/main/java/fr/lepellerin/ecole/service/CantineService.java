@@ -15,17 +15,15 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.service;
 
 import fr.lepellerin.ecole.bean.Famille;
+import fr.lepellerin.ecole.service.dto.CaseDto;
 
 import java.time.YearMonth;
-import java.util.Set;
+import java.util.List;
 
 public interface CantineService {
-
-  Set<Integer> getDateOuvert();
 
   /**
    * @return le mois année de la réservation en masse. (null si non ouverte)
@@ -33,5 +31,7 @@ public interface CantineService {
   YearMonth getMoisAnneeReservation();
 
   boolean isReservationDoneForFamillyAndMonth(YearMonth anneeMois, Famille famille);
+
+  List<CaseDto> getDateOuvert(YearMonth anneeMois, Famille famille);
 
 }
