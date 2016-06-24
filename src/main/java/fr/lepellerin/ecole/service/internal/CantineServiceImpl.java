@@ -17,26 +17,25 @@
 
 package fr.lepellerin.ecole.service.internal;
 
-import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.lepellerin.ecole.bean.Activite;
-import fr.lepellerin.ecole.bean.ComptePayeur;
 import fr.lepellerin.ecole.bean.Consommation;
 import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.bean.Individu;
 import fr.lepellerin.ecole.bean.Inscription;
 import fr.lepellerin.ecole.bean.Ouverture;
-import fr.lepellerin.ecole.bean.Prestation;
 import fr.lepellerin.ecole.bean.Rattachement;
 import fr.lepellerin.ecole.repo.ComptePayeurRepository;
 import fr.lepellerin.ecole.repo.ConsommationRepository;
@@ -86,10 +85,13 @@ public class CantineServiceImpl implements CantineService {
         .from(Instant.from(anneeMois.atEndOfMonth().atStartOfDay(ZoneId.systemDefault())));
 
     final Activite activite = getCantineActivite();
-    
+
+    final LocalDate dateLimiteReservation = LocalDate.now().plusDays(1);
     final List<Inscription> icts = this.ictRepository.findByActiviteAndFamille(activite, famille);
+        
     final PlanningDto planning = new PlanningDto();  
     icts.forEach(ict -> {
+      final List<Consommation> consos = this.consommationRepository.findByFamilleInscriptionActiviteUniteEtatsPeriode(famille, activite, ict.getGroupe(), Arrays.asList("reservation"), startDate, endDate);
       final List<Ouverture> ouvertures = this.ouvertureRepository.findByActiviteAndGroupeAndPeriode(activite, ict.getGroupe(),
           startDate, endDate);
       ouvertures.forEach(o -> {
@@ -100,6 +102,12 @@ public class CantineServiceImpl implements CantineService {
         c.setIndividu(ict.getIndividu());
         c.setActivite(o.getActivite());
         c.setUnite(o.getUnite());
+        c.setReservable(date.isAfter(dateLimiteReservation));
+        final Optional<Consommation> cOpt = consos.stream().filter(conso -> {
+          final LocalDate dateConso = LocalDate.from(((java.sql.Date) conso.getDate()).toLocalDate());
+          return dateConso.equals(date);
+        }).findAny();
+        c.setReserve(cOpt.isPresent());
         ligne.getCases().add(c);
       });
     });

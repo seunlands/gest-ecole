@@ -21,6 +21,10 @@ public class CaseDto implements Serializable {
   private Activite activite;
 
   private Individu individu;
+  
+  private boolean reservable;
+  
+  private boolean reserve;
 
   public LocalDate getDate() {
     return date;
@@ -52,6 +56,22 @@ public class CaseDto implements Serializable {
 
   public void setIndividu(final Individu individu) {
     this.individu = individu;
+  }
+
+  public boolean isReservable() {
+    return reservable;
+  }
+
+  public void setReservable(boolean reservable) {
+    this.reservable = reservable;
+  }
+
+  public boolean isReserve() {
+    return reserve;
+  }
+
+  public void setReserve(boolean reserve) {
+    this.reserve = reserve;
   }
 
 }

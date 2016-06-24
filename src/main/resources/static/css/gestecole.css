@@ -33,3 +33,21 @@
   border-top-right-radius: 0;
 }
 
+.libre {
+	background-color: white;
+	cursor: pointer;
+}
+
+.reserve {
+	background-color: #5fb450;
+	cursor: pointer;
+}
+
+.vide {
+	background-color: #cecece;
+}
+
+.present {
+	background-color: #c9e6c4;
+}
+
