@@ -8,24 +8,39 @@
 			<div class="page-header">
 				<h1>Détail des réservations des repas</h1>
 			</div>
-			
-			<table class="table table-hover table-bordered">
-				<!-- <thead>
-					<tr>
-						<th>&nbsp;</th>
-						<th th:each="enfant : ${planning.enfants}">
-							<span th:text="${enfant.prenom + ' ' + enfant.nom}">Nom enfant</span>
-						</th> 
-					</tr>
-				</thead> -->
-				<tbody>
-					<tr th:each="ligne : ${planning.lignes}">
-						<td th:text="${#temporals.format(ligne.date, 'EEEE d MMM yyyy')}" class="col-md-3">La date</td>
-						<td th:each="case : ${ligne.cases}" th:classappend="${case.reservable} ? (${case.reserve} ? reserve : libre) : (${case.reserve} ? vide : present)" class="col-md-1"></td>
-						<!-- TODO voir pour affichier les cases ou pas -->
-					</tr>
-				</tbody>
-			</table>
+			<form role="form" th:action="@{/cantine/detail/submit}" th:object="${command}" method="post">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Détail des réservations pour le mois de <span th:remove="tag" th:inline="text">[[${command.anneeMois}]]</span>
+						<span >
+							<i class="icon-calendar">&nbsp;</i>
+						</span>
+					</div>
+					<div class="panel-body">
+						
+						<table class="table table-hover table-bordered">
+							<thead>
+								<tr>
+									<th th:each="header : ${planning.headers}">
+										<span th:text="${header}">Header</span>
+									</th> 
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="ligne : ${planning.lignes}">
+									<td th:text="${#temporals.format(ligne.date, 'EEEE d MMM yyyy')}" class="col-md-3">La date</td>
+									<td th:each="case : ${ligne.cases}" 
+											th:title="${case.reservable} ? (${case.reserve} ? 'Réservé' : 'Non réservé') : (${case.reserve} ? 'Non présent' : 'Présent')" 
+											th:classappend="${case.reservable} ? (${case.reserve} ? reserve : libre) : (${case.reserve} ? vide : present)" 
+											class="col-md-1">&nbsp;</td>
+									<!-- TODO voir pour affichier les cases ou pas -->
+								</tr>
+							</tbody>
+						</table>
+	
+					</div>
+				</div>
+			</form>
 			
 			
 			

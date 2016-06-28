@@ -19,17 +19,18 @@ package fr.lepellerin.ecole.web.controller.cantine;
 
 import fr.lepellerin.ecole.bean.security.CurrentUser;
 import fr.lepellerin.ecole.service.CantineService;
-import fr.lepellerin.ecole.service.dto.CaseDto;
 import fr.lepellerin.ecole.service.dto.PlanningDto;
+import fr.lepellerin.ecole.utils.GeDateUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.YearMonth;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/cantine/details")
@@ -60,6 +61,20 @@ public class DetaillerReservationRepasController {
     model.addAttribute("planning", planning);
 
     return VUE;
+  }
+
+  /**
+   * initialise le form.
+   * 
+   * @return <code>DetaillerReservationRepasForm</code>
+   */
+  @ModelAttribute("command")
+  public DetaillerReservationRepasForm addCommand() {
+    final DetaillerReservationRepasForm form = new DetaillerReservationRepasForm();
+    final YearMonth moisActuel = YearMonth.now();
+    form.setAnneeMois(
+        moisActuel.format(DateTimeFormatter.ofPattern(GeDateUtils.DATE_FORMAT_ANNEE_MOIS_FULL)));
+    return form;
   }
 
 }

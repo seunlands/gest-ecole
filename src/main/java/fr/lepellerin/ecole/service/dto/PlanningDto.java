@@ -15,7 +15,6 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.service.dto;
 
 import java.io.Serializable;
@@ -30,16 +29,27 @@ public class PlanningDto implements Serializable {
    * serial UID.
    */
   private static final long serialVersionUID = 1L;
-  
-  
+
+  private List<String> headers;
+
   private List<LigneDto> lignes;
-  
+
   public PlanningDto() {
     this.lignes = new ArrayList<>();
+    this.headers = new ArrayList<>();
+    this.headers.add("Date");
   }
-  
+
+  /**
+   * retourne la ligne pour une date, si elle n'existe la crée et la retourne.
+   *
+   * @param date
+   *          : date
+   * @return <code>LigneDto</code>
+   */
   public LigneDto getOrCreateLigne(final LocalDate date) {
-    Optional<LigneDto> ligneOpt = lignes.stream().filter(ligne -> ligne.getDate().equals(date)).findAny();
+    final Optional<LigneDto> ligneOpt = lignes.stream()
+        .filter(ligne -> ligne.getDate().equals(date)).findAny();
     if (ligneOpt.isPresent()) {
       return ligneOpt.get();
     } else {
@@ -49,15 +59,20 @@ public class PlanningDto implements Serializable {
     }
   }
 
-
   public List<LigneDto> getLignes() {
     return lignes;
   }
 
-
-  public void setLignes(List<LigneDto> lignes) {
+  public void setLignes(final List<LigneDto> lignes) {
     this.lignes = lignes;
   }
 
+  public List<String> getHeaders() {
+    return headers;
+  }
+
+  public void setHeaders(final List<String> headers) {
+    this.headers = headers;
+  }
 
 }
