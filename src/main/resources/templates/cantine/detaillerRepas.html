@@ -2,7 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
 	<head>
 		<title>Détail des réservations</title>
+		<script th:src="@{/assets/js/detaillerRepas.js}"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var contextPath = /*[[@{/test}]]*/ '';  
+				fnInitDetaillerRepas(contextPath);
+			});
+		</script>
 	</head>
+	
 	<body>
 		<div layout:fragment="content">
 			<div class="page-header">
@@ -32,7 +40,7 @@
 									<td th:each="case : ${ligne.cases}" 
 											th:title="${case.reservable} ? (${case.reserve} ? 'Réservé' : 'Non réservé') : (${case.reserve} ? 'Non présent' : 'Présent')" 
 											th:classappend="${case.reservable} ? (${case.reserve} ? reserve : libre) : (${case.reserve} ? vide : present)" 
-											class="col-md-1">&nbsp;</td>
+											class="col-md-1" th:id="${#temporals.format(ligne.date, 'yyyyMMdd' + '_' + case.individu.id)}">&nbsp;</td>
 									<!-- TODO voir pour affichier les cases ou pas -->
 								</tr>
 							</tbody>
@@ -45,5 +53,6 @@
 			
 			
 		</div>
+		
 	</body>
 </html>

@@ -118,6 +118,20 @@ public class CantineServiceImpl implements CantineService {
 
     return planning;
   }
+  
+  public void reserver(final LocalDate date, final int individuId, final Famille famille) {
+    final Date d = Date.from(Instant.from(date.atStartOfDay(ZoneId.systemDefault())));
+    final Activite activite = getCantineActivite();
+    final List<Inscription> icts = this.ictRepository.findByActiviteAndFamille(activite, famille);
+    final Inscription ict = icts.stream().filter(i -> individuId == i.getIDinscription()).findFirst().get();
+    final List<Consommation> consos = this.consommationRepository.findByFamilleInscriptionActiviteUniteDate(famille, activite, ict.getGroupe(), d);
+    //etat reservation / present
+    //si annulation => on supprime la consommation
+    //=> a voir pour la prestation
+        
+    
+    
+  }
 
   @Override
   public YearMonth getMoisAnneeReservation() {
