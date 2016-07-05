@@ -43,7 +43,7 @@ public interface ConsommationRepository extends JpaRepository<Consommation, Inte
   @Query("from Consommation c where c.inscription.famille = ?1 and c.activite = ?2 and c.groupe = ?3 and c.etat in (?4) and c.date between ?5 and ?6")
   List<Consommation> findByFamilleInscriptionActiviteUniteEtatsPeriode(Famille famille, Activite act, Groupe groupe, List<String> etats, Date debut, Date fin);
 
-  @Query("from Consommation c where c.inscription.famille = ?1 and c.activite = ?2 and c.groupe = ?3 and and c.date = ?4")
+  @Query("from Consommation c where c.inscription.famille = ?1 and c.activite = ?2 and c.groupe = ?3 and c.date = ?4")
   List<Consommation> findByFamilleInscriptionActiviteUniteDate(Famille famille, Activite act, Groupe groupe, Date debut);
 
 }
