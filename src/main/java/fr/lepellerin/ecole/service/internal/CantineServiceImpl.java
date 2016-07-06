@@ -20,15 +20,15 @@ package fr.lepellerin.ecole.service.internal;
 import fr.lepellerin.ecole.bean.Activite;
 import fr.lepellerin.ecole.bean.Consommation;
 import fr.lepellerin.ecole.bean.Famille;
-import fr.lepellerin.ecole.bean.Individu;
 import fr.lepellerin.ecole.bean.Inscription;
 import fr.lepellerin.ecole.bean.Ouverture;
-import fr.lepellerin.ecole.bean.Rattachement;
+import fr.lepellerin.ecole.bean.Unite;
 import fr.lepellerin.ecole.repo.ComptePayeurRepository;
 import fr.lepellerin.ecole.repo.ConsommationRepository;
 import fr.lepellerin.ecole.repo.InscriptionRepository;
 import fr.lepellerin.ecole.repo.OuvertureRepository;
 import fr.lepellerin.ecole.repo.RattachementRepository;
+import fr.lepellerin.ecole.repo.UniteRepository;
 import fr.lepellerin.ecole.service.CantineService;
 import fr.lepellerin.ecole.service.dto.CaseDto;
 import fr.lepellerin.ecole.service.dto.LigneDto;
@@ -36,6 +36,7 @@ import fr.lepellerin.ecole.service.dto.PlanningDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -45,13 +46,15 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CantineServiceImpl implements CantineService {
 
   @Autowired
   private OuvertureRepository ouvertureRepository;
+
+  @Autowired
+  private UniteRepository uniteRepository;
 
   @Autowired
   private InscriptionRepository ictRepository;
@@ -69,15 +72,8 @@ public class CantineServiceImpl implements CantineService {
   private ComptePayeurRepository comptePayeurRepository;
 
   @Override
+  @Transactional(readOnly = true)
   public PlanningDto getDateOuvert(final YearMonth anneeMois, final Famille famille) {
-    // TODO voir avec +sieurs enfant et recup leur resa pour les afficher
-    final List<Rattachement> rattachementFamille = this.rattachementRepository
-        .findByFamille(famille);
-
-    final List<Individu> enfants = rattachementFamille.stream()
-        .filter(rat -> rat.getIdCategorie() == 2).map(Rattachement::getIndividu)
-        .collect(Collectors.toList());
-
     final Date startDate = Date
         .from(Instant.from(anneeMois.atDay(1).atStartOfDay(ZoneId.systemDefault())));
     final Date endDate = Date
@@ -118,19 +114,43 @@ public class CantineServiceImpl implements CantineService {
 
     return planning;
   }
-  
+
+  @Override
+  @Transactional(readOnly = false)
   public void reserver(final LocalDate date, final int individuId, final Famille famille) {
     final Date d = Date.from(Instant.from(date.atStartOfDay(ZoneId.systemDefault())));
     final Activite activite = getCantineActivite();
     final List<Inscription> icts = this.ictRepository.findByActiviteAndFamille(activite, famille);
-    final Inscription ict = icts.stream().filter(i -> individuId == i.getIDinscription()).findFirst().get();
-    final List<Consommation> consos = this.consommationRepository.findByFamilleInscriptionActiviteUniteDate(famille, activite, ict.getGroupe(), d);
-    //etat reservation / present
-    //si annulation => on supprime la consommation
-    //=> a voir pour la prestation
-        
-    
-    
+    final Inscription ict = icts.stream().filter(i -> individuId == i.getIndividu().getId())
+        .findFirst().get();
+    final List<Consommation> consos = this.consommationRepository
+        .findByFamilleInscriptionActiviteUniteDate(famille, activite, ict.getGroupe(), d);
+    final Unite unite = this.uniteRepository.findOneByActiviteAndType(ict.getActivite(),
+        "Unitaire");
+    if (consos != null && !consos.isEmpty()) {
+      consos.forEach(c -> this.consommationRepository.delete(c));
+      // on supprime la conso
+    } else {
+      // cree la conso
+      final Consommation conso = new Consommation();
+      conso.setActivite(activite);
+      conso.setDate(d);
+      conso.setDateSaisie(new Date());
+      conso.setEtat("reservation");
+      conso.setGroupe(ict.getGroupe());
+      conso.setIndividu(ict.getIndividu());
+      conso.setInscription(ict);
+      conso.setComptePayeur(ict.getComptePayeur());
+      conso.setCategorieTarif(ict.getCategorieTarif());
+      conso.setUnite(unite);
+      conso.setHeureDebut(unite.getHeureDebut());
+      conso.setHeureFin(unite.getHeureFin());
+      this.consommationRepository.save(conso);
+    }
+    // etat reservation / present
+    // si annulation => on supprime la consommation
+    // => a voir pour la prestation
+
   }
 
   @Override

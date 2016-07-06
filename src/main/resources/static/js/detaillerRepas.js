@@ -4,10 +4,11 @@ GestEcole.app = {};
 function fnInitDetaillerRepas(contextPath) {
 	GestEcole.app.contextPath = contextPath;
 	$('.reserve').click(fnSelectTd);
+	$('.libre').click(fnSelectTd);
 }
 
 function fnSelectTd() {
-	var caseId = $(this).prop('id');
+	var caseId = $(this).prop('id').split('_');
 	$.ajax({
 		url : GestEcole.app.contextPath + '/cantine/details/reserver',
 		method : 'POST',

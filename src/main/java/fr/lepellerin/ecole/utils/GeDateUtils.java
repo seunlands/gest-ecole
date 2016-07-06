@@ -15,7 +15,6 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.utils;
 
 import java.util.Calendar;
@@ -26,15 +25,24 @@ public class GeDateUtils {
 
   public static final String DATE_FORMAT_ANNEE_MOIS_FULL = "MMM yyyy";
 
+  public static final String DATE_FORMAT_YYYYMMDD = "yyyyMMdd";
+
+  /**
+   * private constructor : util class.
+   */
+  private GeDateUtils() {
+
+  }
+
   /**
    * retourne la date avec heure, minute, seconde, ms à 0.
-   * 
+   *
    * @param date
    *          : la date à traiter
    * @return <code>Date</code>
    */
-  public static Date truncateDate(Date date) {
-    Calendar cal = new GregorianCalendar();
+  public static Date truncateDate(final Date date) {
+    final Calendar cal = new GregorianCalendar();
     cal.setTime(date);
     truncateCal(cal);
     return cal.getTime();
@@ -42,12 +50,12 @@ public class GeDateUtils {
 
   /**
    * retourne la date avec heure, minute, seconde, ms à 0.
-   * 
+   *
    * @param cal
    *          : la date à traiter
    * @return <code>Date</code>
    */
-  public static Calendar truncateCal(Calendar cal) {
+  public static Calendar truncateCal(final Calendar cal) {
     cal.set(Calendar.MILLISECOND, 0);
     cal.set(Calendar.SECOND, 0);
     cal.set(Calendar.MINUTE, 0);

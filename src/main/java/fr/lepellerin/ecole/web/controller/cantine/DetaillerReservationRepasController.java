@@ -17,8 +17,10 @@
 
 package fr.lepellerin.ecole.web.controller.cantine;
 
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
+import fr.lepellerin.ecole.bean.security.CurrentUser;
+import fr.lepellerin.ecole.service.CantineService;
+import fr.lepellerin.ecole.service.dto.PlanningDto;
+import fr.lepellerin.ecole.utils.GeDateUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,14 +28,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fr.lepellerin.ecole.bean.security.CurrentUser;
-import fr.lepellerin.ecole.service.CantineService;
-import fr.lepellerin.ecole.service.dto.PlanningDto;
-import fr.lepellerin.ecole.utils.GeDateUtils;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/cantine/details")
@@ -65,16 +66,21 @@ public class DetaillerReservationRepasController {
 
     return VUE;
   }
-  
+
   @RequestMapping(value = "/reserver")
   @ResponseBody
   public String reserver(@RequestParam final String date, @RequestParam final int individuId) {
+    final CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
+        .getPrincipal();
+    final LocalDate localDate = LocalDate.parse(date,
+        DateTimeFormatter.ofPattern(GeDateUtils.DATE_FORMAT_YYYYMMDD, Locale.ROOT));
+    this.cantineService.reserver(localDate, individuId, user.getUser().getFamille());
     return "ok";
   }
 
   /**
    * initialise le form.
-   * 
+   *
    * @return <code>DetaillerReservationRepasForm</code>
    */
   @ModelAttribute("command")

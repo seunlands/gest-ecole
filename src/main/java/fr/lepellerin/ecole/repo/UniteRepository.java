@@ -15,7 +15,6 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.
 */
 
-
 package fr.lepellerin.ecole.repo;
 
 import fr.lepellerin.ecole.bean.Activite;
@@ -25,6 +24,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UniteRepository extends JpaRepository<Unite, Integer> {
 
-  Unite findOneByActivite(Activite activite);
+  Unite findOneByActiviteAndType(Activite activite, String type);
 
 }

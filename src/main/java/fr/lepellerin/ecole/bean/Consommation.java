@@ -48,6 +48,7 @@ public class Consommation implements Serializable {
   @Temporal(TemporalType.DATE)
   private Date date;
 
+  @Temporal(TemporalType.DATE)
   @Column(name = "date_saisie")
   private Date dateSaisie;
 

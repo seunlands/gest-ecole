@@ -18,11 +18,10 @@
 package fr.lepellerin.ecole.service;
 
 import fr.lepellerin.ecole.bean.Famille;
-import fr.lepellerin.ecole.service.dto.CaseDto;
 import fr.lepellerin.ecole.service.dto.PlanningDto;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
-import java.util.List;
 
 public interface CantineService {
 
@@ -34,5 +33,7 @@ public interface CantineService {
   boolean isReservationDoneForFamillyAndMonth(YearMonth anneeMois, Famille famille);
 
   PlanningDto getDateOuvert(YearMonth anneeMois, Famille famille);
+
+  void reserver(LocalDate date, int individuId, Famille famille);
 
 }
