@@ -74,8 +74,7 @@ public class DetaillerReservationRepasController {
         .getPrincipal();
     final LocalDate localDate = LocalDate.parse(date,
         DateTimeFormatter.ofPattern(GeDateUtils.DATE_FORMAT_YYYYMMDD, Locale.ROOT));
-    this.cantineService.reserver(localDate, individuId, user.getUser().getFamille());
-    return "ok";
+    return this.cantineService.reserver(localDate, individuId, user.getUser().getFamille());
   }
 
   /**

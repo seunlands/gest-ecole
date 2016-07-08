@@ -22,6 +22,7 @@ import fr.lepellerin.ecole.bean.Consommation;
 import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.bean.Inscription;
 import fr.lepellerin.ecole.bean.Ouverture;
+import fr.lepellerin.ecole.bean.Prestation;
 import fr.lepellerin.ecole.bean.Unite;
 import fr.lepellerin.ecole.repo.ComptePayeurRepository;
 import fr.lepellerin.ecole.repo.ConsommationRepository;
@@ -117,7 +118,7 @@ public class CantineServiceImpl implements CantineService {
 
   @Override
   @Transactional(readOnly = false)
-  public void reserver(final LocalDate date, final int individuId, final Famille famille) {
+  public String reserver(final LocalDate date, final int individuId, final Famille famille) {
     final Date d = Date.from(Instant.from(date.atStartOfDay(ZoneId.systemDefault())));
     final Activite activite = getCantineActivite();
     final List<Inscription> icts = this.ictRepository.findByActiviteAndFamille(activite, famille);
@@ -129,6 +130,7 @@ public class CantineServiceImpl implements CantineService {
         "Unitaire");
     if (consos != null && !consos.isEmpty()) {
       consos.forEach(c -> this.consommationRepository.delete(c));
+      return "libre";
       // on supprime la conso
     } else {
       // cree la conso
@@ -145,7 +147,33 @@ public class CantineServiceImpl implements CantineService {
       conso.setUnite(unite);
       conso.setHeureDebut(unite.getHeureDebut());
       conso.setHeureFin(unite.getHeureFin());
+
+      final Prestation presta = new Prestation();
+      presta.setActivite(activite);
+      presta.setCategorie("consommation");
+      presta.setCategorieTarif(ict.getCategorieTarif());
+      // presta.setCodeCompta();
+      presta.setComptePayeur(ict.getComptePayeur());
+      presta.setContrat(null);
+      presta.setDate(d);
+      presta.setFacture(null);
+      presta.setFamille(famille);
+      presta.setForfait(null);
+      presta.setForfaitDateDebut(null);
+      presta.setForfaitDateFin(null);
+      presta.setIndividu(ict.getIndividu());
+      presta.setLabel(unite.getNom());
+      // presta.setMontant(ict.getCategorieTarif().);
+      presta.setMontantInitial(individuId);
+      presta.setReglementFrais(null);
+      presta.setTarif(null);
+      presta.setTempsFacture(null);
+      presta.setTva(individuId);
+
+      // presta.set
+
       this.consommationRepository.save(conso);
+      return "reserve";
     }
     // etat reservation / present
     // si annulation => on supprime la consommation

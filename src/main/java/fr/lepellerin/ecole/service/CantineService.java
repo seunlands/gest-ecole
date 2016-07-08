@@ -34,6 +34,6 @@ public interface CantineService {
 
   PlanningDto getDateOuvert(YearMonth anneeMois, Famille famille);
 
-  void reserver(LocalDate date, int individuId, Famille famille);
+  String reserver(LocalDate date, int individuId, Famille famille);
 
 }

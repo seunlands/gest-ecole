@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -88,7 +89,7 @@ public class Consommation implements Serializable {
   @JoinColumn(name = "IDinscription")
   private Inscription inscription;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "IDprestation")
   private Prestation prestation;
 

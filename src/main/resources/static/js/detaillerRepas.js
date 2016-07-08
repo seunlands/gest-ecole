@@ -18,7 +18,13 @@ function fnSelectTd() {
 			_csrf : $("input[name='_csrf']").val()
 		},
 		success: function(data) {
-			alert('OK');
+			if (data === 'reserve') {
+				$('#' + caseId[0] + '_' + caseId[1]).removeClass('libre');
+				$('#' + caseId[0] + '_' + caseId[1]).addClass('reserve');
+			} else if (data === 'libre') {
+				$('#' + caseId[0] + '_' + caseId[1]).addClass('libre');
+				$('#' + caseId[0] + '_' + caseId[1]).removeClass('reserve');				
+			}
 		}
 	});
 }
