@@ -166,7 +166,7 @@ public class Famille implements Serializable {
   private String reftiersHelios;
 
   @Column(name = "titulaire_helios")
-  private int titulaireHelios;
+  private Integer titulaireHelios;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "famille")
   private Set<Rattachement> rattachements;
@@ -467,11 +467,11 @@ public class Famille implements Serializable {
     this.reftiersHelios = reftiersHelios;
   }
 
-  public int getTitulaireHelios() {
+  public Integer getTitulaireHelios() {
     return this.titulaireHelios;
   }
 
-  public void setTitulaireHelios(final int titulaireHelios) {
+  public void setTitulaireHelios(final Integer titulaireHelios) {
     this.titulaireHelios = titulaireHelios;
   }
 

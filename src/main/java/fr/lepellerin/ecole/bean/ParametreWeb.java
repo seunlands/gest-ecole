@@ -22,33 +22,30 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
- * The persistent class for the parametres database table.
+ * The persistent class for the parametres_web database table.
  * 
  */
 @Entity
-@Table(name = "parametres")
+@Table(name = "parametres_web")
 
-public class Parametre implements Serializable {
+public class ParametreWeb implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  @Column(name = "IDparametre")
+  @GeneratedValue
+  @Column(name = "id_parametre")
   private int id;
 
-  private String categorie;
+  @Column(name = "libelle_parametre")
+  private String libelleParametre;
 
-  private String nom;
-
-  @Lob
-  private String parametre;
-
-  public Parametre() {
-  }
+  @Column(name = "valeur_parametre")
+  private String valeurParametre;
 
   public int getId() {
     return this.id;
@@ -58,28 +55,20 @@ public class Parametre implements Serializable {
     this.id = id;
   }
 
-  public String getCategorie() {
-    return this.categorie;
+  public String getLibelleParametre() {
+    return libelleParametre;
   }
 
-  public void setCategorie(String categorie) {
-    this.categorie = categorie;
+  public void setLibelleParametre(String libelleParametre) {
+    this.libelleParametre = libelleParametre;
   }
 
-  public String getNom() {
-    return this.nom;
+  public String getValeurParametre() {
+    return valeurParametre;
   }
 
-  public void setNom(String nom) {
-    this.nom = nom;
-  }
-
-  public String getParametre() {
-    return this.parametre;
-  }
-
-  public void setParametre(String parametre) {
-    this.parametre = parametre;
+  public void setValeurParametre(String valeurParametre) {
+    this.valeurParametre = valeurParametre;
   }
 
 }

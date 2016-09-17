@@ -1,6 +1,6 @@
 CREATE TABLE `users` (
    `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-   `password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
    `role` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
    `enabled` tinyint(1) NOT NULL,
    `id_famille` int(11) DEFAULT NULL,
