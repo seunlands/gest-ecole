@@ -3,7 +3,6 @@ package fr.lepellerin.ecole.service.internal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
