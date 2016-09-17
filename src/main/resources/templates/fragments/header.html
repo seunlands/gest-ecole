@@ -12,8 +12,7 @@
 						<li sec:authorize="hasRole('ROLE_FAMILLE')" class="dropdown active"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">Cantine <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a th:href="@{/cantine/init}">Réserver des repas de cantine</a></li>
-								<li><a th:href="@{/cantine/details/init}">Voir les détails des réservations</a></li>
+								<li><a th:href="@{/cantine/details/init}">Réserver des repas</a></li>
 							</ul>
 						</li>
 						
@@ -21,6 +20,7 @@
 							data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a th:href="@{/admin/creerCompte/init}">Créer les comptes utilisateurs</a></li>
+								<li><a th:href="@{/admin/gererParametre/init}">Gérer les paramètres</a></li>
 							</ul>
 						</li>
 					</ul>

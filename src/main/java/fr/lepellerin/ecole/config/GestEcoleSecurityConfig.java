@@ -59,6 +59,7 @@ public class GestEcoleSecurityConfig extends WebSecurityConfigurerAdapter {
            .and()
         .formLogin()
             .loginPage("/login")
+            .defaultSuccessUrl("/", true)
             .permitAll()
             .and()
         .logout()

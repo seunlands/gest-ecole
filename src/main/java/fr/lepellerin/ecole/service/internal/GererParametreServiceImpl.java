@@ -35,6 +35,9 @@ public class GererParametreServiceImpl implements GererParametreService {
   @Transactional(readOnly = true)
   public ParametreDto getIdActiviteCantine() {
     final ParametreWeb p = this.parametreRepo.findOne(EnumParametreWeb.ID_ACTIVITE_CANTINE.getId());
+    if (p == null) {
+      return null;
+    }
     return new ParametreDto(p.getId(), p.getLibelleParametre(), p.getValeurParametre());
   }
   
@@ -50,7 +53,9 @@ public class GererParametreServiceImpl implements GererParametreService {
         //on cree
         final ParametreWeb param = new ParametreWeb();
         param.setValeurParametre(idCantine.toString());
+        param.setId(EnumParametreWeb.ID_ACTIVITE_CANTINE.getId());
         param.setLibelleParametre(EnumParametreWeb.ID_ACTIVITE_CANTINE.getLibelle());
+        this.parametreRepo.save(param);
       } else {
         //on maj
         cantineParam.setValeurParametre(idCantine.toString());

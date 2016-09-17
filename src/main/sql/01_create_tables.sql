@@ -11,7 +11,7 @@ CREATE TABLE `users` (
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
  
 CREATE TABLE `parametres_web` (
-   `id_parametre` int(11) NOT NULL,
+   `id_parametre` int(11) NOT NULL ,
    `libelle_parametre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
    `valeur_parametre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
    PRIMARY KEY (`id_parametre`),

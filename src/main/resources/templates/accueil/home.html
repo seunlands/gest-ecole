@@ -8,8 +8,11 @@
 			<div class="page-header">
 				<h1>Accueil</h1>
 			</div>
-			
-			Bienvenue dans le portail de l'école Notre Dame du Pellerin.
+			<div th:if="${paramCantine}" class="alert alert-warning">
+				<strong>ATTENTION !</strong> L'activité cantine n'est pas configurée. Les utilisateurs ne peuvent pas se connecter. 
+				Configurez-le <a th:href="@{/admin/gererParametre/init}">ici</a>.
+			</div>
+			<p>Bienvenue dans le portail de l'école Notre Dame du Pellerin.</p>
 			
 		</div>
 	</body>

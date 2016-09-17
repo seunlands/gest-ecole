@@ -18,6 +18,7 @@
 package fr.lepellerin.ecole.web.controller.cantine;
 
 import fr.lepellerin.ecole.bean.security.CurrentUser;
+import fr.lepellerin.ecole.exceptions.TechnicalException;
 import fr.lepellerin.ecole.service.CantineService;
 import fr.lepellerin.ecole.service.dto.PlanningDto;
 import fr.lepellerin.ecole.utils.GeDateUtils;
@@ -51,9 +52,10 @@ public class DetaillerReservationRepasController {
    * @param model
    *          : model spring
    * @return le nom de la vue
+   * @throws TechnicalException 
    */
   @RequestMapping("/init")
-  public String init(final Model model) {
+  public String init(final Model model) throws TechnicalException {
     final CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
         .getPrincipal();
 
@@ -69,7 +71,7 @@ public class DetaillerReservationRepasController {
 
   @RequestMapping(value = "/reserver")
   @ResponseBody
-  public String reserver(@RequestParam final String date, @RequestParam final int individuId) {
+  public String reserver(@RequestParam final String date, @RequestParam final int individuId) throws TechnicalException {
     final CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
         .getPrincipal();
     final LocalDate localDate = LocalDate.parse(date,

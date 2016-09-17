@@ -22,7 +22,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -37,7 +36,6 @@ public class ParametreWeb implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  @GeneratedValue
   @Column(name = "id_parametre")
   private int id;
 

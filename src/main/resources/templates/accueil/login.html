@@ -24,6 +24,7 @@
 			</div>
 			<div th:if="${param.error}" class="alert alert-danger">Famille ou mot de passe incorrect</div>
 			<div th:if="${param.logout}" class="alert alert-info">A bientôt !</div>
+			<div th:if="${param.missingParam}" class="alert alert-warning">L'application n'est pas encore ouverte aux utilisateurs !</div>
 
 			<form th:action="@{/login}" method="post" class="form-signin">
 				<h2 class="form-signin-heading">Connectez-vous</h2>

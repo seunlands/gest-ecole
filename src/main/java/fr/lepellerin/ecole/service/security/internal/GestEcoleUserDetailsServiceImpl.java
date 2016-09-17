@@ -41,6 +41,9 @@ public class GestEcoleUserDetailsServiceImpl implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     User user = userService.getUserByUsername(username);
+    if (user == null) {
+      throw new UsernameNotFoundException("Impossible de trouver l'utilisateur " + username);
+    }
     return new CurrentUser(user);
   }
 

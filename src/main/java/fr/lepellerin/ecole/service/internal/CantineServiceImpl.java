@@ -22,12 +22,16 @@ import fr.lepellerin.ecole.bean.Consommation;
 import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.bean.Inscription;
 import fr.lepellerin.ecole.bean.Ouverture;
+import fr.lepellerin.ecole.bean.ParametreWeb;
 import fr.lepellerin.ecole.bean.Prestation;
 import fr.lepellerin.ecole.bean.Unite;
+import fr.lepellerin.ecole.bean.enums.EnumParametreWeb;
+import fr.lepellerin.ecole.exceptions.TechnicalException;
 import fr.lepellerin.ecole.repo.ComptePayeurRepository;
 import fr.lepellerin.ecole.repo.ConsommationRepository;
 import fr.lepellerin.ecole.repo.InscriptionRepository;
 import fr.lepellerin.ecole.repo.OuvertureRepository;
+import fr.lepellerin.ecole.repo.ParametreWebRepository;
 import fr.lepellerin.ecole.repo.RattachementRepository;
 import fr.lepellerin.ecole.repo.UniteRepository;
 import fr.lepellerin.ecole.service.CantineService;
@@ -59,6 +63,9 @@ public class CantineServiceImpl implements CantineService {
 
   @Autowired
   private InscriptionRepository ictRepository;
+  
+  @Autowired
+  private ParametreWebRepository paramRepo;
 
   @Autowired
   private RattachementRepository rattachementRepository;
@@ -74,7 +81,7 @@ public class CantineServiceImpl implements CantineService {
 
   @Override
   @Transactional(readOnly = true)
-  public PlanningDto getDateOuvert(final YearMonth anneeMois, final Famille famille) {
+  public PlanningDto getDateOuvert(final YearMonth anneeMois, final Famille famille) throws TechnicalException {
     final Date startDate = Date
         .from(Instant.from(anneeMois.atDay(1).atStartOfDay(ZoneId.systemDefault())));
     final Date endDate = Date
@@ -118,7 +125,7 @@ public class CantineServiceImpl implements CantineService {
 
   @Override
   @Transactional(readOnly = false)
-  public String reserver(final LocalDate date, final int individuId, final Famille famille) {
+  public String reserver(final LocalDate date, final int individuId, final Famille famille) throws TechnicalException {
     final Date d = Date.from(Instant.from(date.atStartOfDay(ZoneId.systemDefault())));
     final Activite activite = getCantineActivite();
     final List<Inscription> icts = this.ictRepository.findByActiviteAndFamille(activite, famille);
@@ -181,28 +188,14 @@ public class CantineServiceImpl implements CantineService {
 
   }
 
-  @Override
-  public YearMonth getMoisAnneeReservation() {
-    final LocalDate date = LocalDate.now();
-    // TODO ext parametre
-    // if (date.getDayOfMonth() > 20) {
-    return YearMonth.now().plusMonths(1);
-    // }
-    // return null;
-  }
 
-  @Override
-  public boolean isReservationDoneForFamillyAndMonth(final YearMonth anneeMois,
-      final Famille famille) {
-    anneeMois.atDay(1);
-    final List<Consommation> consos = consommationRepository.findByActiviteAndFamilyBetweenDates(
-        getCantineActivite(), famille,
-        Date.from(anneeMois.atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
-        Date.from(anneeMois.atEndOfMonth().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-    return !consos.isEmpty();
-  }
-
-  private Activite getCantineActivite() {
+  //@Override
+  @Transactional(readOnly = true)
+  public Activite getCantineActivite() throws TechnicalException {
+    final ParametreWeb p = this.paramRepo.findOne(EnumParametreWeb.ID_ACTIVITE_CANTINE.getId());
+    if (p == null) {
+      throw new TechnicalException("Pas d'activité cantine sélectionné");
+    }
     final Activite activite = new Activite();
     activite.setId(1);
     return activite;

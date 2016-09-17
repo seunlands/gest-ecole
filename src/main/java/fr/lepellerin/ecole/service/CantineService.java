@@ -18,6 +18,7 @@
 package fr.lepellerin.ecole.service;
 
 import fr.lepellerin.ecole.bean.Famille;
+import fr.lepellerin.ecole.exceptions.TechnicalException;
 import fr.lepellerin.ecole.service.dto.PlanningDto;
 
 import java.time.LocalDate;
@@ -25,15 +26,8 @@ import java.time.YearMonth;
 
 public interface CantineService {
 
-  /**
-   * @return le mois année de la réservation en masse. (null si non ouverte)
-   */
-  YearMonth getMoisAnneeReservation();
+  PlanningDto getDateOuvert(YearMonth anneeMois, Famille famille) throws TechnicalException;
 
-  boolean isReservationDoneForFamillyAndMonth(YearMonth anneeMois, Famille famille);
-
-  PlanningDto getDateOuvert(YearMonth anneeMois, Famille famille);
-
-  String reserver(LocalDate date, int individuId, Famille famille);
+  String reserver(LocalDate date, int individuId, Famille famille) throws TechnicalException;
 
 }
