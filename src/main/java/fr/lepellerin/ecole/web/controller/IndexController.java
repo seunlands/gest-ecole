@@ -55,7 +55,7 @@ public class IndexController {
       Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
       for (GrantedAuthority grantedAuthority : authorities) {
         if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-          paramCantine = true;
+          admin = true;
         } else if (grantedAuthority.getAuthority().equals("ROLE_FAMILLE")) {
           user = true;
         }
