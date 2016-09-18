@@ -38,8 +38,8 @@
 								<tr th:each="ligne : ${planning.lignes}">
 									<td th:text="${#temporals.format(ligne.date, 'EEEE d MMM yyyy')}" class="col-md-3">La date</td>
 									<td th:each="case : ${ligne.cases}" 
-											th:title="${case.reservable} ? (${case.reserve} ? 'Réservé' : 'Non réservé') : (${case.reserve} ? 'Non présent' : 'Présent')" 
-											th:classappend="${case.reservable} ? (${case.reserve} ? reserve : libre) : (${case.reserve} ? vide : present)" 
+											th:title="${case.reservable} ? (${case.reserve} ? 'Réservé' : 'Non réservé') : (${case.reserve} ? 'Présent' : 'Non présent')" 
+											th:classappend="${case.reservable} ? (${case.reserve} ? reserve : libre) : (${case.reserve} ? present : vide)" 
 											class="col-md-1" th:id="${#temporals.format(ligne.date, 'yyyyMMdd' + '_' + case.individu.id)}">&nbsp;</td>
 									<!-- TODO voir pour affichier les cases ou pas -->
 								</tr>

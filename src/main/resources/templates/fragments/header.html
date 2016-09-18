@@ -17,7 +17,7 @@
 						</li>
 						
 						<li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown active"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
+							data-toggle="dropdown" href="#">Administration <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a th:href="@{/admin/creerCompte/init}">Créer les comptes utilisateurs</a></li>
 								<li><a th:href="@{/admin/gererParametre/init}">Gérer les paramètres</a></li>
@@ -26,8 +26,10 @@
 					</ul>
 					<ul class="nav navbar-nav pull-right">
 						<li sec:authorize="isAuthenticated()" class="dropdown active"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#"><span sec:authentication="principal.username">Nom utilisateur</span> <span class="caret"></span></a>
+							data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-label="Mon compte"></span> <span class="caret"></span></a>
 							<ul class="dropdown-menu">
+								<li class="dropdown-header"><span>Connecté en temps que : </span><span sec:authentication="principal.username">Nom utilisateur</span></li>
+								<li role="separator" class="divider"></li>
 								<li><a th:href="@{/user/changePwd}">Changer mon mot de passe</a></li>
 								<li><a th:href="@{/logout}">Me déconnecter</a></li>
 							</ul>

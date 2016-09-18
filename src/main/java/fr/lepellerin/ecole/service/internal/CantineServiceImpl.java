@@ -197,7 +197,7 @@ public class CantineServiceImpl implements CantineService {
       throw new TechnicalException("Pas d'activité cantine sélectionné");
     }
     final Activite activite = new Activite();
-    activite.setId(1);
+    activite.setId(Integer.valueOf(p.getValeurParametre()));
     return activite;
   }
 
