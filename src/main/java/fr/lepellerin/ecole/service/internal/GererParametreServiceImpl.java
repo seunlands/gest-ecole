@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import fr.lepellerin.ecole.bean.ParametreWeb;
 import fr.lepellerin.ecole.bean.enums.EnumParametreWeb;
@@ -59,6 +60,29 @@ public class GererParametreServiceImpl implements GererParametreService {
       } else {
         //on maj
         cantineParam.setValeurParametre(idCantine.toString());
+      }
+    }
+    
+  }
+  
+  @Override
+  @Transactional(readOnly = false)
+  public void saveOffsetResa(final String offset) {
+    if (StringUtils.isEmpty(offset)) {
+      //on le supprime
+      parametreRepo.delete(EnumParametreWeb.ID_OFFSET_RESA.getId());
+    } else {
+      final ParametreWeb offsetParam = parametreRepo.findOne(EnumParametreWeb.ID_OFFSET_RESA.getId());
+      if (offsetParam == null) {
+        //on cree
+        final ParametreWeb param = new ParametreWeb();
+        param.setValeurParametre(offset);
+        param.setId(EnumParametreWeb.ID_OFFSET_RESA.getId());
+        param.setLibelleParametre(EnumParametreWeb.ID_OFFSET_RESA.getLibelle());
+        this.parametreRepo.save(param);
+      } else {
+        //on maj
+        offsetParam.setValeurParametre(offset);
       }
     }
     

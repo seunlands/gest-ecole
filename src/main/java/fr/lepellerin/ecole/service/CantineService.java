@@ -17,17 +17,24 @@
 
 package fr.lepellerin.ecole.service;
 
+import fr.lepellerin.ecole.bean.Activite;
 import fr.lepellerin.ecole.bean.Famille;
+import fr.lepellerin.ecole.exceptions.FunctionalException;
 import fr.lepellerin.ecole.exceptions.TechnicalException;
 import fr.lepellerin.ecole.service.dto.PlanningDto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.YearMonth;
 
 public interface CantineService {
 
   PlanningDto getDateOuvert(YearMonth anneeMois, Famille famille) throws TechnicalException;
 
-  String reserver(LocalDate date, int individuId, Famille famille) throws TechnicalException;
+  String reserver(LocalDate date, int individuId, Famille famille) throws FunctionalException, TechnicalException;
+
+  Activite getCantineActivite() throws TechnicalException;
+
+  LocalDateTime getLimiteResaCantine(LocalDate date);
 
 }

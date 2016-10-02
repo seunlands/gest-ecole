@@ -25,6 +25,11 @@ function fnSelectTd() {
 				$('#' + caseId[0] + '_' + caseId[1]).addClass('libre');
 				$('#' + caseId[0] + '_' + caseId[1]).removeClass('reserve');				
 			}
+		},
+		error: function() {
+			if (!alert('Erreur lors de la sauvegarde !')) {
+				window.location.reload();
+			}
 		}
 	});
 }

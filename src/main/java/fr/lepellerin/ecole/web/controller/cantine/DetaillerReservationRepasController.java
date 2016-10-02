@@ -18,12 +18,15 @@
 package fr.lepellerin.ecole.web.controller.cantine;
 
 import fr.lepellerin.ecole.bean.security.CurrentUser;
+import fr.lepellerin.ecole.exceptions.FunctionalException;
 import fr.lepellerin.ecole.exceptions.TechnicalException;
 import fr.lepellerin.ecole.service.CantineService;
 import fr.lepellerin.ecole.service.dto.PlanningDto;
 import fr.lepellerin.ecole.utils.GeDateUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,12 +74,18 @@ public class DetaillerReservationRepasController {
 
   @RequestMapping(value = "/reserver")
   @ResponseBody
-  public String reserver(@RequestParam final String date, @RequestParam final int individuId) throws TechnicalException {
+  public ResponseEntity<String> reserver(@RequestParam final String date, @RequestParam final int individuId) throws TechnicalException {
     final CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
         .getPrincipal();
     final LocalDate localDate = LocalDate.parse(date,
         DateTimeFormatter.ofPattern(GeDateUtils.DATE_FORMAT_YYYYMMDD, Locale.ROOT));
-    return this.cantineService.reserver(localDate, individuId, user.getUser().getFamille());
+    String result;
+    try {
+      result = this.cantineService.reserver(localDate, individuId, user.getUser().getFamille());
+      return ResponseEntity.ok(result);
+    } catch (FunctionalException e) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    }
   }
 
   /**

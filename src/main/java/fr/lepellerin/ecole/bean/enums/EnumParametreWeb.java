@@ -20,7 +20,9 @@ package fr.lepellerin.ecole.bean.enums;
 
 public enum EnumParametreWeb {
 
-  ID_ACTIVITE_CANTINE(1, "ID activite cantine");
+  ID_ACTIVITE_CANTINE(1, "ID activite cantine"),
+  
+  ID_OFFSET_RESA(2, "ID offset resa");
 
   private final int id;
   

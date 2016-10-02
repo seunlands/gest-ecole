@@ -12,4 +12,6 @@ public interface GererParametreService {
 
   ParametreDto getIdActiviteCantine();
 
+  void saveOffsetResa(String offset);
+
 }

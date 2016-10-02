@@ -3,9 +3,12 @@ package fr.lepellerin.ecole.web.controller.admin;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +30,7 @@ public class GererParametreController {
   /**
    * model attribute name for form.
    */
-  private static final String MODEL_FORM = "form";
+  private static final String MODEL_FORM = "gererParametreForm";
   
   /**
    * model attribute name for activities.
@@ -47,9 +50,12 @@ public class GererParametreController {
   }
   
   @RequestMapping(value = "/submit", method = RequestMethod.POST)
-  public String submit(@ModelAttribute final GererParametreForm form, final Model model) {
-    this.gpService.saveParamCantine(form.getIdActCantine());
-    model.addAttribute(MODEL_FORM, this.addForm());
+  public String submit(@Valid final GererParametreForm gererParametreForm, final BindingResult result, final Model model) {
+    if (result.hasErrors()) {
+     return VUE;
+    }
+    this.gpService.saveParamCantine(gererParametreForm.getIdActCantine());
+    this.gpService.saveOffsetResa(gererParametreForm.getOffsetResa());
     return VUE;
   }
   
@@ -57,8 +63,12 @@ public class GererParametreController {
     final GererParametreForm form = new GererParametreForm();
     final List<ParametreDto> params = this.gpService.getAllParametre();
     final ParametreDto cantineDto = this.findParamById(params, EnumParametreWeb.ID_ACTIVITE_CANTINE.getId());
+    final ParametreDto offsetDto = this.findParamById(params, EnumParametreWeb.ID_OFFSET_RESA.getId());
     if (cantineDto != null) {
       form.setIdActCantine(Integer.valueOf(cantineDto.getValeurParametre()));
+    }
+    if (offsetDto != null) {
+      form.setOffsetResa(offsetDto.getValeurParametre());
     }
     return form;
   }
