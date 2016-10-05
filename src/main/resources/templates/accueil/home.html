@@ -13,6 +13,17 @@
 				Configurez-le <a th:href="@{/admin/gererParametre/init}">ici</a>.
 			</div>
 			<p>Bienvenue dans le portail de l'école Notre Dame du Pellerin.</p>
+			<br />
+			<div sec:authorize="hasRole('ROLE_FAMILLE')" class="panel panel-default">
+				<div class="panel-heading">
+					Fonctionnalités disponibles
+				</div>
+				<div class="panel-body">
+					<div class="list-group">
+						<a class="list-group-item" th:href="@{/cantine/details/init}">Consulter et gérér la réservation des repas de vos enfants</a>
+					</div>
+				</div>
+			</div>
 			
 		</div>
 	</body>
