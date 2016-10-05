@@ -31,4 +31,7 @@ public interface OuvertureRepository extends JpaRepository<Ouverture, Integer> {
 
   @Query("from Ouverture o where o.activite = ?1 and o.groupe = ?2 and date between ?3 and ?4 order by date")
   List<Ouverture> findByActiviteAndGroupeAndPeriode(Activite activite, Groupe groupe, Date debutPeriode, Date finPeriode);
+  
+  
+  List<Ouverture> findByActivite(Activite activite);
 }

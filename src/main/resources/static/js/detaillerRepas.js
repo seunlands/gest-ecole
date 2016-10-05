@@ -33,3 +33,8 @@ function fnSelectTd() {
 		}
 	});
 }
+
+function fnSelectMois() {
+	$('#repasForm').submit();
+}
+

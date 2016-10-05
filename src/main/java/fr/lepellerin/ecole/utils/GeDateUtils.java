@@ -27,6 +27,8 @@ public class GeDateUtils {
 
   public static final String DATE_FORMAT_YYYYMMDD = "yyyyMMdd";
 
+  public static final String DATE_FORMAT_YYYYMM = "yyyyMM";
+
   /**
    * private constructor : util class.
    */

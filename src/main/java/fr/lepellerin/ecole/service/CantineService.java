@@ -21,11 +21,13 @@ import fr.lepellerin.ecole.bean.Activite;
 import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.exceptions.FunctionalException;
 import fr.lepellerin.ecole.exceptions.TechnicalException;
+import fr.lepellerin.ecole.service.dto.ComboItemDto;
 import fr.lepellerin.ecole.service.dto.PlanningDto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
+import java.util.List;
 
 public interface CantineService {
 
@@ -36,5 +38,7 @@ public interface CantineService {
   Activite getCantineActivite() throws TechnicalException;
 
   LocalDateTime getLimiteResaCantine(LocalDate date);
+
+  List<ComboItemDto> getMoisOuvertCantine() throws TechnicalException;
 
 }

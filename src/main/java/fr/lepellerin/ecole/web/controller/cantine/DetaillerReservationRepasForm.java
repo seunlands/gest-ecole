@@ -9,13 +9,13 @@ public class DetaillerReservationRepasForm implements Serializable {
    */
   private static final long serialVersionUID = 1L;
 
-  private String anneeMois;
+  private Integer anneeMois;
 
-  public String getAnneeMois() {
+  public Integer getAnneeMois() {
     return anneeMois;
   }
 
-  public void setAnneeMois(final String anneeMois) {
+  public void setAnneeMois(final Integer anneeMois) {
     this.anneeMois = anneeMois;
   }
 

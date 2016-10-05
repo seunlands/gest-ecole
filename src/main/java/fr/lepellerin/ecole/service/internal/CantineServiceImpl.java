@@ -23,11 +23,15 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,8 +55,10 @@ import fr.lepellerin.ecole.repo.ParametreWebRepository;
 import fr.lepellerin.ecole.repo.UniteRepository;
 import fr.lepellerin.ecole.service.CantineService;
 import fr.lepellerin.ecole.service.dto.CaseDto;
+import fr.lepellerin.ecole.service.dto.ComboItemDto;
 import fr.lepellerin.ecole.service.dto.LigneDto;
 import fr.lepellerin.ecole.service.dto.PlanningDto;
+import fr.lepellerin.ecole.utils.GeDateUtils;
 
 @Service
 public class CantineServiceImpl implements CantineService {
@@ -201,6 +207,27 @@ public class CantineServiceImpl implements CantineService {
       }
     }
     return limiteResa;
+  }
+  
+  @Override
+  @Transactional(readOnly = true)
+  public List<ComboItemDto> getMoisOuvertCantine() throws TechnicalException {
+    final Activite activite = this.getCantineActivite();
+    final List<Ouverture> ouvertures = this.ouvertureRepository.findByActivite(activite);
+    final Set<YearMonth> moisActs = new HashSet<>();
+    moisActs.add(YearMonth.now());
+    ouvertures.sort((o1, o2) -> o1.getDate().compareTo(o2.getDate()));
+    ouvertures.forEach(o -> {
+      moisActs.add(YearMonth.from(((java.sql.Date) o.getDate()).toLocalDate()));
+    });
+    final List<ComboItemDto> comboMois = new ArrayList<>();
+    moisActs.forEach(ma -> {
+      final Integer id = Integer.valueOf(ma.format(DateTimeFormatter.ofPattern(GeDateUtils.DATE_FORMAT_YYYYMM)));
+      final String libelle = ma.format(DateTimeFormatter.ofPattern(GeDateUtils.DATE_FORMAT_ANNEE_MOIS_FULL));
+      comboMois.add(new ComboItemDto(id, libelle));
+    });
+    comboMois.sort((c1, c2) -> c1.getId().compareTo(c2.getId()));
+    return comboMois;
   }
 
 }

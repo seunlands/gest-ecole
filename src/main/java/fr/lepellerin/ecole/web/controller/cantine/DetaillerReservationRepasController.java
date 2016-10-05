@@ -17,12 +17,11 @@
 
 package fr.lepellerin.ecole.web.controller.cantine;
 
-import fr.lepellerin.ecole.bean.security.CurrentUser;
-import fr.lepellerin.ecole.exceptions.FunctionalException;
-import fr.lepellerin.ecole.exceptions.TechnicalException;
-import fr.lepellerin.ecole.service.CantineService;
-import fr.lepellerin.ecole.service.dto.PlanningDto;
-import fr.lepellerin.ecole.utils.GeDateUtils;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,10 +34,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import fr.lepellerin.ecole.bean.security.CurrentUser;
+import fr.lepellerin.ecole.exceptions.FunctionalException;
+import fr.lepellerin.ecole.exceptions.TechnicalException;
+import fr.lepellerin.ecole.service.CantineService;
+import fr.lepellerin.ecole.service.dto.ComboItemDto;
+import fr.lepellerin.ecole.service.dto.PlanningDto;
+import fr.lepellerin.ecole.utils.GeDateUtils;
 
 @Controller
 @RequestMapping("/cantine/details")
@@ -58,12 +60,12 @@ public class DetaillerReservationRepasController {
    * @throws TechnicalException 
    */
   @RequestMapping("/init")
-  public String init(final Model model) throws TechnicalException {
+  public String init(final Model model, @ModelAttribute("command") DetaillerReservationRepasForm form) throws TechnicalException {
     final CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
         .getPrincipal();
 
-    final YearMonth moisActuel = YearMonth.now();
-
+    final YearMonth moisActuel = YearMonth.parse(form.getAnneeMois().toString(), DateTimeFormatter.ofPattern(GeDateUtils.DATE_FORMAT_YYYYMM));
+        
     final PlanningDto planning = this.cantineService.getDateOuvert(moisActuel,
         user.getUser().getFamille());
 
@@ -97,9 +99,14 @@ public class DetaillerReservationRepasController {
   public DetaillerReservationRepasForm addCommand() {
     final DetaillerReservationRepasForm form = new DetaillerReservationRepasForm();
     final YearMonth moisActuel = YearMonth.now();
-    form.setAnneeMois(
-        moisActuel.format(DateTimeFormatter.ofPattern(GeDateUtils.DATE_FORMAT_ANNEE_MOIS_FULL)));
+    final Integer intMois = Integer.valueOf(moisActuel.format(DateTimeFormatter.ofPattern(GeDateUtils.DATE_FORMAT_YYYYMM)));
+    form.setAnneeMois(intMois);
     return form;
+  }
+  
+  @ModelAttribute("moisActivites")
+  public List<ComboItemDto> addMoisToModel() throws TechnicalException {
+    return this.cantineService.getMoisOuvertCantine();
   }
 
 }

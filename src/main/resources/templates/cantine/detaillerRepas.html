@@ -16,13 +16,13 @@
 			<div class="page-header">
 				<h1>Détail des réservations des repas</h1>
 			</div>
-			<form role="form" th:action="@{/cantine/detail/submit}" th:object="${command}" method="post">
+			<form role="form" th:action="@{/cantine/details/init}" th:object="${command}" method="post" id="repasForm">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Détail des réservations pour le mois de <span th:remove="tag" th:inline="text">[[${command.anneeMois}]]</span>
-						<span >
-							<i class="icon-calendar">&nbsp;</i>
-						</span>
+						Détail des réservations pour le mois de &nbsp;
+						<select th:field="*{anneeMois}" onchange="fnSelectMois();">
+							<option th:each="mois : ${moisActivites}" th:value="${mois.id}" th:text="${mois.libelle}"/>
+						</select>
 					</div>
 					<div class="panel-body">
 						
