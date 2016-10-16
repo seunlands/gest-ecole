@@ -141,7 +141,7 @@ public class CantineServiceImpl implements CantineService {
     final Unite unite = this.uniteRepository.findOneByActiviteAndType(ict.getActivite(),
         "Unitaire");
     if ((reserve == null && consos != null && !consos.isEmpty())
-        || (reserve == false && consos != null && !consos.isEmpty())) {
+        || (reserve != null && reserve == false && consos != null && !consos.isEmpty())) {
       consos.forEach(c -> this.consommationRepository.delete(c));
       return "libre";
       // on supprime la conso
