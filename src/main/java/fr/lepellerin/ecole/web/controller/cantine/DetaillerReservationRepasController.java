@@ -83,7 +83,7 @@ public class DetaillerReservationRepasController {
         DateTimeFormatter.ofPattern(GeDateUtils.DATE_FORMAT_YYYYMMDD, Locale.ROOT));
     String result;
     try {
-      result = this.cantineService.reserver(localDate, individuId, user.getUser().getFamille());
+      result = this.cantineService.reserver(localDate, individuId, user.getUser().getFamille(), null);
       return ResponseEntity.ok(result);
     } catch (FunctionalException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

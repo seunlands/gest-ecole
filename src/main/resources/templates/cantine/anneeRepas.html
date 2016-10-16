@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+	<head>
+		<title>Réserver des repas pour l'année</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<div class="page-header">
+				<h1>Réserver des repas pour l'année</h1>
+			</div>
+			
+				<form role="form" action="#" th:action="@{/cantine/annee/submit}" th:object="${command}" method="post">
+					<div class="panel panel-default">
+						<div class="panel-heading">Réserver les jours de cantine pour l'année</div>
+						<div class="panel-body">
+							<div class="checkbox">
+								<div th:if="*{presLundi}">
+									<label th:for="${#ids.next('lundi')}" class="checkbox"><input type="checkbox" th:field="*{lundi}"/>Lundi</label>					
+								</div>
+								<div th:if="*{presMardi}">
+									<label th:for="${#ids.next('mardi')}" class="checkbox"><input type="checkbox" th:field="*{mardi}"/>Mardi</label>				
+								</div>
+								<div th:if="*{presMercredi}">
+									<label th:for="${#ids.next('mercredi')}" class="checkbox"><input type="checkbox" th:field="*{mercredi}"/>Mercredi</label>				
+								</div>
+								<div th:if="*{presJeudi}">
+									<label th:for="${#ids.next('jeudi')}" class="checkbox"><input type="checkbox" th:field="*{jeudi}"/>Jeudi</label>				
+								</div>
+								<div th:if="*{presVendredi}">
+									<label th:for="${#ids.next('vendredi')}" class="checkbox"><input type="checkbox" th:field="*{vendredi}"/>Vendredi</label>				
+								</div>
+								<div th:if="*{presSamedi}">
+									<label th:for="${#ids.next('samedi')}" class="checkbox"><input type="checkbox" th:field="*{samedi}"/>Samedi</label>				
+								</div>
+								<div th:if="*{presDimanche}">
+									<label th:for="${#ids.next('dimanche')}" class="checkbox"><input type="checkbox" th:field="*{dimanche}"/>Dimanche</label>				
+								</div>
+							</div>
+							<div>
+								<button type="submit" class="btn btn-default" value="valider">Valider</button>
+							</div>
+						</div>
+					</div>
+				</form>
+		</div>
+	</body>
+</html>

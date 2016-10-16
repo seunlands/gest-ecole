@@ -17,6 +17,12 @@
 
 package fr.lepellerin.ecole.service;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.util.List;
+
 import fr.lepellerin.ecole.bean.Activite;
 import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.exceptions.FunctionalException;
@@ -24,21 +30,21 @@ import fr.lepellerin.ecole.exceptions.TechnicalException;
 import fr.lepellerin.ecole.service.dto.ComboItemDto;
 import fr.lepellerin.ecole.service.dto.PlanningDto;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.YearMonth;
-import java.util.List;
-
 public interface CantineService {
 
   PlanningDto getDateOuvert(YearMonth anneeMois, Famille famille) throws TechnicalException;
-
-  String reserver(LocalDate date, int individuId, Famille famille) throws FunctionalException, TechnicalException;
 
   Activite getCantineActivite() throws TechnicalException;
 
   LocalDateTime getLimiteResaCantine(LocalDate date);
 
   List<ComboItemDto> getMoisOuvertCantine() throws TechnicalException;
+  
+  List<DayOfWeek> getJourOuvertCantine(final LocalDate startDate, final Famille famille) throws TechnicalException;
+
+  void reserver(LocalDate startDate, Famille famille, List<DayOfWeek> jours) throws TechnicalException;
+
+  String reserver(LocalDate date, int individuId, Famille famille, Boolean reserve)
+      throws FunctionalException, TechnicalException;
 
 }

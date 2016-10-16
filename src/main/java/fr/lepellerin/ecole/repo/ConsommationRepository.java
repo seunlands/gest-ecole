@@ -17,17 +17,18 @@
 
 package fr.lepellerin.ecole.repo;
 
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
 import fr.lepellerin.ecole.bean.Activite;
 import fr.lepellerin.ecole.bean.Consommation;
 import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.bean.Groupe;
 import fr.lepellerin.ecole.bean.Individu;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
-import java.util.Date;
-import java.util.List;
+import fr.lepellerin.ecole.bean.Inscription;
 
 public interface ConsommationRepository extends JpaRepository<Consommation, Integer> {
 
@@ -44,9 +45,9 @@ public interface ConsommationRepository extends JpaRepository<Consommation, Inte
   List<Consommation> findByFamilleInscriptionActiviteUniteEtatsPeriode(Famille famille,
       Activite act, Groupe groupe, List<String> etats, Date debut, Date fin);
 
-  @Query("from Consommation c where c.inscription.famille = ?1 and c.activite = ?2 "
+  @Query("from Consommation c where c.inscription = ?1 and c.activite = ?2 "
       + "and c.groupe = ?3 and c.date = ?4")
-  List<Consommation> findByFamilleInscriptionActiviteUniteDate(Famille famille, Activite act,
+  List<Consommation> findByInscriptionActiviteUniteDate(Inscription ict, Activite act,
       Groupe groupe, Date debut);
 
 }

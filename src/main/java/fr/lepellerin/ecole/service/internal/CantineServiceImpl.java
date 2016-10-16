@@ -13,10 +13,11 @@
 
    You should have received a copy of the GNU General Public License
    along with this program; if not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 package fr.lepellerin.ecole.service.internal;
 
+import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -71,7 +72,7 @@ public class CantineServiceImpl implements CantineService {
 
   @Autowired
   private InscriptionRepository ictRepository;
-  
+
   @Autowired
   private ParametreWebRepository paramRepo;
 
@@ -125,7 +126,7 @@ public class CantineServiceImpl implements CantineService {
 
   @Override
   @Transactional(readOnly = false)
-  public String reserver(final LocalDate date, final int individuId, final Famille famille) throws FunctionalException, TechnicalException {
+  public String reserver(final LocalDate date, final int individuId, final Famille famille, final Boolean reserve) throws FunctionalException, TechnicalException {
     final LocalDateTime heureResa = this.getLimiteResaCantine(date);
     if (!heureResa.isAfter(LocalDateTime.now())) {
       throw new ActNonModifiableException("activite non reservable");
@@ -136,14 +137,16 @@ public class CantineServiceImpl implements CantineService {
     final Inscription ict = icts.stream().filter(i -> individuId == i.getIndividu().getId())
         .findFirst().get();
     final List<Consommation> consos = this.consommationRepository
-        .findByFamilleInscriptionActiviteUniteDate(famille, activite, ict.getGroupe(), d);
+        .findByInscriptionActiviteUniteDate(ict, activite, ict.getGroupe(), d);
     final Unite unite = this.uniteRepository.findOneByActiviteAndType(ict.getActivite(),
         "Unitaire");
-    if (consos != null && !consos.isEmpty()) {
+    if ((reserve == null && consos != null && !consos.isEmpty())
+        || (reserve == false && consos != null && !consos.isEmpty())) {
       consos.forEach(c -> this.consommationRepository.delete(c));
       return "libre";
       // on supprime la conso
-    } else {
+    } else if ((reserve == null && (consos == null || consos.isEmpty()))
+        || (reserve == true &&  (consos == null || consos.isEmpty()))) {
       // cree la conso
       final Consommation conso = new Consommation();
       conso.setActivite(activite);
@@ -162,9 +165,30 @@ public class CantineServiceImpl implements CantineService {
       this.consommationRepository.save(conso);
       return "reserve";
     }
-    // etat reservation / present
-    // si annulation => on supprime la consommation
+    return "rien";
 
+  }
+
+  @Override
+  @Transactional(readOnly = false)
+  public void reserver(final LocalDate startDate, final Famille famille, final List<DayOfWeek> jours) throws TechnicalException {
+
+    final Activite activite = getCantineActivite();
+    final List<Inscription> icts = this.ictRepository.findByActiviteAndFamille(activite, famille);
+    icts.forEach(ict -> {
+      final List<Ouverture> ouvertures = this.ouvertureRepository
+          .findByActiviteAndGroupeAndDateDebut(activite, ict.getGroupe(), Date.from(Instant.from(startDate.atStartOfDay(ZoneId.systemDefault()))));
+      ouvertures.forEach(o -> {
+        final LocalDate date = LocalDate.from(((java.sql.Date) o.getDate()).toLocalDate());
+        try {
+          this.reserver(date, ict.getIndividu().getId(), famille, jours.contains(date.getDayOfWeek()));
+        } catch (TechnicalException e) {
+          //nothing to do
+        } catch (FunctionalException e) {
+          //nothing to do
+        }
+      });
+    });
   }
 
 
@@ -208,7 +232,7 @@ public class CantineServiceImpl implements CantineService {
     }
     return limiteResa;
   }
-  
+
   @Override
   @Transactional(readOnly = true)
   public List<ComboItemDto> getMoisOuvertCantine() throws TechnicalException {
@@ -228,6 +252,26 @@ public class CantineServiceImpl implements CantineService {
     });
     comboMois.sort((c1, c2) -> c1.getId().compareTo(c2.getId()));
     return comboMois;
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public List<DayOfWeek> getJourOuvertCantine(final LocalDate startDate, final Famille famille) throws TechnicalException {
+    final List<DayOfWeek> jours = new ArrayList<>();
+    final Activite activite = getCantineActivite();
+    final List<Inscription> icts = this.ictRepository.findByActiviteAndFamille(activite, famille);
+    icts.forEach(ict -> {
+      final List<Ouverture> ouvertures = this.ouvertureRepository
+          .findByActiviteAndGroupeAndDateDebut(activite, ict.getGroupe(), Date.from(Instant.from(startDate.atStartOfDay(ZoneId.systemDefault()))));
+      ouvertures.forEach(o -> {
+        final LocalDate date = LocalDate.from(((java.sql.Date) o.getDate()).toLocalDate());
+        if (!jours.contains(date.getDayOfWeek())) {
+          jours.add(date.getDayOfWeek());
+        }
+      });
+    });
+
+    return jours;
   }
 
 }

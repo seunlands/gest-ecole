@@ -12,7 +12,8 @@
 						<li sec:authorize="hasRole('ROLE_FAMILLE')" class="dropdown active"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">Cantine <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a th:href="@{/cantine/details/init}">Réserver des repas</a></li>
+								<li><a th:href="@{/cantine/details/init}">Détailler la réservation des repas</a></li>
+								<li><a th:href="@{/cantine/annee/init}">Faire les réservations sur toute l'année</a></li>
 							</ul>
 						</li>
 						
