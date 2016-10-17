@@ -27,19 +27,10 @@ import fr.lepellerin.ecole.bean.Activite;
 import fr.lepellerin.ecole.bean.Consommation;
 import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.bean.Groupe;
-import fr.lepellerin.ecole.bean.Individu;
 import fr.lepellerin.ecole.bean.Inscription;
 
 public interface ConsommationRepository extends JpaRepository<Consommation, Integer> {
 
-  Consommation findByActiviteAndIndividuAndDate(Activite activite, Individu individu, Date date);
-
-  @Query("from Consommation c where c.activite = ?1 and c.inscription.famille = ?2 and "
-      + "c.date between ?3 and ?4" + " order by date")
-  List<Consommation> findByActiviteAndFamilyBetweenDates(Activite activite, Famille famille,
-      Date dateInf, Date dateSup);
-
-  // TODO voir pour unite
   @Query("from Consommation c where c.inscription.famille = ?1 and c.activite = ?2 "
       + "and c.groupe = ?3 and c.etat in (?4) and c.date between ?5 and ?6")
   List<Consommation> findByFamilleInscriptionActiviteUniteEtatsPeriode(Famille famille,

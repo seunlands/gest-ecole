@@ -84,11 +84,11 @@ public class Message implements Serializable {
 
   private String type;
 
-  public int getIDmessage() {
+  public int getId() {
     return this.id;
   }
 
-  public void setIDmessage(int IDmessage) {
+  public void setId(int id) {
     this.id = id;
   }
 
