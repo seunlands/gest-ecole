@@ -17,6 +17,8 @@
 
 package fr.lepellerin.ecole.utils;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -63,5 +65,10 @@ public class GeDateUtils {
     cal.set(Calendar.MINUTE, 0);
     cal.set(Calendar.HOUR, 0);
     return cal;
+  }
+  
+  
+  public static LocalDateTime addHeureMinute(final LocalDateTime time, final int heures, final int minutes) {
+    return time.plus(heures * 60 + minutes, ChronoUnit.MINUTES);
   }
 }

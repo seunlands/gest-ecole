@@ -25,7 +25,6 @@ import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -214,13 +213,13 @@ public class CantineServiceImpl implements CantineService {
     final LocalTime midnight = LocalTime.MIDNIGHT;
     final LocalDateTime limiteResa = LocalDateTime.of(date, midnight);
     final ParametreWeb p = this.paramRepo.findOne(EnumParametreWeb.ID_OFFSET_RESA.getId());
+    int h = 0;
+    int m = 0;
     if (p != null) {
       if (p.getValeurParametre().startsWith("-")) {
         final String[] hm = p.getValeurParametre().substring(1).split(":");
-        final Integer h = Integer.valueOf(hm[0]);
-        final Integer m = Integer.valueOf(hm[1]);
-        limiteResa.plus(-h, ChronoUnit.HOURS);
-        limiteResa.plus(-m, ChronoUnit.MINUTES);
+        h = -Integer.valueOf(hm[0]);
+        m = Integer.valueOf(hm[1]);
       } else {
         String[] hm;
         if (p.getValeurParametre().startsWith("+")) {
@@ -228,13 +227,11 @@ public class CantineServiceImpl implements CantineService {
         } else {
           hm = p.getValeurParametre().split(":");
         }
-        final Integer h = Integer.valueOf(hm[0]);
-        final Integer m = Integer.valueOf(hm[1]);
-        limiteResa.plus(h, ChronoUnit.HOURS);
-        limiteResa.plus(m, ChronoUnit.MINUTES);
+        h = Integer.valueOf(hm[0]);
+        m = Integer.valueOf(hm[1]);
       }
     }
-    return limiteResa;
+    return GeDateUtils.addHeureMinute(limiteResa, h, m);
   }
 
   @Override
