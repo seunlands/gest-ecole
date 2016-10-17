@@ -37,7 +37,8 @@ public class ModeReglement implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDmode;
+  @Column(name = "IDmode")
+  private int id;
 
   @Column(name = "code_compta")
   private String codeCompta;
@@ -71,15 +72,12 @@ public class ModeReglement implements Serializable {
   @Column(name = "type_comptable")
   private String typeComptable;
 
-  public ModeReglement() {
-  }
-
   public int getIDmode() {
-    return this.IDmode;
+    return this.id;
   }
 
-  public void setIDmode(int IDmode) {
-    this.IDmode = IDmode;
+  public void setIDmode(int id) {
+    this.id = id;
   }
 
   public String getCodeCompta() {

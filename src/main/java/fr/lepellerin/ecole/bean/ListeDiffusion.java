@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -35,19 +36,18 @@ public class ListeDiffusion implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDliste;
+  @Column(name = "IDliste")
+  private int id;
 
   private String nom;
 
-  public ListeDiffusion() {
+
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDliste() {
-    return this.IDliste;
-  }
-
-  public void setIDliste(int IDliste) {
-    this.IDliste = IDliste;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getNom() {

@@ -37,7 +37,8 @@ public class LotPrelevement implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDlot;
+  @Column(name = "IDlot")
+  private int id;
 
   private String date;
 
@@ -60,12 +61,12 @@ public class LotPrelevement implements Serializable {
   public LotPrelevement() {
   }
 
-  public int getIDlot() {
-    return this.IDlot;
+  public int getId() {
+    return this.id;
   }
 
-  public void setIDlot(int IDlot) {
-    this.IDlot = IDlot;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDate() {

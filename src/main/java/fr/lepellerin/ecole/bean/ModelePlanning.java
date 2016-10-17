@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -38,7 +39,8 @@ public class ModelePlanning implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDmodele;
+  @Column(name = "IDmodele")
+  private int id;
 
   @Lob
   private String donnees;
@@ -50,15 +52,12 @@ public class ModelePlanning implements Serializable {
   @Lob
   private String nom;
 
-  public ModelePlanning() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDmodele() {
-    return this.IDmodele;
-  }
-
-  public void setIDmodele(int IDmodele) {
-    this.IDmodele = IDmodele;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDonnees() {

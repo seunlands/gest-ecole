@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -36,7 +37,8 @@ public class NiveauScolaire implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDniveau;
+  @Column(name = "IDniveau")
+  private int id;
 
   private String abrege;
 
@@ -45,15 +47,12 @@ public class NiveauScolaire implements Serializable {
 
   private int ordre;
 
-  public NiveauScolaire() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDniveau() {
-    return this.IDniveau;
-  }
-
-  public void setIDniveau(int IDniveau) {
-    this.IDniveau = IDniveau;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getAbrege() {

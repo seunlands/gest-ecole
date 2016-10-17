@@ -37,25 +37,24 @@ public class NomadeArchivage implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDarchive;
+  @Column(name = "IDarchive")
+  private int id;
 
   private String date;
 
-  private String ID_appareil;
+  @Column(name = "ID_appareil")
+  private String idAppareil;
 
   @Lob
   @Column(name = "nom_fichier")
   private String nomFichier;
 
-  public NomadeArchivage() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDarchive() {
-    return this.IDarchive;
-  }
-
-  public void setIDarchive(int IDarchive) {
-    this.IDarchive = IDarchive;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDate() {
@@ -66,12 +65,12 @@ public class NomadeArchivage implements Serializable {
     this.date = date;
   }
 
-  public String getID_appareil() {
-    return this.ID_appareil;
+  public String getIdAppareil() {
+    return this.idAppareil;
   }
 
-  public void setID_appareil(String ID_appareil) {
-    this.ID_appareil = ID_appareil;
+  public void setIdAppareil(String idAppareil) {
+    this.idAppareil = idAppareil;
   }
 
   public String getNomFichier() {

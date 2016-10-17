@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -35,7 +36,8 @@ public class JourFerie implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDferie;
+  @Column(name = "IDferie")
+  private int id;
 
   private int annee;
 
@@ -47,15 +49,12 @@ public class JourFerie implements Serializable {
 
   private String type;
 
-  public JourFerie() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDferie() {
-    return this.IDferie;
-  }
-
-  public void setIDferie(int IDferie) {
-    this.IDferie = IDferie;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public int getAnnee() {

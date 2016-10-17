@@ -39,7 +39,8 @@ public class ModeleContrat implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDmodele;
+  @Column(name = "IDmemo")
+  private int id;
 
   @Column(name = "date_debut")
   private String dateDebut;
@@ -64,15 +65,12 @@ public class ModeleContrat implements Serializable {
   @Lob
   private String observations;
 
-  public ModeleContrat() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDmodele() {
-    return this.IDmodele;
-  }
-
-  public void setIDmodele(int IDmodele) {
-    this.IDmodele = IDmodele;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDateDebut() {

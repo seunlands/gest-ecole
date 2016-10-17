@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -37,7 +38,8 @@ public class NomTarif implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDnom_tarif;
+  @Column(name = "IDnom_tarif")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDactivite")
@@ -52,12 +54,12 @@ public class NomTarif implements Serializable {
   public NomTarif() {
   }
 
-  public int getIDnom_tarif() {
-    return this.IDnom_tarif;
+  public int getId() {
+    return this.id;
   }
 
-  public void setIDnom_tarif(int IDnom_tarif) {
-    this.IDnom_tarif = IDnom_tarif;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public Activite getActivite() {

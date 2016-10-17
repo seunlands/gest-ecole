@@ -23,6 +23,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +47,8 @@ import fr.lepellerin.ecole.utils.GeDateUtils;
 @Controller
 @RequestMapping("/cantine/details")
 public class DetaillerReservationRepasController {
+  
+  private static final Logger LOGGER = LoggerFactory.getLogger(DetaillerReservationRepasController.class);
 
   private static final String VUE = "cantine/detaillerRepas";
 
@@ -86,6 +90,7 @@ public class DetaillerReservationRepasController {
       result = this.cantineService.reserver(localDate, individuId, user.getUser().getFamille(), null);
       return ResponseEntity.ok(result);
     } catch (FunctionalException e) {
+      LOGGER.error("Une erreur fonctionnelle s'est produite : " + e.getMessage(), e);
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
   }

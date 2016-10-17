@@ -39,7 +39,8 @@ public class Mandat implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDmandat;
+  @Column(name = "IDlot")
+  private int id;
 
   private int actif;
 
@@ -85,15 +86,12 @@ public class Mandat implements Serializable {
 
   private String type;
 
-  public Mandat() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDmandat() {
-    return this.IDmandat;
-  }
-
-  public void setIDmandat(int IDmandat) {
-    this.IDmandat = IDmandat;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public int getActif() {

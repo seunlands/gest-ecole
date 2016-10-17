@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -31,25 +32,22 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "lots_rappels")
-
 public class LotRappel implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDlot;
+  @Column(name = "IDlot")
+  private int id;
 
   @Lob
   private String nom;
 
-  public LotRappel() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDlot() {
-    return this.IDlot;
-  }
-
-  public void setIDlot(int IDlot) {
-    this.IDlot = IDlot;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getNom() {

@@ -39,7 +39,8 @@ public class Message implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDmessage;
+  @Column(name = "IDmemo")
+  private int id;
 
   @Column(name = "afficher_accueil")
   private int afficherAccueil;
@@ -83,15 +84,12 @@ public class Message implements Serializable {
 
   private String type;
 
-  public Message() {
-  }
-
   public int getIDmessage() {
-    return this.IDmessage;
+    return this.id;
   }
 
   public void setIDmessage(int IDmessage) {
-    this.IDmessage = IDmessage;
+    this.id = id;
   }
 
   public int getAfficherAccueil() {

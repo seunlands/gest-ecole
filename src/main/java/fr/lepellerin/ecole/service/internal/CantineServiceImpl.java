@@ -34,6 +34,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,6 +65,8 @@ import fr.lepellerin.ecole.utils.GeDateUtils;
 
 @Service
 public class CantineServiceImpl implements CantineService {
+  
+  private static final Logger LOGGER = LoggerFactory.getLogger(CantineServiceImpl.class);
 
   @Autowired
   private OuvertureRepository ouvertureRepository;
@@ -183,9 +187,9 @@ public class CantineServiceImpl implements CantineService {
         try {
           this.reserver(date, ict.getIndividu().getId(), famille, jours.contains(date.getDayOfWeek()));
         } catch (TechnicalException e) {
-          //nothing to do
+          LOGGER.error("Une erreur technique s'est produite : " + e.getMessage(), e);
         } catch (FunctionalException e) {
-          //nothing to do
+          LOGGER.warn("Une erreur fonctionnelle s'est produite : " + e.getMessage(), e);
         }
       });
     });

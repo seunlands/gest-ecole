@@ -39,7 +39,8 @@ public class ModeleEmail implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDmodele;
+  @Column(name = "IDmodele")
+  private int id;
 
   @Lob
   private String categorie;
@@ -63,15 +64,12 @@ public class ModeleEmail implements Serializable {
   @Column(name = "texte_xml")
   private String texteXml;
 
-  public ModeleEmail() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDmodele() {
-    return this.IDmodele;
-  }
-
-  public void setIDmodele(int IDmodele) {
-    this.IDmodele = IDmodele;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getCategorie() {

@@ -36,7 +36,8 @@ public class MessageCategorie implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDcategorie;
+  @Column(name = "IDmemo")
+  private int id;
 
   @Column(name = "afficher_accueil")
   private int afficherAccueil;
@@ -48,15 +49,12 @@ public class MessageCategorie implements Serializable {
 
   private String priorite;
 
-  public MessageCategorie() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDcategorie() {
-    return this.IDcategorie;
-  }
-
-  public void setIDcategorie(int IDcategorie) {
-    this.IDcategorie = IDcategorie;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public int getAfficherAccueil() {

@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -32,12 +33,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "memo_journee")
-
 public class MemoJournee implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDmemo;
+  @Column(name = "IDmemo")
+  private int id;
 
   private String date;
 
@@ -47,15 +48,12 @@ public class MemoJournee implements Serializable {
 
   private String texte;
 
-  public MemoJournee() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDmemo() {
-    return this.IDmemo;
-  }
-
-  public void setIDmemo(int IDmemo) {
-    this.IDmemo = IDmemo;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDate() {

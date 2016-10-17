@@ -31,12 +31,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "medecins")
-
 public class Medecin implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDmedecin;
+  @Column(name = "IDmedecin")
+  private int id;
 
   @Column(name = "cp_resid")
   private String cpResid;
@@ -57,15 +57,12 @@ public class Medecin implements Serializable {
   @Column(name = "ville_resid")
   private String villeResid;
 
-  public Medecin() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDmedecin() {
-    return this.IDmedecin;
-  }
-
-  public void setIDmedecin(int IDmedecin) {
-    this.IDmedecin = IDmedecin;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getCpResid() {
