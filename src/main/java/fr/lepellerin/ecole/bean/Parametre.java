@@ -45,10 +45,8 @@ public class Parametre implements Serializable {
   private String nom;
 
   @Lob
-  private String parametre;
-
-  public Parametre() {
-  }
+  @Column(name = "parametre")
+  private String valeur;
 
   public int getId() {
     return this.id;
@@ -74,12 +72,12 @@ public class Parametre implements Serializable {
     this.nom = nom;
   }
 
-  public String getParametre() {
-    return this.parametre;
+  public String getValeur() {
+    return this.valeur;
   }
 
-  public void setParametre(String parametre) {
-    this.parametre = parametre;
+  public void setValeur(String valeur) {
+    this.valeur = valeur;
   }
 
 }

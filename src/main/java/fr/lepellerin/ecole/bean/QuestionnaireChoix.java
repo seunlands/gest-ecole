@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -38,7 +39,8 @@ public class QuestionnaireChoix implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDchoix;
+  @Column(name = "IDchoix")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDquestion")
@@ -51,15 +53,12 @@ public class QuestionnaireChoix implements Serializable {
 
   private int visible;
 
-  public QuestionnaireChoix() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDchoix() {
-    return this.IDchoix;
-  }
-
-  public void setIDchoix(int IDchoix) {
-    this.IDchoix = IDchoix;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public QuestionnaireQuestion getQuestion() {

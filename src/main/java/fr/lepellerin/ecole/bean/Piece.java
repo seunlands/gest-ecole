@@ -38,7 +38,8 @@ public class Piece implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDpiece;
+  @Column(name = "IDpiece")
+  private int id;
 
   @Column(name = "date_debut")
   private String dateDebut;
@@ -58,15 +59,12 @@ public class Piece implements Serializable {
   @JoinColumn(name = "IDtype_piece")
   private TypePiece typePiece;
 
-  public Piece() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDpiece() {
-    return this.IDpiece;
-  }
-
-  public void setIDpiece(int IDpiece) {
-    this.IDpiece = IDpiece;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDateDebut() {

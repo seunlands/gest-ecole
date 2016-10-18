@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -37,7 +38,8 @@ public class ResponsablesActivite implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDresponsable;
+  @Column(name = "IDresponsable")
+  private int id;
 
   private int defaut;
 
@@ -51,15 +53,12 @@ public class ResponsablesActivite implements Serializable {
 
   private String sexe;
 
-  public ResponsablesActivite() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDresponsable() {
-    return this.IDresponsable;
-  }
-
-  public void setIDresponsable(int IDresponsable) {
-    this.IDresponsable = IDresponsable;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public int getDefaut() {

@@ -39,7 +39,8 @@ public class PesPiece implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDpiece;
+  @Column(name = "IDpiece")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDfacture")
@@ -71,7 +72,8 @@ public class PesPiece implements Serializable {
   @Column(name = "prelevement_iban")
   private String prelevementIban;
 
-  private int prelevement_IDmandat;
+  @Column(name = "prelevement_IDmandat")
+  private int prelevementIdMandat;
 
   @Lob
   @Column(name = "prelevement_rum")
@@ -93,15 +95,12 @@ public class PesPiece implements Serializable {
   @Lob
   private String type;
 
-  public PesPiece() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDpiece() {
-    return this.IDpiece;
-  }
-
-  public void setIDpiece(int IDpiece) {
-    this.IDpiece = IDpiece;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public Facture getFacture() {
@@ -184,12 +183,12 @@ public class PesPiece implements Serializable {
     this.prelevementIban = prelevementIban;
   }
 
-  public int getPrelevement_IDmandat() {
-    return this.prelevement_IDmandat;
+  public int getPrelevementIdMandat() {
+    return this.prelevementIdMandat;
   }
 
-  public void setPrelevement_IDmandat(int prelevement_IDmandat) {
-    this.prelevement_IDmandat = prelevement_IDmandat;
+  public void setPrelevementIdMandat(int prelevementIdMandat) {
+    this.prelevementIdMandat = prelevementIdMandat;
   }
 
   public String getPrelevementRum() {

@@ -38,7 +38,8 @@ public class Reglement implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDreglement;
+  @Column(name = "IDreglement")
+  private int id;
 
   @Column(name = "avis_depot")
   private String avisDepot;
@@ -54,7 +55,8 @@ public class Reglement implements Serializable {
   @Column(name = "encaissement_attente")
   private int encaissementAttente;
 
-  private int IDcompte;
+  @Column(name = "IDcompte")
+  private int idCompte;
 
   @ManyToOne
   @JoinColumn(name = "IDcompte_payeur")
@@ -86,7 +88,7 @@ public class Reglement implements Serializable {
 
   @ManyToOne
   @JoinColumn(name = "IDprestation_frais")
-  private Prestation prestation_frais;
+  private Prestation prestationFrais;
 
   @ManyToOne
   @JoinColumn(name = "IDutilisateur")
@@ -102,15 +104,12 @@ public class Reglement implements Serializable {
 
   private String observations;
 
-  public Reglement() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDreglement() {
-    return this.IDreglement;
-  }
-
-  public void setIDreglement(int IDreglement) {
-    this.IDreglement = IDreglement;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getAvisDepot() {
@@ -153,12 +152,12 @@ public class Reglement implements Serializable {
     this.encaissementAttente = encaissementAttente;
   }
 
-  public int getIDcompte() {
-    return this.IDcompte;
+  public int getIdCompte() {
+    return this.idCompte;
   }
 
-  public void setIDcompte(int IDcompte) {
-    this.IDcompte = IDcompte;
+  public void setIdCompte(int idCompte) {
+    this.idCompte = idCompte;
   }
 
   public ComptePayeur getComptePayeur() {
@@ -217,12 +216,12 @@ public class Reglement implements Serializable {
     this.prelevement = prelevement;
   }
 
-  public Prestation getPrestation_frais() {
-    return prestation_frais;
+  public Prestation getPrestationFrais() {
+    return prestationFrais;
   }
 
-  public void setPrestation_frais(Prestation prestation_frais) {
-    this.prestation_frais = prestation_frais;
+  public void setPrestationFrais(Prestation prestationFrais) {
+    this.prestationFrais = prestationFrais;
   }
 
   public Utilisateur getUtilisateur() {

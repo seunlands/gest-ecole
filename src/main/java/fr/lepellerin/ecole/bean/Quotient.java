@@ -39,7 +39,8 @@ public class Quotient implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDquotient;
+  @Column(name = "IDquotient")
+  private int id;
 
   @Column(name = "date_debut")
   private String dateDebut;
@@ -58,15 +59,12 @@ public class Quotient implements Serializable {
 
   private double revenu;
 
-  public Quotient() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDquotient() {
-    return this.IDquotient;
-  }
-
-  public void setIDquotient(int IDquotient) {
-    this.IDquotient = IDquotient;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDateDebut() {

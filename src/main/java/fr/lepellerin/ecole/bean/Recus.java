@@ -37,7 +37,8 @@ public class Recus implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDrecu;
+  @Column(name = "IDrecu")
+  private int id;
 
   @Column(name = "date_edition")
   private String dateEdition;
@@ -56,15 +57,12 @@ public class Recus implements Serializable {
 
   private int numero;
 
-  public Recus() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDrecu() {
-    return this.IDrecu;
-  }
-
-  public void setIDrecu(int IDrecu) {
-    this.IDrecu = IDrecu;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDateEdition() {

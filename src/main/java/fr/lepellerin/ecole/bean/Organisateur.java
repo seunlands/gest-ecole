@@ -36,7 +36,8 @@ public class Organisateur implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDorganisateur;
+  @Column(name = "IDorganisateur")
+  private int id;
 
   @Column(name = "code_ape")
   private String codeApe;
@@ -68,15 +69,12 @@ public class Organisateur implements Serializable {
 
   private String ville;
 
-  public Organisateur() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDorganisateur() {
-    return this.IDorganisateur;
-  }
-
-  public void setIDorganisateur(int IDorganisateur) {
-    this.IDorganisateur = IDorganisateur;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getCodeApe() {

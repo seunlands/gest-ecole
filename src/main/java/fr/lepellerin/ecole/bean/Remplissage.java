@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -36,7 +37,8 @@ public class Remplissage implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDremplissage;
+  @Column(name = "IDremplissage")
+  private int id;
 
   private String date;
 
@@ -54,15 +56,12 @@ public class Remplissage implements Serializable {
 
   private int places;
 
-  public Remplissage() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDremplissage() {
-    return this.IDremplissage;
-  }
-
-  public void setIDremplissage(int IDremplissage) {
-    this.IDremplissage = IDremplissage;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDate() {

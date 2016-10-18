@@ -37,7 +37,8 @@ public class PesLot implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDlot;
+  @Column(name = "IDlot")
+  private int id;
 
   @Column(name = "code_budget")
   private String codeBudget;
@@ -68,9 +69,11 @@ public class PesLot implements Serializable {
   @Column(name = "id_poste")
   private String idPoste;
 
-  private int IDcompte;
+  @Column(name = "IDcompte")
+  private int idCompte;
 
-  private int IDmode;
+  @Column(name = "IDmode")
+  private int idMode;
 
   private int mois;
 
@@ -96,15 +99,12 @@ public class PesLot implements Serializable {
 
   private int verrouillage;
 
-  public PesLot() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDlot() {
-    return this.IDlot;
-  }
-
-  public void setIDlot(int IDlot) {
-    this.IDlot = IDlot;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getCodeBudget() {
@@ -187,20 +187,20 @@ public class PesLot implements Serializable {
     this.idPoste = idPoste;
   }
 
-  public int getIDcompte() {
-    return this.IDcompte;
+  public int getIdCompte() {
+    return this.idCompte;
   }
 
-  public void setIDcompte(int IDcompte) {
-    this.IDcompte = IDcompte;
+  public void setIdCompte(int idCompte) {
+    this.idCompte = idCompte;
   }
 
-  public int getIDmode() {
-    return this.IDmode;
+  public int getIdMode() {
+    return this.idMode;
   }
 
-  public void setIDmode(int IDmode) {
-    this.IDmode = IDmode;
+  public void setIDmode(int idMode) {
+    this.idMode = idMode;
   }
 
   public int getMois() {

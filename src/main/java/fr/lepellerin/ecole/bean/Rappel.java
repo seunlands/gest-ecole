@@ -39,7 +39,8 @@ public class Rappel implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDrappel;
+  @Column(name = "IDrappel")
+  private int id;
 
   @Lob
   private String activites;
@@ -79,15 +80,12 @@ public class Rappel implements Serializable {
 
   private double solde;
 
-  public Rappel() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDrappel() {
-    return this.IDrappel;
-  }
-
-  public void setIDrappel(int IDrappel) {
-    this.IDrappel = IDrappel;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getActivites() {

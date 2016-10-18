@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -35,7 +36,8 @@ public class Restaurateur implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDrestaurateur;
+  @Column(name = "IDrestaurateur")
+  private int id;
 
   private String cp;
 
@@ -51,15 +53,12 @@ public class Restaurateur implements Serializable {
 
   private String ville;
 
-  public Restaurateur() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDrestaurateur() {
-    return this.IDrestaurateur;
-  }
-
-  public void setIDrestaurateur(int IDrestaurateur) {
-    this.IDrestaurateur = IDrestaurateur;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getCp() {

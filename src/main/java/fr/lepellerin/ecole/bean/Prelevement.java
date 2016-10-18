@@ -39,7 +39,8 @@ public class Prelevement implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDprelevement;
+  @Column(name = "IDprelevement")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDfacture")
@@ -49,7 +50,7 @@ public class Prelevement implements Serializable {
   @JoinColumn(name = "IDfamille")
   private Famille famille;
 
-  private int IDlot;
+  private int idLot;
 
   @ManyToOne
   @JoinColumn(name = "IDmandat")
@@ -98,15 +99,12 @@ public class Prelevement implements Serializable {
   @Lob
   private String type;
 
-  public Prelevement() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDprelevement() {
-    return this.IDprelevement;
-  }
-
-  public void setIDprelevement(int IDprelevement) {
-    this.IDprelevement = IDprelevement;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public Facture getFacture() {
@@ -125,12 +123,12 @@ public class Prelevement implements Serializable {
     this.famille = famille;
   }
 
-  public int getIDlot() {
-    return this.IDlot;
+  public int getIdLot() {
+    return this.idLot;
   }
 
-  public void setIDlot(int IDlot) {
-    this.IDlot = IDlot;
+  public void setIdLot(int idLot) {
+    this.idLot = idLot;
   }
 
   public Mandat getMandat() {

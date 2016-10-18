@@ -39,7 +39,8 @@ public class ProblemeSante implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDprobleme;
+  @Column(name = "IDprobleme")
+  private int id;
 
   @Column(name = "date_debut")
   private String dateDebut;
@@ -88,15 +89,12 @@ public class ProblemeSante implements Serializable {
   @Column(name = "traitement_medical")
   private int traitementMedical;
 
-  public ProblemeSante() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDprobleme() {
-    return this.IDprobleme;
-  }
-
-  public void setIDprobleme(int IDprobleme) {
-    this.IDprobleme = IDprobleme;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDateDebut() {

@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -37,23 +38,22 @@ public class RenseignementActivite implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDrenseignement;
+  @Column(name = "IDrenseignement")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDactivite")
   private Activite activite;
 
-  private int IDtype_renseignement;
+  @Column(name = "IDtype_renseignement")
+  private int idTyperenseignement;
 
-  public RenseignementActivite() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDrenseignement() {
-    return this.IDrenseignement;
-  }
-
-  public void setIDrenseignement(int IDrenseignement) {
-    this.IDrenseignement = IDrenseignement;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public Activite getActivite() {
@@ -64,12 +64,12 @@ public class RenseignementActivite implements Serializable {
     this.activite = activite;
   }
 
-  public int getIDtype_renseignement() {
-    return this.IDtype_renseignement;
+  public int getIdTypeRenseignement() {
+    return this.idTyperenseignement;
   }
 
-  public void setIDtype_renseignement(int IDtype_renseignement) {
-    this.IDtype_renseignement = IDtype_renseignement;
+  public void setIdTypeRenseignement(int idTyperenseignement) {
+    this.idTyperenseignement = idTyperenseignement;
   }
 
 }

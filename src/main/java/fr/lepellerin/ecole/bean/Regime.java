@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -35,19 +36,17 @@ public class Regime implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDregime;
+  @Column(name = "IDregime")
+  private int id;
 
   private String nom;
 
-  public Regime() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDregime() {
-    return this.IDregime;
-  }
-
-  public void setIDregime(int IDregime) {
-    this.IDregime = IDregime;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getNom() {

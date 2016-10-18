@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -38,7 +39,8 @@ public class QuestionnaireFiltre implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDfiltre;
+  @Column(name = "IDfiltre")
+  private int id;
 
   private String categorie;
 
@@ -56,15 +58,12 @@ public class QuestionnaireFiltre implements Serializable {
   @JoinColumn(name = "IDtarif")
   private Tarif tarif;
 
-  public QuestionnaireFiltre() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDfiltre() {
-    return this.IDfiltre;
-  }
-
-  public void setIDfiltre(int IDfiltre) {
-    this.IDfiltre = IDfiltre;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getCategorie() {
