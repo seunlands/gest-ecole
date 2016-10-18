@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -37,7 +38,8 @@ public class Vaccin implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDvaccin;
+  @Column(name = "IDvaccin")
+  private int id;
 
   private String date;
 
@@ -49,15 +51,12 @@ public class Vaccin implements Serializable {
   @JoinColumn(name = "IDtype_vaccin")
   private TypeVaccin typeVaccin;
 
-  public Vaccin() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDvaccin() {
-    return this.IDvaccin;
-  }
-
-  public void setIDvaccin(int IDvaccin) {
-    this.IDvaccin = IDvaccin;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDate() {

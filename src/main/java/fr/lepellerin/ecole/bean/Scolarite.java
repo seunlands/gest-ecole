@@ -37,7 +37,8 @@ public class Scolarite implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDscolarite;
+  @Column(name = "IDscolarite")
+  private int id;
 
   @Column(name = "date_debut")
   private String dateDebut;
@@ -61,15 +62,12 @@ public class Scolarite implements Serializable {
   @JoinColumn(name = "IDniveau")
   private NiveauScolaire niveau;
 
-  public Scolarite() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDscolarite() {
-    return this.IDscolarite;
-  }
-
-  public void setIDscolarite(int IDscolarite) {
-    this.IDscolarite = IDscolarite;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDateDebut() {

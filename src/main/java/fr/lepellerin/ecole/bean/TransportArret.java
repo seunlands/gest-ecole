@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -36,32 +37,31 @@ public class TransportArret implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDarret;
+  @Column(name = "IDarret")
+  private int id;
 
-  private int IDligne;
+  @Column(name = "IDligne")
+  private int idLigne;
 
   @Lob
   private String nom;
 
   private int ordre;
 
-  public TransportArret() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDarret() {
-    return this.IDarret;
+  public void setId(int id) {
+    this.id = id;
   }
 
-  public void setIDarret(int IDarret) {
-    this.IDarret = IDarret;
+  public int getIdLigne() {
+    return this.idLigne;
   }
 
-  public int getIDligne() {
-    return this.IDligne;
-  }
-
-  public void setIDligne(int IDligne) {
-    this.IDligne = IDligne;
+  public void setIdLigne(int idLigne) {
+    this.idLigne = idLigne;
   }
 
   public String getNom() {

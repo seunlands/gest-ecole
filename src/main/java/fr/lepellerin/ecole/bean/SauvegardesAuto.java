@@ -37,7 +37,8 @@ public class SauvegardesAuto implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDsauvegarde;
+  @Column(name = "IDsauvegarde")
+  private int id;
 
   @Lob
   @Column(name = "condition_derniere")
@@ -112,15 +113,12 @@ public class SauvegardesAuto implements Serializable {
   @Column(name = "sauvegarde_repertoire")
   private String sauvegardeRepertoire;
 
-  public SauvegardesAuto() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDsauvegarde() {
-    return this.IDsauvegarde;
-  }
-
-  public void setIDsauvegarde(int IDsauvegarde) {
-    this.IDsauvegarde = IDsauvegarde;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getConditionDerniere() {

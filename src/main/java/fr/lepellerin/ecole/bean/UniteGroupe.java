@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -37,7 +38,8 @@ public class UniteGroupe implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDunite_groupe;
+  @Column(name = "IDunite_groupe")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDgroupe")
@@ -47,15 +49,12 @@ public class UniteGroupe implements Serializable {
   @JoinColumn(name = "IDunite")
   private Unite unite;
 
-  public UniteGroupe() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDunite_groupe() {
-    return this.IDunite_groupe;
-  }
-
-  public void setIDunite_groupe(int IDunite_groupe) {
-    this.IDunite_groupe = IDunite_groupe;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public Groupe getGroupe() {

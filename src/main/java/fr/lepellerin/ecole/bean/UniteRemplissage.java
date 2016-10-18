@@ -39,7 +39,8 @@ public class UniteRemplissage implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDunite_remplissage;
+  @Column(name = "IDunite_remplissage")
+  private int id;
 
   private String abrege;
 
@@ -75,15 +76,12 @@ public class UniteRemplissage implements Serializable {
   @Column(name = "seuil_alerte")
   private int seuilAlerte;
 
-  public UniteRemplissage() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDunite_remplissage() {
-    return this.IDunite_remplissage;
-  }
-
-  public void setIDunite_remplissage(int IDunite_remplissage) {
-    this.IDunite_remplissage = IDunite_remplissage;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getAbrege() {

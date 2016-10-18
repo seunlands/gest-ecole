@@ -39,7 +39,8 @@ public class Tarif implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDtarif;
+  @Column(name = "IDtarif")
+  private int id;
 
   @Lob
   private String caisses;
@@ -135,15 +136,12 @@ public class Tarif implements Serializable {
 
   private String type;
 
-  public Tarif() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDtarif() {
-    return this.IDtarif;
-  }
-
-  public void setIDtarif(int IDtarif) {
-    this.IDtarif = IDtarif;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getCaisses() {

@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -37,7 +38,8 @@ public class UniteIncompat implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDunite_incompat;
+  @Column(name = "IDunite_incompat")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDunite")
@@ -47,15 +49,12 @@ public class UniteIncompat implements Serializable {
   @JoinColumn(name = "IDunite_incompatible")
   private Unite uniteIncompatible;
 
-  public UniteIncompat() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDunite_incompat() {
-    return this.IDunite_incompat;
-  }
-
-  public void setIDunite_incompat(int IDunite_incompat) {
-    this.IDunite_incompat = IDunite_incompat;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public Unite getUnite() {

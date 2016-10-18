@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -35,19 +36,17 @@ public class TypeSieste implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDtype_sieste;
+  @Column(name = "IDtype_sieste")
+  private int id;
 
   private String nom;
 
-  public TypeSieste() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDtype_sieste() {
-    return this.IDtype_sieste;
-  }
-
-  public void setIDtype_sieste(int IDtype_sieste) {
-    this.IDtype_sieste = IDtype_sieste;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getNom() {

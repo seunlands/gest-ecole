@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -36,22 +37,20 @@ public class TypeGroupeActivite implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDtype_groupe_activite;
+  @Column(name = "IDtype_groupe_activite")
+  private int id;
 
   private String nom;
 
   @Lob
   private String observations;
 
-  public TypeGroupeActivite() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDtype_groupe_activite() {
-    return this.IDtype_groupe_activite;
-  }
-
-  public void setIDtype_groupe_activite(int IDtype_groupe_activite) {
-    this.IDtype_groupe_activite = IDtype_groupe_activite;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getNom() {

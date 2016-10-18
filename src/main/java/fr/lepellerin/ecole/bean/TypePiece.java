@@ -36,7 +36,8 @@ public class TypePiece implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDtype_piece;
+  @Column(name = "IDtype_piece")
+  private int id;
 
   @Column(name = "duree_validite")
   private String dureeValidite;
@@ -44,20 +45,17 @@ public class TypePiece implements Serializable {
   private String nom;
 
   @Column(name = "public")
-  private String public_;
+  private String publique;
 
   @Column(name = "valide_rattachement")
   private int valideRattachement;
 
-  public TypePiece() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDtype_piece() {
-    return this.IDtype_piece;
-  }
-
-  public void setIDtype_piece(int IDtype_piece) {
-    this.IDtype_piece = IDtype_piece;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDureeValidite() {
@@ -76,12 +74,12 @@ public class TypePiece implements Serializable {
     this.nom = nom;
   }
 
-  public String getPublic_() {
-    return this.public_;
+  public String getPublique() {
+    return this.publique;
   }
 
-  public void setPublic_(String public_) {
-    this.public_ = public_;
+  public void setPublique(String publique) {
+    this.publique = publique;
   }
 
   public int getValideRattachement() {

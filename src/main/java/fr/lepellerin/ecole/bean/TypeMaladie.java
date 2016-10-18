@@ -36,22 +36,20 @@ public class TypeMaladie implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDtype_maladie;
+  @Column(name = "IDtype_maladie")
+  private int id;
 
   private String nom;
 
   @Column(name = "vaccin_obligatoire")
   private int vaccinObligatoire;
 
-  public TypeMaladie() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDtype_maladie() {
-    return this.IDtype_maladie;
-  }
-
-  public void setIDtype_maladie(int IDtype_maladie) {
-    this.IDtype_maladie = IDtype_maladie;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getNom() {

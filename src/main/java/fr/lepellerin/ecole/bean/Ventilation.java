@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -36,7 +37,8 @@ public class Ventilation implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDventilation;
+  @Column(name = "IDventilation")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDcompte_payeur")
@@ -52,15 +54,12 @@ public class Ventilation implements Serializable {
 
   private double montant;
 
-  public Ventilation() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDventilation() {
-    return this.IDventilation;
-  }
-
-  public void setIDventilation(int IDventilation) {
-    this.IDventilation = IDventilation;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public ComptePayeur getComptePayeur() {

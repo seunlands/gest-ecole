@@ -38,7 +38,8 @@ public class UniteCotisation implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDunite_cotisation;
+  @Column(name = "IDunite_cotisation")
+  private int id;
 
   @Column(name = "date_debut")
   private String dateDebut;
@@ -59,15 +60,12 @@ public class UniteCotisation implements Serializable {
 
   private String nom;
 
-  public UniteCotisation() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDunite_cotisation() {
-    return this.IDunite_cotisation;
-  }
-
-  public void setIDunite_cotisation(int IDunite_cotisation) {
-    this.IDunite_cotisation = IDunite_cotisation;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getDateDebut() {

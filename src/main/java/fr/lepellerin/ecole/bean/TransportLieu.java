@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -36,7 +37,8 @@ public class TransportLieu implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDlieu;
+  @Column(name = "IDlieu")
+  private int id;
 
   private String categorie;
 
@@ -47,15 +49,12 @@ public class TransportLieu implements Serializable {
 
   private String ville;
 
-  public TransportLieu() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDlieu() {
-    return this.IDlieu;
-  }
-
-  public void setIDlieu(int IDlieu) {
-    this.IDlieu = IDlieu;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getCategorie() {

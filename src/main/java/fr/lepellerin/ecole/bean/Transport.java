@@ -39,7 +39,8 @@ public class Transport implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDtransport;
+  @Column(name = "IDtransport")
+  private int id;
 
   private int actif;
 
@@ -120,15 +121,12 @@ public class Transport implements Serializable {
   @Lob
   private String unites;
 
-  public Transport() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDtransport() {
-    return this.IDtransport;
-  }
-
-  public void setIDtransport(int IDtransport) {
-    this.IDtransport = IDtransport;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public int getActif() {

@@ -37,7 +37,8 @@ public class TypeCotisation implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDtype_cotisation;
+  @Column(name = "IDtype_cotisation")
+  private int id;
 
   private int carte;
 
@@ -51,15 +52,12 @@ public class TypeCotisation implements Serializable {
 
   private String type;
 
-  public TypeCotisation() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDtype_cotisation() {
-    return this.IDtype_cotisation;
-  }
-
-  public void setIDtype_cotisation(int IDtype_cotisation) {
-    this.IDtype_cotisation = IDtype_cotisation;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public int getCarte() {

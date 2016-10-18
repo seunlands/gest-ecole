@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -35,19 +36,17 @@ public class Secteur implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDsecteur;
+  @Column(name = "IDsecteur")
+  private int id;
 
   private String nom;
 
-  public Secteur() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDsecteur() {
-    return this.IDsecteur;
-  }
-
-  public void setIDsecteur(int IDsecteur) {
-    this.IDsecteur = IDsecteur;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getNom() {

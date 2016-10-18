@@ -37,7 +37,8 @@ public class TexteRappel implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDtexte;
+  @Column(name = "IDtexte")
+  private int id;
 
   private String couleur;
 
@@ -59,15 +60,12 @@ public class TexteRappel implements Serializable {
 
   private String titre;
 
-  public TexteRappel() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDtexte() {
-    return this.IDtexte;
-  }
-
-  public void setIDtexte(int IDtexte) {
-    this.IDtexte = IDtexte;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getCouleur() {

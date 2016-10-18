@@ -36,25 +36,23 @@ public class TypeVaccin implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDtype_vaccin;
+  @Column(name = "IDtype_vaccin")
+  private int id;
 
   @Column(name = "duree_validite")
   private String dureeValidite;
 
   private String nom;
 
-  public TypeVaccin() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDtype_vaccin() {
-    return this.IDtype_vaccin;
+  public void setId(int id) {
+    this.id = id;
   }
 
-  public void setIDtype_vaccin(int IDtype_vaccin) {
-    this.IDtype_vaccin = IDtype_vaccin;
-  }
-
-  public String getDureeValidite() {
+ public String getDureeValidite() {
     return this.dureeValidite;
   }
 

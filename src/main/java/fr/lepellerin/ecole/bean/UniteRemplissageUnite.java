@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -37,7 +38,8 @@ public class UniteRemplissageUnite implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDunite_remplissage_unite;
+  @Column(name = "IDunite_remplissage_unite")
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "IDunite")
@@ -47,15 +49,12 @@ public class UniteRemplissageUnite implements Serializable {
   @JoinColumn(name = "IDunite_remplissage")
   private UniteRemplissage uniteRemplissage;
 
-  public UniteRemplissageUnite() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDunite_remplissage_unite() {
-    return this.IDunite_remplissage_unite;
-  }
-
-  public void setIDunite_remplissage_unite(int IDunite_remplissage_unite) {
-    this.IDunite_remplissage_unite = IDunite_remplissage_unite;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public Unite getUnite() {

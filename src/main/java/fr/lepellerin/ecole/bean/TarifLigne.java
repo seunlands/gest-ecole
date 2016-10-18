@@ -39,7 +39,8 @@ public class TarifLigne implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDligne;
+  @Column(name = "IDligne")
+  private int id;
 
   private double ajustement;
 
@@ -142,15 +143,12 @@ public class TarifLigne implements Serializable {
   @Column(name = "unite_horaire")
   private String uniteHoraire;
 
-  public TarifLigne() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDligne() {
-    return this.IDligne;
-  }
-
-  public void setIDligne(int IDligne) {
-    this.IDligne = IDligne;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public double getAjustement() {

@@ -20,6 +20,7 @@ package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -35,7 +36,8 @@ public class Utilisateur implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDutilisateur;
+  @Column(name = "IDutilisateur")
+  private int id;
 
   private int actif;
 
@@ -51,15 +53,12 @@ public class Utilisateur implements Serializable {
 
   private String sexe;
 
-  public Utilisateur() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDutilisateur() {
-    return this.IDutilisateur;
-  }
-
-  public void setIDutilisateur(int IDutilisateur) {
-    this.IDutilisateur = IDutilisateur;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public int getActif() {

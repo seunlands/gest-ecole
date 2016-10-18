@@ -39,7 +39,8 @@ public class Vacances implements Serializable {
   private static final long serialVersionUID = 20160520L;
 
   @Id
-  private int IDvacance;
+  @Column(name = "IDvacance")
+  private int id;
 
   private int annee;
 
@@ -53,15 +54,12 @@ public class Vacances implements Serializable {
 
   private String nom;
 
-  public Vacances() {
+  public int getId() {
+    return this.id;
   }
 
-  public int getIDvacance() {
-    return this.IDvacance;
-  }
-
-  public void setIDvacance(int IDvacance) {
-    this.IDvacance = IDvacance;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public int getAnnee() {
