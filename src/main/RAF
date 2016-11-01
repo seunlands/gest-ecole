@@ -1,9 +1,17 @@
 RAF
 ------------------
--Spring security
->hashage mot de passe > DONE
->envoi mail reinit mot de passe > DONE
->mise mot de passe au hasard > DONE
->user peut changer son mot de passe
+Avant MEP
+-------------------
+- Ajouter une tache planifié (a chaque jour de cantine ouvert) pour sortir le listing des enfants inscrits à la cantine
+> Voir pour l'utilisation de task et scheduler Spring
+
+
+Versions futures
+--------------------
+- ajouter la gestion des utilisateurs pour admin
+- modifier les informations persos (mail, tel)
+- ajouter sur home l'encours de consommations pour le mois en cours
+
+
 
 
