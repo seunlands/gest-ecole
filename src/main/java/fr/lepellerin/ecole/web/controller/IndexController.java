@@ -32,6 +32,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fr.lepellerin.ecole.logging.LogMe;
 import fr.lepellerin.ecole.service.GererParametreService;
 import fr.lepellerin.ecole.service.dto.ParametreDto;
 
@@ -44,6 +45,7 @@ public class IndexController {
   private GererParametreService gpService;
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
+  @LogMe(logExit = true)
   public String welcomePage(final Model model, final HttpServletRequest request, final HttpServletResponse response) throws ServletException {
     final ParametreDto p = this.gpService.getIdActiviteCantine();
     boolean paramCantine = false;
@@ -52,9 +54,9 @@ public class IndexController {
     if (p == null) {
       Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
       for (GrantedAuthority grantedAuthority : authorities) {
-        if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+        if ("ROLE_ADMIN".equals(grantedAuthority.getAuthority())) {
           admin = true;
-        } else if (grantedAuthority.getAuthority().equals("ROLE_FAMILLE")) {
+        } else if ("ROLE_FAMILLE".equals(grantedAuthority.getAuthority())) {
           user = true;
         }
       }

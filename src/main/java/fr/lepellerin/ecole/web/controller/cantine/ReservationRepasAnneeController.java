@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.lepellerin.ecole.bean.security.CurrentUser;
 import fr.lepellerin.ecole.exceptions.TechnicalException;
+import fr.lepellerin.ecole.logging.LogMe;
 import fr.lepellerin.ecole.service.CantineService;
 
 @Controller
@@ -50,6 +51,7 @@ public class ReservationRepasAnneeController {
    * @throws TechnicalException 
    */
   @RequestMapping("/init")
+  @LogMe(logExit = true)
   public String init(final Model model, @ModelAttribute("command") ReserverRepasForm form) throws TechnicalException {
     return VUE;
   }
@@ -63,6 +65,7 @@ public class ReservationRepasAnneeController {
    * @throws TechnicalException 
    */
   @RequestMapping("/submit")
+  @LogMe(logExit = true)
   public String reserver(final Model model, @ModelAttribute("command") ReserverRepasForm form) throws TechnicalException {
     final CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
         .getPrincipal();
@@ -79,6 +82,7 @@ public class ReservationRepasAnneeController {
    * @throws TechnicalException 
    */
   @ModelAttribute("command")
+  @LogMe(logExit = true)
   public ReserverRepasForm addCommand() throws TechnicalException {
     final CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
         .getPrincipal();

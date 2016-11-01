@@ -39,6 +39,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import fr.lepellerin.ecole.bean.security.CurrentUser;
 import fr.lepellerin.ecole.exceptions.FunctionalException;
 import fr.lepellerin.ecole.exceptions.TechnicalException;
+import fr.lepellerin.ecole.logging.LogMe;
 import fr.lepellerin.ecole.service.CantineService;
 import fr.lepellerin.ecole.service.dto.ComboItemDto;
 import fr.lepellerin.ecole.service.dto.PlanningDto;
@@ -64,6 +65,7 @@ public class DetaillerReservationRepasController {
    * @throws TechnicalException 
    */
   @RequestMapping("/init")
+  @LogMe(logExit = true)
   public String init(final Model model, @ModelAttribute("command") DetaillerReservationRepasForm form) throws TechnicalException {
     final CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
         .getPrincipal();
@@ -80,6 +82,7 @@ public class DetaillerReservationRepasController {
 
   @RequestMapping(value = "/reserver")
   @ResponseBody
+  @LogMe(logExit = true)
   public ResponseEntity<String> reserver(@RequestParam final String date, @RequestParam final int individuId) throws TechnicalException {
     final CurrentUser user = (CurrentUser) SecurityContextHolder.getContext().getAuthentication()
         .getPrincipal();
@@ -101,6 +104,7 @@ public class DetaillerReservationRepasController {
    * @return <code>DetaillerReservationRepasForm</code>
    */
   @ModelAttribute("command")
+  @LogMe(logExit = true)
   public DetaillerReservationRepasForm addCommand() {
     final DetaillerReservationRepasForm form = new DetaillerReservationRepasForm();
     final YearMonth moisActuel = YearMonth.now();

@@ -18,6 +18,7 @@
 
 package fr.lepellerin.ecole.web.controller.admin;
 
+import fr.lepellerin.ecole.logging.LogMe;
 import fr.lepellerin.ecole.service.UtilisateurService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +39,13 @@ public class CreerCompteController {
   private static final String VUE = "admin/creerCompte";
 
   @RequestMapping(value = "/init", method = RequestMethod.GET)
+  @LogMe(logExit = true)
   public String init() {
     return VUE;
   }
 
   @RequestMapping(value = "/submit", method = RequestMethod.POST)
+  @LogMe(logExit = true)
   public String creerComptes() {
     this.utilisateurService.creerUserPourFamille();
     return VUE;

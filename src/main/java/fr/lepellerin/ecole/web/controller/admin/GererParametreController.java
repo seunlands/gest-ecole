@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.lepellerin.ecole.bean.enums.EnumParametreWeb;
+import fr.lepellerin.ecole.logging.LogMe;
 import fr.lepellerin.ecole.service.ComboItemsService;
 import fr.lepellerin.ecole.service.GererParametreService;
 import fr.lepellerin.ecole.service.dto.ComboItemDto;
@@ -44,12 +45,14 @@ public class GererParametreController {
   private ComboItemsService ciService;
 
   @RequestMapping(value = "/init", method = RequestMethod.GET)
+  @LogMe(logExit = true)
   public String init(final Model model) {
     model.addAttribute(MODEL_FORM, this.addForm());
     return VUE;
   }
   
   @RequestMapping(value = "/submit", method = RequestMethod.POST)
+  @LogMe(logExit = true)
   public String submit(@Valid final GererParametreForm gererParametreForm, final BindingResult result, final Model model) {
     if (result.hasErrors()) {
      return VUE;
@@ -74,6 +77,7 @@ public class GererParametreController {
   }
   
   @ModelAttribute(MODEL_ACTIVITES)
+  @LogMe(logExit = true)
   public List<ComboItemDto> addActivities() {
     final List<ComboItemDto> items = this.ciService.findAllActivite("Sélectionnez une activité...");
     items.sort((i1, i2) -> {

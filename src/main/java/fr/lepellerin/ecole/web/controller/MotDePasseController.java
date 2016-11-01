@@ -2,6 +2,7 @@ package fr.lepellerin.ecole.web.controller;
 
 import fr.lepellerin.ecole.bean.security.CurrentUser;
 import fr.lepellerin.ecole.exceptions.FunctionalException;
+import fr.lepellerin.ecole.logging.LogMe;
 import fr.lepellerin.ecole.service.UtilisateurService;
 
 import org.slf4j.Logger;
@@ -43,6 +44,7 @@ public class MotDePasseController {
    * @return <code>String</code> nom de la vue
    */
   @RequestMapping(value = "submitNewPwd", method = RequestMethod.POST)
+  @LogMe(logExit = true)
   public String submitNewPassword(@Valid @ModelAttribute("command") final MotDePasseForm form,
       final BindingResult results, final Model model) {
     if (results.hasErrors()) {
@@ -63,6 +65,7 @@ public class MotDePasseController {
   }
 
   @ModelAttribute("command")
+  @LogMe(logExit = true)
   public MotDePasseForm addCommand() {
     return new MotDePasseForm();
   }

@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -39,6 +40,7 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 @EnableWebMvc
 @Configuration
 @EnableJpaRepositories
+@EnableScheduling
 @Import({ GestEcolePersistenceConfig.class, GestEcoleSecurityConfig.class })
 public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
 
@@ -47,7 +49,7 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
    *
    * @return template resolver
    */
-  private TemplateResolver templateResolver() {
+  private static TemplateResolver templateResolver() {
     ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
     templateResolver.setPrefix("templates/");
     templateResolver.setSuffix(".html");
@@ -57,7 +59,7 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
     return templateResolver;
   }
 
-  private TemplateResolver emailTemplateResolver() {
+  private static TemplateResolver emailTemplateResolver() {
     TemplateResolver templateResolver = new ClassLoaderTemplateResolver();
     templateResolver.setPrefix("email/");
     templateResolver.setSuffix(".html");
@@ -76,8 +78,8 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
   @Bean
   public SpringTemplateEngine templateEngine() {
     SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-    templateEngine.addTemplateResolver(this.emailTemplateResolver());
-    templateEngine.addTemplateResolver(this.templateResolver());
+    templateEngine.addTemplateResolver(emailTemplateResolver());
+    templateEngine.addTemplateResolver(templateResolver());
     templateEngine.addDialect(new LayoutDialect());
     templateEngine.addDialect(new Java8TimeDialect());
     templateEngine.addDialect(new SpringSecurityDialect());

@@ -17,6 +17,7 @@
 
 package fr.lepellerin.ecole.web.controller;
 
+import fr.lepellerin.ecole.logging.LogMe;
 import fr.lepellerin.ecole.service.EmailService;
 import fr.lepellerin.ecole.service.UtilisateurService;
 import fr.lepellerin.ecole.service.dto.ForgottenPwdDto;
@@ -67,6 +68,7 @@ public class LoginController {
    * @return nom de la vue
    */
   @RequestMapping(value = "/logout", method = RequestMethod.GET)
+  @LogMe(logExit = true)
   public String logoutPage(final HttpServletRequest request, final HttpServletResponse response) {
     final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     if (auth != null) {
@@ -81,6 +83,7 @@ public class LoginController {
    * @return nom de la vue
    */
   @RequestMapping(value = "/forgottenPassword", method = RequestMethod.GET)
+  @LogMe(logExit = true)
   public String forgottenPwdPage() {
     return "accueil/forgottenPwd";
   }
@@ -91,6 +94,7 @@ public class LoginController {
    * @return nom de la vue
    */
   @RequestMapping(value = "/forgottenPassword", method = RequestMethod.POST)
+  @LogMe(logExit = true)
   public String resetPwdPage(@RequestParam final String email, final Model model) {
     // find family by email.
     final List<ForgottenPwdDto> pwds = this.utilisateurService.resetPasswordForFamille(email);
@@ -116,6 +120,7 @@ public class LoginController {
    * @return nom de la vue
    */
   @RequestMapping(value = "/forgottenUsername", method = RequestMethod.GET)
+  @LogMe(logExit = true)
   public String forgottenUsernamePage() {
     return "accueil/forgottenUsername";
   }
@@ -130,6 +135,7 @@ public class LoginController {
    * @return <code>String</code> nom de la vue
    */
   @RequestMapping(value = "/forgottenUsername", method = RequestMethod.POST)
+  @LogMe(logExit = true)
   public String sendUsernamePage(@RequestParam final String email, final Model model) {
     // find family by email.
     final List<String> accounts = this.utilisateurService.getUserNameByEmail(email);
