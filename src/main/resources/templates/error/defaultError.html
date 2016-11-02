@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layout">
+<head>
+<title>Erreur de l'application</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="page-header">
+			<h1>Une erreur s'est produite dans l'application</h1>
+		</div>
+		<p>
+			Une erreur technique s'est produite. Veuillez essayer à nouveau
+			ultérieurement. <br /> Si l'erreur persiste, merci de prendre
+			contact avec les administrateurs.
+		</p>
+		<div th:utext="'&lt;!--'" th:remove="tag"></div>
+		<div th:utext="'Failed URL: ' +  ${url}" th:remove="tag">${url}</div>
+		<div th:utext="'Exception: ' + ${exception.message}" th:remove="tag">${exception.message}</div>
+		<ul th:remove="tag">
+			<li th:each="ste : ${exception.stackTrace}" th:remove="tag"><span
+				th:utext="${ste}" th:remove="tag">${ste}</span></li>
+		</ul>
+		<div th:utext="'--&gt;'" th:remove="tag"></div>
+
+	</div>
+</body>
+</html>
