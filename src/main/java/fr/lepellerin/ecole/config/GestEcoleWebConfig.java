@@ -56,6 +56,7 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
     templateResolver.setTemplateMode("HTML5");
     templateResolver.setCacheable(false);
     templateResolver.setOrder(2);
+    templateResolver.setCharacterEncoding("UTF-8");
     return templateResolver;
   }
 
@@ -100,6 +101,7 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
     viewResolver.setTemplateEngine(templateEngine);
     viewResolver.setOrder(1);
     viewResolver.setViewNames(new String[] { "*.html", "*.xhtml" });
+    viewResolver.setCharacterEncoding("UTF-8");
     return viewResolver;
   }
 

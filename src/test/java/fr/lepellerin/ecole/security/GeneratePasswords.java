@@ -18,6 +18,8 @@
 
 package fr.lepellerin.ecole.security;
 
+import java.util.Scanner;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -29,11 +31,14 @@ public class GeneratePasswords {
    */
   public static void main(String[] args) {
 
-    String password = "admin";
+    Scanner reader = new Scanner(System.in);
+    System.out.println("Entrez mot de passe : ");
+    String password = reader.nextLine();
+    reader.close();
     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11);
     String hashedPassword = passwordEncoder.encode(password);
 
-    System.out.println(hashedPassword);
+    System.out.println(password + " -> " + hashedPassword);
 
   }
 
