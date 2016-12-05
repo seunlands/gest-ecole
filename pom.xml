@@ -5,8 +5,7 @@
 
 	<groupId>fr.lepellerin-ecole</groupId>
 	<artifactId>gestecole</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-
+	<version>0.1.0</version>
 	<name>gestecole</name>
 	<description>portail ecole</description>
 
@@ -161,8 +160,12 @@
 						<configuration>
 							<executable>true</executable>
 						</configuration>
+
 					</plugin>
+
+
 				</plugins>
+
 			</build>
 		</profile>
 	</profiles>
