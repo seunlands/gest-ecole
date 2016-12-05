@@ -14,4 +14,8 @@ Versions futures
 
 
 
-
+select cla.nom, ind.prenom, ind.nom from consommations conso
+inner join individus ind on ind.IDindividu = conso.IDindividu
+inner join scolarite sco on ind.IDindividu = sco.IDindividu
+inner join classes cla on cla.IDClasse = sco.IDClasse
+where conso.date = '2016-10-10' and sco.date_debut <= '2016-10-10' and sco.date_fin >= '2016-10-10' order by cla.nom;

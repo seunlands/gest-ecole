@@ -161,12 +161,8 @@
 						<configuration>
 							<executable>true</executable>
 						</configuration>
-
 					</plugin>
-
-
 				</plugins>
-
 			</build>
 		</profile>
 	</profiles>
