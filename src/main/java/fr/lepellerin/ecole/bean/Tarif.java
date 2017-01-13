@@ -53,16 +53,16 @@ public class Tarif implements Serializable {
   private String codeCompta;
 
   @Column(name = "condition_conso_facturees")
-  private int conditionConsoFacturees;
+  private Integer conditionConsoFacturees;
 
   @Column(name = "condition_dates_continues")
-  private int conditionDatesContinues;
+  private Integer conditionDatesContinues;
 
   @Column(name = "condition_nbre_combi")
-  private int conditionNbreCombi;
+  private Integer conditionNbreCombi;
 
   @Column(name = "condition_nbre_jours")
-  private int conditionNbreJours;
+  private Integer conditionNbreJours;
 
   @Column(name = "condition_periode")
   private String conditionPeriode;
@@ -168,35 +168,35 @@ public class Tarif implements Serializable {
     this.codeCompta = codeCompta;
   }
 
-  public int getConditionConsoFacturees() {
+  public Integer getConditionConsoFacturees() {
     return this.conditionConsoFacturees;
   }
 
-  public void setConditionConsoFacturees(int conditionConsoFacturees) {
+  public void setConditionConsoFacturees(Integer conditionConsoFacturees) {
     this.conditionConsoFacturees = conditionConsoFacturees;
   }
 
-  public int getConditionDatesContinues() {
+  public Integer getConditionDatesContinues() {
     return this.conditionDatesContinues;
   }
 
-  public void setConditionDatesContinues(int conditionDatesContinues) {
+  public void setConditionDatesContinues(Integer conditionDatesContinues) {
     this.conditionDatesContinues = conditionDatesContinues;
   }
 
-  public int getConditionNbreCombi() {
+  public Integer getConditionNbreCombi() {
     return this.conditionNbreCombi;
   }
 
-  public void setConditionNbreCombi(int conditionNbreCombi) {
+  public void setConditionNbreCombi(Integer conditionNbreCombi) {
     this.conditionNbreCombi = conditionNbreCombi;
   }
 
-  public int getConditionNbreJours() {
+  public Integer getConditionNbreJours() {
     return this.conditionNbreJours;
   }
 
-  public void setConditionNbreJours(int conditionNbreJours) {
+  public void setConditionNbreJours(Integer conditionNbreJours) {
     this.conditionNbreJours = conditionNbreJours;
   }
 
