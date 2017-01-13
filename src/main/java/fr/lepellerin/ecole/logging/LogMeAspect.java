@@ -69,8 +69,15 @@ public class LogMeAspect {
     try {
       o = pjp.proceed(); 
     } catch (Throwable t) {
+      String username = "";
+      Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      if (user != null && user instanceof String) {
+        username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      } else if (user != null && user instanceof CurrentUser) {
+        username = ((CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+      }
       logger.error("Une erreur s'est produite dans l'execution de cette méthode : " + pjp.getSignature().getName() 
-          + ". Utilisateur : " + ((CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername(), t);
+          + ". Utilisateur : " + username, t);
       throw t;
     } 
 

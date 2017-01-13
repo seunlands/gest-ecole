@@ -101,7 +101,7 @@ public class CantineServiceImpl implements CantineService {
       planning.getHeaders().add(ict.getIndividu().getPrenom());
       final List<Consommation> consos = this.consommationRepository
           .findByFamilleInscriptionActiviteUniteEtatsPeriode(famille, activite, ict.getGroupe(),
-              Arrays.asList("reservation"), startDate, endDate);
+              Arrays.asList("reservation", "present"), startDate, endDate);
       final List<Ouverture> ouvertures = this.ouvertureRepository
           .findByActiviteAndGroupeAndPeriode(activite, ict.getGroupe(), startDate, endDate);
       ouvertures.forEach(o -> {
