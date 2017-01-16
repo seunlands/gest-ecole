@@ -19,6 +19,7 @@
 package fr.lepellerin.ecole.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,10 +42,10 @@ public class Scolarite implements Serializable {
   private int id;
 
   @Column(name = "date_debut")
-  private String dateDebut;
+  private Date dateDebut;
 
   @Column(name = "date_fin")
-  private String dateFin;
+  private Date dateFin;
 
   @ManyToOne
   @JoinColumn(name = "IDclasse")
@@ -70,19 +71,19 @@ public class Scolarite implements Serializable {
     this.id = id;
   }
 
-  public String getDateDebut() {
+  public Date getDateDebut() {
     return this.dateDebut;
   }
 
-  public void setDateDebut(String dateDebut) {
+  public void setDateDebut(Date dateDebut) {
     this.dateDebut = dateDebut;
   }
 
-  public String getDateFin() {
+  public Date getDateFin() {
     return this.dateFin;
   }
 
-  public void setDateFin(String dateFin) {
+  public void setDateFin(Date dateFin) {
     this.dateFin = dateFin;
   }
 

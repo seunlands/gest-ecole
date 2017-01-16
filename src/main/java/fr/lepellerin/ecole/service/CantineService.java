@@ -21,10 +21,14 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import fr.lepellerin.ecole.bean.Activite;
+import fr.lepellerin.ecole.bean.Classe;
 import fr.lepellerin.ecole.bean.Famille;
+import fr.lepellerin.ecole.bean.Individu;
 import fr.lepellerin.ecole.exceptions.FunctionalException;
 import fr.lepellerin.ecole.exceptions.TechnicalException;
 import fr.lepellerin.ecole.service.dto.ComboItemDto;
@@ -46,5 +50,7 @@ public interface CantineService {
 
   String reserver(LocalDate date, int individuId, Famille famille, Boolean reserve)
       throws FunctionalException, TechnicalException;
+
+  Map<Classe, List<Individu>> getEnfantsAvecReservationParClasse(Date date) throws TechnicalException;
 
 }

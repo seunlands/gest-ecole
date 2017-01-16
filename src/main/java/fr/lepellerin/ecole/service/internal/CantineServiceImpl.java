@@ -28,8 +28,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -40,11 +42,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.lepellerin.ecole.bean.Activite;
+import fr.lepellerin.ecole.bean.Classe;
 import fr.lepellerin.ecole.bean.Consommation;
 import fr.lepellerin.ecole.bean.Famille;
+import fr.lepellerin.ecole.bean.Individu;
 import fr.lepellerin.ecole.bean.Inscription;
 import fr.lepellerin.ecole.bean.Ouverture;
 import fr.lepellerin.ecole.bean.ParametreWeb;
+import fr.lepellerin.ecole.bean.Scolarite;
 import fr.lepellerin.ecole.bean.Unite;
 import fr.lepellerin.ecole.bean.enums.EnumParametreWeb;
 import fr.lepellerin.ecole.exceptions.ActNonModifiableException;
@@ -54,6 +59,7 @@ import fr.lepellerin.ecole.repo.ConsommationRepository;
 import fr.lepellerin.ecole.repo.InscriptionRepository;
 import fr.lepellerin.ecole.repo.OuvertureRepository;
 import fr.lepellerin.ecole.repo.ParametreWebRepository;
+import fr.lepellerin.ecole.repo.ScolariteRepository;
 import fr.lepellerin.ecole.repo.UniteRepository;
 import fr.lepellerin.ecole.service.CantineService;
 import fr.lepellerin.ecole.service.dto.CaseDto;
@@ -81,6 +87,9 @@ public class CantineServiceImpl implements CantineService {
 
   @Autowired
   private ConsommationRepository consommationRepository;
+
+  @Autowired
+  private ScolariteRepository scolariteRepository;
 
   @Override
   @Transactional(readOnly = true)
@@ -273,6 +282,28 @@ public class CantineServiceImpl implements CantineService {
     });
 
     return jours;
+  }
+  
+  
+  @Override
+  @Transactional(readOnly = true)
+  public Map<Classe, List<Individu>> getEnfantsAvecReservationParClasse(final Date date) throws TechnicalException {
+    
+    final List<Scolarite> scos = this.scolariteRepository.findByDate(new Date());
+    final Activite activiteCantine = getCantineActivite();
+    final List<Consommation> consos = this.consommationRepository.findByActiviteDate(activiteCantine, date);
+    final Map<Classe, List<Individu>> result = new HashMap<>();
+    scos.forEach(sco -> {
+      if (consos.stream().filter(c -> sco.getIndividu().equals(c.getIndividu())).findAny().isPresent()) {
+        List<Individu> enfants = result.get(sco.getClasse());
+        if (enfants == null) {
+          enfants = new ArrayList<>();
+        }
+        enfants.add(sco.getIndividu());
+        result.put(sco.getClasse(), enfants);
+      }
+    });    
+    return result;
   }
 
 }

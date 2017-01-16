@@ -40,5 +40,9 @@ public interface ConsommationRepository extends JpaRepository<Consommation, Inte
       + "and c.groupe = ?3 and c.date = ?4")
   List<Consommation> findByInscriptionActiviteUniteDate(Inscription ict, Activite act,
       Groupe groupe, Date debut);
+  
+  @Query("from Consommation c where c.activite = ?1 and c.date = ?2")
+  List<Consommation> findByActiviteDate(Activite act, Date date);
+  
 
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title data-th-remove="all">Rapport quotidien des mangent à la cantine</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    </head>
+    <body>
+    	<h2>Rapport cantine quotidien : <b data-th-text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}">Date</b></h2>
+   	
+    	<div th:each="classe : ${rapport}">
+    		<h3 th:text="${classe.key.nom}">nom classe</h3>
+    		<table style="width:100%">
+	    		<tr th:each="enfant : ${classe.value}" th:if="${enfantStat.index % 3 == 0}" >
+	    			<td 
+	    				th:each="index : ${#numbers.sequence(enfantStat.index, enfantStat.index + 3 - 1)}"
+	    				th:if="${index lt enfantStat.size}"
+	    				th:text="${classe.value[index].prenom} + ' ' + ${classe.value[index].nom}"
+	    				>
+	    			</td>
+	    		</tr>
+    		</table>
+    	</div>
+    	
+    	
+    </body>
+</html>

@@ -17,11 +17,22 @@
 
 package fr.lepellerin.ecole.web.controller.cantine;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +46,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.IWebContext;
+import org.thymeleaf.context.WebContext;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
+import com.lowagie.text.DocumentException;
+
+import fr.lepellerin.ecole.bean.Classe;
+import fr.lepellerin.ecole.bean.Individu;
 import fr.lepellerin.ecole.bean.security.CurrentUser;
 import fr.lepellerin.ecole.exceptions.FunctionalException;
 import fr.lepellerin.ecole.exceptions.TechnicalException;
@@ -55,6 +74,12 @@ public class DetaillerReservationRepasController {
 
   @Autowired
   private CantineService cantineService;
+  
+  @Autowired
+  private TemplateEngine templateEngine;
+  
+  @Autowired
+  private ServletContext servletContext;
 
   /**
    * init le model de la page details des reservations.
@@ -112,6 +137,44 @@ public class DetaillerReservationRepasController {
     form.setAnneeMois(intMois);
     return form;
   }
+  
+  /**
+   * init le model de la page details des reservations.
+   *
+   * @param model
+   *          : model spring
+   * @return le nom de la vue
+   * @throws TechnicalException 
+   * @throws IOException 
+   * @throws DocumentException 
+   */
+  @RequestMapping("/test")
+  @LogMe(logExit = true)
+  public String test(final Model model, @ModelAttribute("command") DetaillerReservationRepasForm form, final HttpServletRequest request, final HttpServletResponse response) throws TechnicalException, IOException, DocumentException {
+    final WebContext ctx = new WebContext(request, response, servletContext);
+    final Calendar cal = GregorianCalendar.getInstance();
+    cal.set(2017, Calendar.JANUARY, 24);
+    final Map<Classe, List<Individu>> report = this.cantineService.getEnfantsAvecReservationParClasse(cal.getTime());
+    ctx.setVariable("rapport", report);
+    final String htmlContent = this.templateEngine.process("reportEnfantCantineQuotidien", ctx);
+    
+    final ByteArrayOutputStream os = new ByteArrayOutputStream();
+    final ITextRenderer renderer = new ITextRenderer();
+
+    renderer.setDocumentFromString(htmlContent);
+    renderer.layout();
+    renderer.createPDF(os);
+
+    byte[] pdfAsBytes = os.toByteArray();
+    os.close();
+    
+    final FileOutputStream fos = new FileOutputStream(new File("c:\\temp\\essai.pdf"));
+    fos.write(pdfAsBytes);
+    fos.close();
+    
+    return null;
+  }
+
   
   @ModelAttribute("moisActivites")
   public List<ComboItemDto> addMoisToModel() throws TechnicalException {

@@ -55,7 +55,7 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
     templateResolver.setSuffix(".html");
     templateResolver.setTemplateMode("HTML5");
     templateResolver.setCacheable(false);
-    templateResolver.setOrder(2);
+    templateResolver.setOrder(3);
     templateResolver.setCharacterEncoding("UTF-8");
     return templateResolver;
   }
@@ -67,9 +67,19 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
     templateResolver.setTemplateMode("HTML5");
     templateResolver.setCharacterEncoding("UTF-8");
     templateResolver.setOrder(1);
-    templateResolver.setCacheable(false);
     return templateResolver;
   }
+  
+  private static TemplateResolver pdfTemplateResolver() {
+    ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+    templateResolver.setPrefix("pdf/");
+    templateResolver.setSuffix(".html");
+    templateResolver.setTemplateMode("HTML5");
+    templateResolver.setCharacterEncoding("UTF-8");
+    templateResolver.setOrder(2);
+    return templateResolver;
+  }
+
 
   /**
    * init spring template engine.
@@ -80,6 +90,7 @@ public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
   public SpringTemplateEngine templateEngine() {
     SpringTemplateEngine templateEngine = new SpringTemplateEngine();
     templateEngine.addTemplateResolver(emailTemplateResolver());
+    templateEngine.addTemplateResolver(pdfTemplateResolver());
     templateEngine.addTemplateResolver(templateResolver());
     templateEngine.addDialect(new LayoutDialect());
     templateEngine.addDialect(new Java8TimeDialect());
