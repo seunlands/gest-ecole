@@ -3,9 +3,9 @@
 	<head>
 		<title>Détail des réservations</title>
 		<script th:src="@{/assets/js/detaillerRepas.js}"></script>
-		<script type="text/javascript">
+		<script th:inline="javascript">
 			$(document).ready(function() {
-				var contextPath = /*[[@{/}]]*/ 'context';  
+				var contextPath = /*[[@{/}]]*/ 'contextPath';  
 				fnInitDetaillerRepas(contextPath);
 			});
 		</script>
