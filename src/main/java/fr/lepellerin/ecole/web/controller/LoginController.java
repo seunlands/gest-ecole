@@ -52,6 +52,9 @@ public class LoginController {
 
   @Autowired
   private UtilisateurService utilisateurService;
+   
+  @Value("#{gesteocle.replyto.address ?: 'no-reply@lepellerin-ecole.fr' }")
+  private String replyToAddr;
 
   @RequestMapping(value = "/login", method = RequestMethod.GET)
   public String login() {
@@ -104,7 +107,7 @@ public class LoginController {
       ctx.setVariable("pwd", pwd.getPassword());
       try {
         this.emailService.sendSimpleMail("[Ecole notre dame] - Changement du mot de passe",
-            pwd.getEmails(), "no-reply@ecole-lepellerin.com", "forgottenEmail", ctx);
+            pwd.getEmails(), replyToAddr, "forgottenEmail", ctx);
       } catch (final MessagingException e) {
         LOGGER.error("ERROR sending email", e);
       }
