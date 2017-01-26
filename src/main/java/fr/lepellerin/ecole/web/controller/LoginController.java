@@ -54,7 +54,7 @@ public class LoginController {
   @Autowired
   private UtilisateurService utilisateurService;
    
-  @Value("#{gestecole.replyto.address ?: 'no-reply@lepellerin-ecole.fr' }")
+  @Value("${gestecole.replyto.address}")
   private String replyToAddr;
 
   @RequestMapping(value = "/login", method = RequestMethod.GET)
