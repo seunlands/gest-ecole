@@ -1,14 +1,11 @@
 package fr.lepellerin.ecole.logging;
 
-import javax.servlet.http.HttpSession;
-
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +15,6 @@ import fr.lepellerin.ecole.bean.security.CurrentUser;
 @Component
 public class LogMeAspect {
   
-  @Autowired
-  private HttpSession session;
-
   /** 
    * pointcut every methode. 
    */ 

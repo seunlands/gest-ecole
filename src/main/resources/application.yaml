@@ -1,0 +1,32 @@
+spring : 
+  jpa : 
+    show-sql : true
+    hibernate : 
+      ddl-auto : 
+  
+  thymeleaf : 
+    cache : false
+
+  datasource : 
+    url : jdbc:mysql://localhost:3306/noethys_data?autoReconnect=true&useSSL=false
+    username : noethys
+    password : noethys
+
+  http : 
+    encoding :  
+      charset : UTF-8
+      enabled : true
+      force : true
+
+  mail : 
+    host : localhost
+    port : 25
+
+logging : 
+  file : c:\\temp\\gestecole.log
+  level.org.springframework.data : DEBUG
+
+
+gestecole :
+  mail : 
+    reply-to-address : no-reply@lepellerin-ecole.fr
