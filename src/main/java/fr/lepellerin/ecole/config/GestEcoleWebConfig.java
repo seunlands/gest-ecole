@@ -23,7 +23,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -40,8 +39,7 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 @EnableWebMvc
 @Configuration
 @EnableJpaRepositories
-@EnableScheduling
-@Import({ GestEcolePersistenceConfig.class, GestEcoleSecurityConfig.class })
+@Import({ GestEcolePersistenceConfig.class, GestEcoleSecurityConfig.class, GestEcoleProperties.class })
 public class GestEcoleWebConfig extends WebMvcConfigurerAdapter {
 
   /**

@@ -17,15 +17,16 @@
 
 package fr.lepellerin.ecole.web.controller;
 
-import fr.lepellerin.ecole.logging.LogMe;
-import fr.lepellerin.ecole.service.EmailService;
-import fr.lepellerin.ecole.service.UtilisateurService;
-import fr.lepellerin.ecole.service.dto.ForgottenPwdDto;
+import java.util.List;
+import java.util.Locale;
+
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -36,12 +37,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.thymeleaf.context.Context;
 
-import java.util.List;
-import java.util.Locale;
-
-import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import fr.lepellerin.ecole.config.GestEcoleProperties;
+import fr.lepellerin.ecole.logging.LogMe;
+import fr.lepellerin.ecole.service.EmailService;
+import fr.lepellerin.ecole.service.UtilisateurService;
+import fr.lepellerin.ecole.service.dto.ForgottenPwdDto;
 
 @Controller
 public class LoginController {
@@ -54,8 +54,8 @@ public class LoginController {
   @Autowired
   private UtilisateurService utilisateurService;
    
-  @Value("${gestecole.replyto.address}")
-  private String replyToAddr;
+  @Autowired
+  private GestEcoleProperties properties;
 
   @RequestMapping(value = "/login", method = RequestMethod.GET)
   public String login() {
@@ -107,8 +107,8 @@ public class LoginController {
       ctx.setVariable("name", pwd.getAccount());
       ctx.setVariable("pwd", pwd.getPassword());
       try {
-        this.emailService.sendSimpleMail("[Ecole notre dame] - Changement du mot de passe",
-            pwd.getEmails(), replyToAddr, "forgottenEmail", ctx);
+        this.emailService.sendSimpleMail("[Portail] - Changement du mot de passe",
+            pwd.getEmails(), properties.getMail().getReplyToAddress(), "forgottenEmail", ctx);
       } catch (final MessagingException e) {
         LOGGER.error("ERROR sending email", e);
       }
