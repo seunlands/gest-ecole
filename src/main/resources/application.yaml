@@ -8,9 +8,9 @@ spring :
     cache : false
 
   datasource : 
-    url : jdbc:mysql://localhost:3306/noethys_data?autoReconnect=true&useSSL=false
-    username : noethys
-    password : noethys
+    url : jdbc:mysql://localhost:3306/essai_cantine_data?autoReconnect=true&useSSL=false
+    username : root
+    password : cha04ise+
 
   http : 
     encoding :  
