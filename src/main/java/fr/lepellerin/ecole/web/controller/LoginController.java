@@ -17,12 +17,11 @@
 
 package fr.lepellerin.ecole.web.controller;
 
-import java.util.List;
-import java.util.Locale;
-
-import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import fr.lepellerin.ecole.config.GestEcoleProperties;
+import fr.lepellerin.ecole.logging.LogMe;
+import fr.lepellerin.ecole.service.EmailService;
+import fr.lepellerin.ecole.service.UtilisateurService;
+import fr.lepellerin.ecole.service.dto.ForgottenPwdDto;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,11 +36,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.thymeleaf.context.Context;
 
-import fr.lepellerin.ecole.config.GestEcoleProperties;
-import fr.lepellerin.ecole.logging.LogMe;
-import fr.lepellerin.ecole.service.EmailService;
-import fr.lepellerin.ecole.service.UtilisateurService;
-import fr.lepellerin.ecole.service.dto.ForgottenPwdDto;
+import java.util.List;
+import java.util.Locale;
+
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class LoginController {
@@ -53,7 +53,7 @@ public class LoginController {
 
   @Autowired
   private UtilisateurService utilisateurService;
-   
+
   @Autowired
   private GestEcoleProperties properties;
 
@@ -107,15 +107,15 @@ public class LoginController {
       ctx.setVariable("name", pwd.getAccount());
       ctx.setVariable("pwd", pwd.getPassword());
       try {
-        this.emailService.sendSimpleMail("[Portail] - Changement du mot de passe",
-            pwd.getEmails(), properties.getMail().getReplyToAddress(), "forgottenEmail", ctx);
+        this.emailService.sendSimpleMail("[Portail] - Changement du mot de passe", pwd.getEmails(),
+            properties.getMail().getReplyToAddress(), "forgottenEmail", ctx);
       } catch (final MessagingException e) {
         LOGGER.error("ERROR sending email", e);
       }
       model.addAttribute("confirm", "Email avec nouveau mot de passe envoyé.");
     });
 
-    return "accueil/forgottenPwd";
+    return "accueil/login";
   }
 
   /**
@@ -147,13 +147,13 @@ public class LoginController {
     ctx.setVariable("accounts", accounts);
     try {
       this.emailService.sendSimpleMail("[Ecole notre dame] - Identifiant", email,
-          "no-reply@ecole-lepellerin.com", "forgottenUsername", ctx);
+          this.properties.getMail().getReplyToAddress(), "forgottenUsername", ctx);
     } catch (final MessagingException e) {
       LOGGER.error("ERROR sending email", e);
     }
     model.addAttribute("confirm", "Email avec identifiant envoyé.");
 
-    return "accueil/forgottenUsername";
+    return "accueil/login";
   }
 
 }

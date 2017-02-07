@@ -17,17 +17,17 @@
 
 package fr.lepellerin.ecole.repo;
 
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
 import fr.lepellerin.ecole.bean.Activite;
 import fr.lepellerin.ecole.bean.Consommation;
 import fr.lepellerin.ecole.bean.Famille;
 import fr.lepellerin.ecole.bean.Groupe;
 import fr.lepellerin.ecole.bean.Inscription;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.Date;
+import java.util.List;
 
 public interface ConsommationRepository extends JpaRepository<Consommation, Integer> {
 
