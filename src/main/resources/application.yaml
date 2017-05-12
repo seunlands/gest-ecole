@@ -10,7 +10,7 @@ spring :
   datasource : 
     url : jdbc:mysql://localhost:3306/essai_cantine_data?autoReconnect=true&useSSL=false
     username : root
-    password : cha04ise+
+    password : 
 
   http : 
     encoding :  
